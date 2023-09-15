@@ -22,6 +22,7 @@
 		0597921C2AB47E6500348AB8 /* FilterDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 0597921B2AB47E6500348AB8 /* FilterDataProvider.m */; };
 		0597921E2AB47E6500348AB8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0597921D2AB47E6500348AB8 /* main.m */; };
 		059792242AB47E6500348AB8 /* com.azimgd.scarecrow.scarecrow-network.systemextension in Embed System Extensions */ = {isa = PBXBuildFile; fileRef = 059792162AB47E6500348AB8 /* com.azimgd.scarecrow.scarecrow-network.systemextension */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		0597922A2AB484FC00348AB8 /* RCTScarecrowNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 059792292AB484FC00348AB8 /* RCTScarecrowNetwork.m */; };
 		1364A44A6D4288254489D593 /* libPods-scarecrow-macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 82DBFF4F4989BE7D4E09CC98 /* libPods-scarecrow-macOS.a */; };
 		5142014D2437B4B30078DB4F /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5142014C2437B4B30078DB4F /* AppDelegate.mm */; };
 		514201522437B4B40078DB4F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 514201512437B4B40078DB4F /* Assets.xcassets */; };
@@ -72,6 +73,8 @@
 		0597921D2AB47E6500348AB8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0597921F2AB47E6500348AB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		059792202AB47E6500348AB8 /* scarecrow_network.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = scarecrow_network.entitlements; sourceTree = "<group>"; };
+		059792282AB484DB00348AB8 /* RCTScarecrowNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCTScarecrowNetwork.h; sourceTree = "<group>"; };
+		059792292AB484FC00348AB8 /* RCTScarecrowNetwork.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCTScarecrowNetwork.m; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* scarecrow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = scarecrow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DE051597B59487549C32721 /* Pods-scarecrow-macOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-scarecrow-macOS.debug.xcconfig"; path = "Target Support Files/Pods-scarecrow-macOS/Pods-scarecrow-macOS.debug.xcconfig"; sourceTree = "<group>"; };
 		3E5DBD29D0E507E1DBFCDB3B /* Pods-scarecrow-macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-scarecrow-macOS.release.xcconfig"; path = "Target Support Files/Pods-scarecrow-macOS/Pods-scarecrow-macOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -164,6 +167,8 @@
 			children = (
 				059792082AB47AFB00348AB8 /* NetworkExtensionProvider.h */,
 				059792092AB47AFB00348AB8 /* NetworkExtensionProvider.m */,
+				059792282AB484DB00348AB8 /* RCTScarecrowNetwork.h */,
+				059792292AB484FC00348AB8 /* RCTScarecrowNetwork.m */,
 				059791CF2AB45F1E00348AB8 /* scarecrow-macOS.entitlements */,
 				5142014B2437B4B30078DB4F /* AppDelegate.h */,
 				5142014C2437B4B30078DB4F /* AppDelegate.mm */,
@@ -478,6 +483,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0597922A2AB484FC00348AB8 /* RCTScarecrowNetwork.m in Sources */,
 				0597920B2AB47B3900348AB8 /* CommunicationProtocol.h in Sources */,
 				0597920C2AB47B3900348AB8 /* ExtensionCommunication.h in Sources */,
 				0597920D2AB47B3900348AB8 /* ExtensionCommunication.m in Sources */,
@@ -586,13 +592,13 @@
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DSTROOT = /;
-				DEPLOYMENT_LOCATION = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "scarecrow-iOS.entitlements";
 				CURRENT_PROJECT_VERSION = 1;
+				DEPLOYMENT_LOCATION = YES;
 				DEVELOPMENT_TEAM = B6BB88CAP5;
+				DSTROOT = /;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "scarecrow-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -612,13 +618,13 @@
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DSTROOT = /;
-				DEPLOYMENT_LOCATION = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "scarecrow-iOS.entitlements";
 				CURRENT_PROJECT_VERSION = 1;
+				DEPLOYMENT_LOCATION = YES;
 				DEVELOPMENT_TEAM = B6BB88CAP5;
+				DSTROOT = /;
 				INFOPLIST_FILE = "scarecrow-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -637,13 +643,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1DE051597B59487549C32721 /* Pods-scarecrow-macOS.debug.xcconfig */;
 			buildSettings = {
-				DSTROOT = /;
-				DEPLOYMENT_LOCATION = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "scarecrow-macOS/scarecrow-macOS.entitlements";
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
+				DEPLOYMENT_LOCATION = YES;
 				DEVELOPMENT_TEAM = B6BB88CAP5;
+				DSTROOT = /;
 				INFOPLIST_FILE = "scarecrow-macos/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
@@ -662,12 +668,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3E5DBD29D0E507E1DBFCDB3B /* Pods-scarecrow-macOS.release.xcconfig */;
 			buildSettings = {
-				DSTROOT = /;
-				DEPLOYMENT_LOCATION = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "scarecrow-macOS/scarecrow-macOS.entitlements";
 				CURRENT_PROJECT_VERSION = 1;
+				DEPLOYMENT_LOCATION = YES;
 				DEVELOPMENT_TEAM = B6BB88CAP5;
+				DSTROOT = /;
 				INFOPLIST_FILE = "scarecrow-macos/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
