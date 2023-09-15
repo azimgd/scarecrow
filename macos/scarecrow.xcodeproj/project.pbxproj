@@ -17,7 +17,6 @@
 /* Begin PBXFileReference section */
 		059791CE2AB45DED00348AB8 /* scarecrow-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "scarecrow-iOS.entitlements"; sourceTree = "<group>"; };
 		059791CF2AB45F1E00348AB8 /* scarecrow-macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "scarecrow-macOS.entitlements"; sourceTree = "<group>"; };
-		059791D02AB45FDA00348AB8 /* source */ = {isa = PBXFileReference; lastKnownFileType = folder; name = source; path = ../source; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* scarecrow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = scarecrow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DE051597B59487549C32721 /* Pods-scarecrow-macOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-scarecrow-macOS.debug.xcconfig"; path = "Target Support Files/Pods-scarecrow-macOS/Pods-scarecrow-macOS.debug.xcconfig"; sourceTree = "<group>"; };
 		3E5DBD29D0E507E1DBFCDB3B /* Pods-scarecrow-macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-scarecrow-macOS.release.xcconfig"; path = "Target Support Files/Pods-scarecrow-macOS/Pods-scarecrow-macOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -95,7 +94,6 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				059791D02AB45FDA00348AB8 /* source */,
 				059791CE2AB45DED00348AB8 /* scarecrow-iOS.entitlements */,
 				5142014A2437B4B30078DB4F /* scarecrow-macOS */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
