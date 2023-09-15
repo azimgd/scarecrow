@@ -34,7 +34,9 @@ static HostCommunication *sharedInstance = nil;
 }
 
 - (void)logger:(NSString *)payload {
-  NSLog(@"%@", payload);
+  if ([HostCommunication shared].loggerCallback) {
+    [HostCommunication shared].loggerCallback(payload);
+  }
 }
 
 @end

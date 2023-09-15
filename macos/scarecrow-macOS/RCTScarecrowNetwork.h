@@ -9,9 +9,11 @@
 #define RCTScarecrowNetwork_h
 
 #import "NetworkExtensionProvider.h"
-
 #import <React/RCTBridgeModule.h>
-@interface RCTScarecrowNetwork : NSObject <RCTBridgeModule>
+#import <React/RCTEventEmitter.h>
+
+@interface RCTScarecrowNetwork : RCTEventEmitter <RCTBridgeModule>
+
 @end
 
 #endif /* RCTScarecrowNetwork_h */

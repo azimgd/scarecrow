@@ -7,12 +7,19 @@ import {
   StyleSheet,
   Text,
   useColorScheme,
-  View,
+  NativeEventEmitter,
   NativeModules,
   Button,
 } from 'react-native';
 
 const {ScarecrowNetwork} = NativeModules;
+const eventEmitter = new NativeEventEmitter(ScarecrowNetwork);
+
+const logger = (event: string) => {
+  console.log(event);
+};
+
+const subscription = eventEmitter.addListener('logger', logger);
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
