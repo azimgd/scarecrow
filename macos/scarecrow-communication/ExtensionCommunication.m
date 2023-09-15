@@ -1,6 +1,6 @@
 //
 //  Communication.m
-//  scarecrow-filter-data
+//  scarecrow-network
 //
 //  Created by azim on 12.09.2023.
 //

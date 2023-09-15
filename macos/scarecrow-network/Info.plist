@@ -7,12 +7,14 @@
 	<key>NetworkExtension</key>
 	<dict>
 		<key>NEMachServiceName</key>
-		<string>$(TeamIdentifierPrefix)com.example.app-group.MySystemExtension</string>
+		<string>$(TeamIdentifierPrefix)com.azimgd.scarecrow.scarecrow-network</string>
 		<key>NEProviderClasses</key>
 		<dict>
 			<key>com.apple.networkextension.filter-data</key>
 			<string>FilterDataProvider</string>
 		</dict>
 	</dict>
+	<key>com.apple.developer.endpoint-security.client</key>
+	<true/>
 </dict>
 </plist>
