@@ -1,6 +1,6 @@
 import React from 'react';
 import {NativeEventEmitter, NativeModules} from 'react-native';
-import {ListItem, Separator, Text, YStack, SizableText} from 'tamagui';
+import {ListItem, Separator, YStack, SizableText} from 'tamagui';
 import {ArrowUp, ArrowDown} from '@tamagui/lucide-icons';
 
 const {ScarecrowNetwork} = NativeModules;
@@ -32,7 +32,8 @@ function History(): JSX.Element {
       handleDataFromFlowEvent,
     );
     return () => subscription.remove();
-  }, [handleDataFromFlowEvent]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <YStack separator={<Separator />}>

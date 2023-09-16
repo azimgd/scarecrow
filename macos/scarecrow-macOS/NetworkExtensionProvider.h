@@ -13,6 +13,7 @@
 
 @interface NetworkExtensionProvider : NSObject<OSSystemExtensionRequestDelegate>
   @property (class, nonatomic, readonly) NetworkExtensionProvider *shared;
+  @property (nonatomic, assign) BOOL active;
 
   - (void)enable;
   - (void)disable;

@@ -34,6 +34,7 @@ static NetworkExtensionProvider *sharedInstance = nil;
   
   activateSystemRequest.delegate = self;
   [OSSystemExtensionManager.sharedManager submitRequest:activateSystemRequest];
+  self.active = true;
 }
 
 - (void)disable
@@ -45,6 +46,38 @@ static NetworkExtensionProvider *sharedInstance = nil;
 
   deactivateSystemRequest.delegate = self;
   [OSSystemExtensionManager.sharedManager submitRequest:deactivateSystemRequest];
+  self.active = false;
+}
+
+- (void)activate
+{
+  [NEFilterManager.sharedManager loadFromPreferencesWithCompletionHandler:^(NSError * _Nullable error) {
+    NEFilterProviderConfiguration* configuration = [[NEFilterProviderConfiguration alloc] init];
+    configuration.filterPackets = false;
+    configuration.filterDataProviderBundleIdentifier = networkExtensionBundleId;
+    configuration.filterSockets = true;
+    configuration.filterPacketProviderBundleIdentifier = networkExtensionBundleId;
+    
+    NEFilterManager.sharedManager.localizedDescription = networkExtensionBundleId;
+    NEFilterManager.sharedManager.providerConfiguration = configuration;
+
+    NEFilterManager.sharedManager.enabled = true;
+
+    [NEFilterManager.sharedManager saveToPreferencesWithCompletionHandler:^(NSError * _Nullable error) {
+      [[HostCommunication shared] initialize];
+    }];
+  }];
+}
+
+- (void)deactivate
+{
+  [NEFilterManager.sharedManager loadFromPreferencesWithCompletionHandler:^(NSError * _Nullable error) {
+    NEFilterManager.sharedManager.enabled = true;
+
+    [NEFilterManager.sharedManager removeFromPreferencesWithCompletionHandler:^(NSError * _Nullable error) {
+      [[HostCommunication shared] terminate];
+    }];
+  }];
 }
 
 #pragma OSSystemExtensionRequestDelegate
@@ -64,27 +97,11 @@ static NetworkExtensionProvider *sharedInstance = nil;
 
 - (void)request:(nonnull OSSystemExtensionRequest *)request didFinishWithResult:(OSSystemExtensionRequestResult)result
 {
-  [NEFilterManager.sharedManager loadFromPreferencesWithCompletionHandler:^(NSError * _Nullable error) {
-    if (error != nil) {
-      NSLog(@"[scarecrow] ext-load: %@", error);
-      return;
-    }
-    
-    NEFilterProviderConfiguration* configuration = [[NEFilterProviderConfiguration alloc] init];
-    configuration.filterPackets = false;
-    configuration.filterDataProviderBundleIdentifier = networkExtensionBundleId;
-    configuration.filterSockets = true;
-    configuration.filterPacketProviderBundleIdentifier = networkExtensionBundleId;
-    
-    NEFilterManager.sharedManager.localizedDescription = networkExtensionBundleId;
-    NEFilterManager.sharedManager.providerConfiguration = configuration;
-
-    NEFilterManager.sharedManager.enabled = true;
-
-    [NEFilterManager.sharedManager saveToPreferencesWithCompletionHandler:^(NSError * _Nullable error) {
-      [[HostCommunication shared] initialize];
-    }];
-  }];
+  if (self.active) {
+    [self activate];
+  } else {
+    [self deactivate];
+  }
 }
 
 - (void)requestNeedsUserApproval:(nonnull OSSystemExtensionRequest *)request {

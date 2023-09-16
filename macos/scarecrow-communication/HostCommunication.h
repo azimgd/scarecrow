@@ -16,6 +16,7 @@
 @property (weak) NSXPCConnection *connection;
 
 - (void)initialize;
+- (void)terminate;
 
 @end
 

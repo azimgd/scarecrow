@@ -33,6 +33,11 @@ static HostCommunication *sharedInstance = nil;
   [[newConnection remoteObjectProxy] initialize];
 }
 
+- (void)terminate {
+  // [[newConnection remoteObjectProxy] terminate];
+  [[HostCommunication shared].connection suspend];
+}
+
 - (void)handleDataFromFlowEvent:(NSDictionary *)payload {
   [[NSNotificationCenter defaultCenter] postNotificationName:@"handleDataFromFlowEvent" object:nil userInfo:payload];
 }

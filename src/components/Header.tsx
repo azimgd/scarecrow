@@ -5,6 +5,10 @@ import {Switch, XStack, H4} from 'tamagui';
 const {ScarecrowNetwork} = NativeModules;
 
 function Header(): JSX.Element {
+  React.useEffect(() => {
+    ScarecrowNetwork.isEnabled().then(console.log);
+  }, []);
+
   const handleCheckedChange = React.useCallback((value: boolean) => {
     if (value) {
       ScarecrowNetwork.enable();

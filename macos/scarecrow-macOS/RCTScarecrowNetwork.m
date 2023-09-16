@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 #import "RCTScarecrowNetwork.h"
 #import "HostCommunication.h"
+#import <NetworkExtension/NetworkExtension.h>
 
 @implementation RCTScarecrowNetwork
 
@@ -26,6 +27,12 @@ RCT_EXPORT_METHOD(enable)
 RCT_EXPORT_METHOD(disable)
 {
   [[NetworkExtensionProvider shared] disable];
+}
+
+RCT_EXPORT_METHOD(isEnabled:(RCTPromiseResolveBlock)callback
+error:(__unused RCTResponseSenderBlock)error)
+{
+  callback(NEFilterManager.sharedManager.isEnabled ? @YES : @NO);
 }
 
 - (void)handleDataFromFlowEvent:(NSNotification*)sender{
