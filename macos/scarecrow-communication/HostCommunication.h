@@ -14,7 +14,6 @@
 
 @property (class, nonatomic, readonly) HostCommunication *shared;
 @property (weak) NSXPCConnection *connection;
-@property (nonatomic, copy) void (^loggerCallback)(NSString *payload);
 
 - (void)initialize;
 

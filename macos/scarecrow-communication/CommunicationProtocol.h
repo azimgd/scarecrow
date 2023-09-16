@@ -15,7 +15,7 @@
 
 // Extension -> Host
 @protocol HostCommunicationProtocol
-- (void)logger:(NSString *)payload;
+- (void)handleDataFromFlowEvent:(NSDictionary *)payload;
 @end
 
 #endif /* CommunicationProtocol_h */

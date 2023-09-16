@@ -33,10 +33,8 @@ static HostCommunication *sharedInstance = nil;
   [[newConnection remoteObjectProxy] initialize];
 }
 
-- (void)logger:(NSString *)payload {
-  if ([HostCommunication shared].loggerCallback) {
-    [HostCommunication shared].loggerCallback(payload);
-  }
+- (void)handleDataFromFlowEvent:(NSDictionary *)payload {
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"handleDataFromFlowEvent" object:nil userInfo:payload];
 }
 
 @end

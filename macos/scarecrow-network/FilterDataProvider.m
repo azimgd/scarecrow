@@ -61,10 +61,14 @@
   NEFilterSocketFlow *socketFlow = (NEFilterSocketFlow*)flow;
   NWHostEndpoint *remoteEndpoint = (NWHostEndpoint*)socketFlow.remoteEndpoint;
 
-  NSString *payload = [NSString stringWithFormat:@"inbound: %@ / url: %@", remoteEndpoint, flow.URL];
+  NSDictionary *payload = @{
+    @"direction": @"inbound",
+    @"remoteEndpoint": remoteEndpoint.description,
+    @"url": flow.URL.description,
+  };
 
   NSXPCConnection *connection = [ExtensionCommunication shared].connection;
-  [[connection remoteObjectProxy] logger:payload];
+  [[connection remoteObjectProxy] handleDataFromFlowEvent:payload];
 
   return [NEFilterDataVerdict allowVerdict];
 }
@@ -75,10 +79,14 @@
   NEFilterSocketFlow *socketFlow = (NEFilterSocketFlow*)flow;
   NWHostEndpoint *remoteEndpoint = (NWHostEndpoint*)socketFlow.remoteEndpoint;
 
-  NSString *payload = [NSString stringWithFormat:@"outbound: %@ / url: %@", remoteEndpoint, flow.URL];
+  NSDictionary *payload = @{
+    @"direction": @"outbound",
+    @"remoteEndpoint": remoteEndpoint.description,
+    @"url": flow.URL.description,
+  };
 
   NSXPCConnection *connection = [ExtensionCommunication shared].connection;
-  [[connection remoteObjectProxy] logger:payload];
+  [[connection remoteObjectProxy] handleDataFromFlowEvent:payload];
   
   return [NEFilterDataVerdict allowVerdict];
 }

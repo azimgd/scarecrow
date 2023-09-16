@@ -14,21 +14,22 @@
 RCT_EXPORT_MODULE();
 
 - (NSArray<NSString *> *)supportedEvents {
-  return @[@"logger"];
+  return @[@"handleDataFromFlowEvent"];
 }
 
 RCT_EXPORT_METHOD(enable)
 {
   [[NetworkExtensionProvider shared] enable];
-
-  [HostCommunication shared].loggerCallback = ^(NSString *payload) {
-    [self sendEventWithName:@"logger" body:payload];
-  };
+  [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(handleDataFromFlowEvent:) name:@"handleDataFromFlowEvent" object:nil];
 }
 
 RCT_EXPORT_METHOD(disable)
 {
   [[NetworkExtensionProvider shared] disable];
+}
+
+- (void)handleDataFromFlowEvent:(NSNotification*)sender{
+  [self sendEventWithName:@"handleDataFromFlowEvent" body:sender.userInfo];
 }
 
 @end
