@@ -20,6 +20,7 @@ RCT_EXPORT_MODULE();
 RCT_EXPORT_METHOD(enable)
 {
   [[NetworkExtensionProvider shared] enable];
+
   [HostCommunication shared].loggerCallback = ^(NSString *payload) {
     [self sendEventWithName:@"logger" body:payload];
   };

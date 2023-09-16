@@ -10,9 +10,13 @@
     "test": "jest"
   },
   "dependencies": {
+    "@tamagui/config": "^1.65.3",
+    "@tamagui/lucide-icons": "^1.65.3",
     "react": "18.2.0",
     "react-native": "0.72.4",
-    "react-native-macos": "^0.72.0-0"
+    "react-native-macos": "^0.72.0-0",
+    "react-native-svg": "^13.13.0",
+    "tamagui": "^1.65.3"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
