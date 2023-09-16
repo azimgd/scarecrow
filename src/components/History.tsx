@@ -1,6 +1,6 @@
 import React from 'react';
 import {NativeEventEmitter, NativeModules} from 'react-native';
-import {ListItem, Separator, YStack} from 'tamagui';
+import {ListItem, Separator, Text, YStack, SizableText} from 'tamagui';
 import {ArrowUp, ArrowDown} from '@tamagui/lucide-icons';
 
 const {ScarecrowNetwork} = NativeModules;
@@ -10,6 +10,8 @@ type handleDataFromFlowEventPayload = {
   remoteEndpoint: string;
   url: string;
   direction: string;
+  localizedName: string;
+  bundleIdentifier: string;
 };
 
 function History(): JSX.Element {
@@ -37,10 +39,23 @@ function History(): JSX.Element {
       {history.map((item, index) => (
         <ListItem
           title={item.remoteEndpoint}
-          subTitle={item.url}
+          subTitle={
+            <SizableText theme="alt1" size="$3">
+              {item.localizedName} {item.bundleIdentifier}
+            </SizableText>
+          }
           key={index}
-          icon={item.direction === 'outbound' ? ArrowUp : ArrowDown}
-        />
+          icon={
+            item.direction === 'outbound' ? (
+              <ArrowUp color="#0097e6" />
+            ) : (
+              <ArrowDown color="#44bd32" />
+            )
+          }>
+          <SizableText theme="alt2" size="$3">
+            {item.url}
+          </SizableText>
+        </ListItem>
       ))}
     </YStack>
   );

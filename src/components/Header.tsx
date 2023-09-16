@@ -20,12 +20,9 @@ function Header(): JSX.Element {
       alignItems="center"
       justifyContent="flex-end"
       backgroundColor="#000">
-      <H4 color="$white">scarecrow</H4>
-      <Switch
-        size="$4"
-        defaultChecked={true}
-        onCheckedChange={handleCheckedChange}>
-        <Switch.Thumb animation="quick" />
+      <H4 color="#fbc531">scarecrow</H4>
+      <Switch size="$2" onCheckedChange={handleCheckedChange}>
+        <Switch.Thumb animation="bouncy" />
       </Switch>
     </XStack>
   );

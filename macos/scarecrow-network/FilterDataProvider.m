@@ -8,6 +8,8 @@
 #import "FilterDataProvider.h"
 #import "ExtensionCommunication.h"
 #import <os/log.h>
+#import <bsm/libbsm.h>
+#import <AppKit/AppKit.h>
 
 @implementation FilterDataProvider
 
@@ -60,11 +62,14 @@
 
   NEFilterSocketFlow *socketFlow = (NEFilterSocketFlow*)flow;
   NWHostEndpoint *remoteEndpoint = (NWHostEndpoint*)socketFlow.remoteEndpoint;
+  NSDictionary *runningApplication = [self runningApplication:flow.sourceAppAuditToken];
 
   NSDictionary *payload = @{
     @"direction": @"inbound",
     @"remoteEndpoint": remoteEndpoint.description,
     @"url": flow.URL.description,
+    @"localizedName": [runningApplication objectForKey:@"localizedName"],
+    @"bundleIdentifier": [runningApplication objectForKey:@"bundleIdentifier"],
   };
 
   NSXPCConnection *connection = [ExtensionCommunication shared].connection;
@@ -78,11 +83,14 @@
   
   NEFilterSocketFlow *socketFlow = (NEFilterSocketFlow*)flow;
   NWHostEndpoint *remoteEndpoint = (NWHostEndpoint*)socketFlow.remoteEndpoint;
+  NSDictionary *runningApplication = [self runningApplication:flow.sourceAppAuditToken];
 
   NSDictionary *payload = @{
     @"direction": @"outbound",
     @"remoteEndpoint": remoteEndpoint.description,
     @"url": flow.URL.description,
+    @"localizedName": [runningApplication objectForKey:@"localizedName"],
+    @"bundleIdentifier": [runningApplication objectForKey:@"bundleIdentifier"],
   };
 
   NSXPCConnection *connection = [ExtensionCommunication shared].connection;
@@ -101,6 +109,23 @@
   os_log(OS_LOG_DEFAULT, "[scarecrow-filter] handleOutboundDataCompleteForFlow");
 
   return [NEFilterDataVerdict allowVerdict];
+}
+
+- (NSDictionary *)runningApplication:(NSData *)sourceAppAuditToken {
+  pid_t sourceAppPID = audit_token_to_pid(*(audit_token_t*)sourceAppAuditToken.bytes);
+  NSRunningApplication *runningApplication = [NSRunningApplication runningApplicationWithProcessIdentifier:sourceAppPID];
+  
+  if (runningApplication == nil) {
+    return @{
+      @"localizedName": @"",
+      @"bundleIdentifier": @"",
+    };
+  }
+  
+  return @{
+    @"localizedName": runningApplication.localizedName,
+    @"bundleIdentifier": runningApplication.bundleIdentifier,
+  };
 }
 
 @end
