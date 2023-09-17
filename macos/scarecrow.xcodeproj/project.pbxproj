@@ -28,6 +28,7 @@
 		059792392AB4881700348AB8 /* ExtensionCommunication.m in Sources */ = {isa = PBXBuildFile; fileRef = 059792032AB47AAF00348AB8 /* ExtensionCommunication.m */; };
 		0597923A2AB4881D00348AB8 /* ExtensionCommunicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 059791FF2AB47AAF00348AB8 /* ExtensionCommunicationDelegate.m */; };
 		0597923B2AB4882400348AB8 /* HostCommunication.m in Sources */ = {isa = PBXBuildFile; fileRef = 059792022AB47AAF00348AB8 /* HostCommunication.m */; };
+		05CBE56B2AB6DFCA000F6BC1 /* FlowEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 05CBE56A2AB6DFCA000F6BC1 /* FlowEntry.m */; };
 		05EE329F2AB5CAC000410158 /* libbsm.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 05EE329E2AB5CAB800410158 /* libbsm.tbd */; };
 		1364A44A6D4288254489D593 /* libPods-scarecrow-macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 82DBFF4F4989BE7D4E09CC98 /* libPods-scarecrow-macOS.a */; };
 		5142014D2437B4B30078DB4F /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5142014C2437B4B30078DB4F /* AppDelegate.mm */; };
@@ -85,6 +86,8 @@
 		0597922C2AB4875900348AB8 /* ExtensionCommunicationProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtensionCommunicationProvider.m; sourceTree = "<group>"; };
 		0597922D2AB4875900348AB8 /* ExtensionCommunicationProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtensionCommunicationProvider.h; sourceTree = "<group>"; };
 		0597922E2AB4875900348AB8 /* scarecrow_filter_data.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = scarecrow_filter_data.entitlements; sourceTree = "<group>"; };
+		05CBE5692AB6DFBF000F6BC1 /* FlowEntry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlowEntry.h; sourceTree = "<group>"; };
+		05CBE56A2AB6DFCA000F6BC1 /* FlowEntry.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlowEntry.m; sourceTree = "<group>"; };
 		05EE329E2AB5CAB800410158 /* libbsm.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbsm.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/lib/libbsm.tbd; sourceTree = DEVELOPER_DIR; };
 		13B07F961A680F5B00A75B9A /* scarecrow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = scarecrow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DE051597B59487549C32721 /* Pods-scarecrow-macOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-scarecrow-macOS.debug.xcconfig"; path = "Target Support Files/Pods-scarecrow-macOS/Pods-scarecrow-macOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -146,6 +149,8 @@
 		059792192AB47E6500348AB8 /* scarecrow-network */ = {
 			isa = PBXGroup;
 			children = (
+				05CBE5692AB6DFBF000F6BC1 /* FlowEntry.h */,
+				05CBE56A2AB6DFCA000F6BC1 /* FlowEntry.m */,
 				0597922D2AB4875900348AB8 /* ExtensionCommunicationProvider.h */,
 				0597922C2AB4875900348AB8 /* ExtensionCommunicationProvider.m */,
 				0597922B2AB4875800348AB8 /* ExtensionCommunicationProviderDelegate.h */,
@@ -481,6 +486,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05CBE56B2AB6DFCA000F6BC1 /* FlowEntry.m in Sources */,
 				059792372AB487F300348AB8 /* ExtensionCommunication.h in Sources */,
 				059792382AB487F300348AB8 /* ExtensionCommunicationDelegate.h in Sources */,
 				0597923B2AB4882400348AB8 /* HostCommunication.m in Sources */,
