@@ -72,7 +72,7 @@ static NetworkExtensionProvider *sharedInstance = nil;
 - (void)deactivate
 {
   [NEFilterManager.sharedManager loadFromPreferencesWithCompletionHandler:^(NSError * _Nullable error) {
-    NEFilterManager.sharedManager.enabled = true;
+    NEFilterManager.sharedManager.enabled = false;
 
     [NEFilterManager.sharedManager removeFromPreferencesWithCompletionHandler:^(NSError * _Nullable error) {
       [[HostCommunication shared] terminate];
