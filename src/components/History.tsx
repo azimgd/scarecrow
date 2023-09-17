@@ -8,7 +8,7 @@ const eventEmitter = new NativeEventEmitter(ScarecrowNetwork);
 
 type handleDataFromFlowEventPayload = {
   remoteEndpoint: string;
-  url: string;
+  remoteUrl: string;
   direction: string;
   localizedName: string;
   bundleIdentifier: string;
@@ -55,7 +55,7 @@ function History(): JSX.Element {
             )
           }>
           <SizableText theme="alt2" size="$3">
-            {item.url}
+            {item.remoteUrl}
           </SizableText>
         </ListItem>
       ))}

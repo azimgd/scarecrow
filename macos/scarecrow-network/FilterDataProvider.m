@@ -15,7 +15,7 @@
 - (void)startFilterWithCompletionHandler:(void (^)(NSError *error))completionHandler {
   os_log(OS_LOG_DEFAULT, "[scarecrow-filter] startFilterWithCompletionHandler");
 
-  NWHostEndpoint *remoteNetwork = [NWHostEndpoint endpointWithHostname:@"0.0.0.0" port:@"443"];
+  NWHostEndpoint *remoteNetwork = [NWHostEndpoint endpointWithHostname:@"0.0.0.0" port:@""];
 
   NENetworkRule* networkRule = [
     [NENetworkRule alloc]

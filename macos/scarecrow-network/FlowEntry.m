@@ -21,19 +21,20 @@
 - (NSDictionary *)payload
 {
   NEFilterSocketFlow *socketFlow = (NEFilterSocketFlow*)_flow;
-  NWHostEndpoint *remoteEndpoint = (NWHostEndpoint*)socketFlow.remoteEndpoint;
   NSRunningApplication *runningApplication = [self runningApplicationFromAppAuditToken:socketFlow.sourceAppAuditToken];
 
+  NSString *remoteEndpoint = (socketFlow.remoteEndpoint) ? socketFlow.remoteEndpoint.description : @"";
+  NSString *remoteUrl = (socketFlow.URL) ? socketFlow.URL.description : @"";
   NSString *direction = socketFlow.direction == 1 ? @"inbound" : @"outbound";
-  NSString *localizedName = (runningApplication != nil && runningApplication.localizedName != nil) ?
+  NSString *localizedName = (runningApplication && runningApplication.localizedName) ?
     runningApplication.localizedName : @"";
-  NSString *bundleIdentifier = (runningApplication != nil && runningApplication.bundleIdentifier != nil) ?
+  NSString *bundleIdentifier = (runningApplication && runningApplication.bundleIdentifier) ?
     runningApplication.bundleIdentifier : @"";
 
   return @{
     @"direction": direction,
-    @"remoteEndpoint": remoteEndpoint.description,
-    @"url": socketFlow.URL.description,
+    @"remoteEndpoint": remoteEndpoint,
+    @"remoteUrl": remoteUrl,
     @"localizedName": localizedName,
     @"bundleIdentifier": bundleIdentifier,
   };
