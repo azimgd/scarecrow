@@ -9,6 +9,7 @@
 #import "RCTScarecrowNetwork.h"
 #import "HostCommunication.h"
 #import <NetworkExtension/NetworkExtension.h>
+#import "Flow.h"
 
 @implementation RCTScarecrowNetwork
 
@@ -36,7 +37,39 @@ error:(__unused RCTResponseSenderBlock)error)
 }
 
 - (void)handleDataFromFlowEvent:(NSNotification*)sender{
-  [self sendEventWithName:@"handleDataFromFlowEvent" body:sender.userInfo];
+  [self saveFlow:sender.userInfo];
+  [self sendEventWithName:@"handleDataFromFlowEvent" body:[self getGrouppedFlows]];
+}
+
+- (void)saveFlow:(NSDictionary *)payload
+{
+  Flow *flow = [Flow new];
+  RLMRealm *realm = [RLMRealm defaultRealm];
+  
+  flow._id = [[NSUUID UUID] UUIDString];
+  flow.direction = [payload objectForKey:@"direction"];
+  flow.remoteEndpoint = [payload objectForKey:@"remoteEndpoint"];
+  flow.remoteUrl = [payload objectForKey:@"remoteUrl"];
+  flow.localizedName = [payload objectForKey:@"localizedName"];
+  flow.bundleIdentifier = [payload objectForKey:@"bundleIdentifier"];
+  
+  [realm transactionWithBlock:^{
+    [realm addObject:flow];
+  }];
+}
+
+- (NSDictionary *)getGrouppedFlows
+{
+  RLMRealm *realm = [RLMRealm defaultRealm];
+  RLMResults<Flow *> *results = [Flow allObjectsInRealm:realm];
+  RLMResults<Flow *> *distinctResults = [results distinctResultsUsingKeyPaths:@[@"bundleIdentifier"]];
+  
+  NSMutableDictionary *response = [NSMutableDictionary new];
+  for (Flow *item in distinctResults) {
+    response[item.bundleIdentifier] = [item payload];
+  }
+  
+  return response;
 }
 
 @end

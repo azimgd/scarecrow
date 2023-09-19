@@ -10,6 +10,8 @@ target 'scarecrow-macOS' do
   # Flags change depending on the env values.
   flags = get_default_flags()
 
+  pod 'Realm', '~>10'
+
   use_react_native!(
     :path => '../node_modules/react-native-macos',
     :hermes_enabled => false,

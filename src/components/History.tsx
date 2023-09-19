@@ -20,8 +20,8 @@ function History(): JSX.Element {
   >([]);
 
   const handleDataFromFlowEvent = React.useCallback(
-    (event: handleDataFromFlowEventPayload) => {
-      setHistory(state => state.concat([event]));
+    (event: {string: handleDataFromFlowEventPayload}) => {
+      setHistory(Object.values(event));
     },
     [],
   );

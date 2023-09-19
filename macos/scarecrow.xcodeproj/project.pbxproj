@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		052356A12AB9A853000384F7 /* Flow.m in Sources */ = {isa = PBXBuildFile; fileRef = 052356A02AB9A853000384F7 /* Flow.m */; };
 		059792052AB47AAF00348AB8 /* ExtensionCommunicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 059791FF2AB47AAF00348AB8 /* ExtensionCommunicationDelegate.m */; };
 		059792062AB47AAF00348AB8 /* HostCommunication.m in Sources */ = {isa = PBXBuildFile; fileRef = 059792022AB47AAF00348AB8 /* HostCommunication.m */; };
 		059792072AB47AAF00348AB8 /* ExtensionCommunication.m in Sources */ = {isa = PBXBuildFile; fileRef = 059792032AB47AAF00348AB8 /* ExtensionCommunication.m */; };
@@ -62,6 +63,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0523569F2AB9A82A000384F7 /* Flow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Flow.h; sourceTree = "<group>"; };
+		052356A02AB9A853000384F7 /* Flow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Flow.m; sourceTree = "<group>"; };
 		059791CE2AB45DED00348AB8 /* scarecrow-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "scarecrow-iOS.entitlements"; sourceTree = "<group>"; };
 		059791CF2AB45F1E00348AB8 /* scarecrow-macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "scarecrow-macOS.entitlements"; sourceTree = "<group>"; };
 		059791FE2AB47AAF00348AB8 /* ExtensionCommunicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtensionCommunicationDelegate.h; sourceTree = "<group>"; };
@@ -132,6 +135,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0523569E2AB99F79000384F7 /* scarecrow-database */ = {
+			isa = PBXGroup;
+			children = (
+				0523569F2AB9A82A000384F7 /* Flow.h */,
+				052356A02AB9A853000384F7 /* Flow.m */,
+			);
+			path = "scarecrow-database";
+			sourceTree = "<group>";
+		};
 		059791FD2AB47A8F00348AB8 /* scarecrow-communication */ = {
 			isa = PBXGroup;
 			children = (
@@ -213,6 +225,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				0523569E2AB99F79000384F7 /* scarecrow-database */,
 				059791FD2AB47A8F00348AB8 /* scarecrow-communication */,
 				059791CE2AB45DED00348AB8 /* scarecrow-iOS.entitlements */,
 				5142014A2437B4B30078DB4F /* scarecrow-macOS */,
@@ -516,6 +529,7 @@
 				0597920C2AB47B3900348AB8 /* ExtensionCommunication.h in Sources */,
 				0597920D2AB47B3900348AB8 /* ExtensionCommunication.m in Sources */,
 				0597920E2AB47B3900348AB8 /* ExtensionCommunicationDelegate.h in Sources */,
+				052356A12AB9A853000384F7 /* Flow.m in Sources */,
 				0597920F2AB47B3900348AB8 /* ExtensionCommunicationDelegate.m in Sources */,
 				059792102AB47B3900348AB8 /* HostCommunication.h in Sources */,
 				059792112AB47B3900348AB8 /* HostCommunication.m in Sources */,
