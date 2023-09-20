@@ -30,15 +30,28 @@ RCT_EXPORT_METHOD(disable)
   [[NetworkExtensionProvider shared] disable];
 }
 
-RCT_EXPORT_METHOD(isEnabled:(RCTPromiseResolveBlock)callback
-error:(__unused RCTResponseSenderBlock)error)
+RCT_EXPORT_METHOD(isEnabled:(RCTPromiseResolveBlock)resolve
+error:(__unused RCTResponseSenderBlock)reject)
 {
-  callback(NEFilterManager.sharedManager.isEnabled ? @YES : @NO);
+  resolve(NEFilterManager.sharedManager.isEnabled ? @YES : @NO);
+}
+
+RCT_EXPORT_METHOD(getGrouppedFlows:(RCTPromiseResolveBlock)resolve
+  error:(__unused RCTResponseSenderBlock)reject)
+{
+  resolve([self getGrouppedFlows]);
+}
+
+RCT_EXPORT_METHOD(getFlowsByBundleIdentifier:(NSString *)bundleIdentifier
+  resolve:(RCTPromiseResolveBlock)resolve
+  error:(__unused RCTResponseSenderBlock)reject)
+{
+  resolve([self getFlowsByBundleIdentifier:bundleIdentifier]);
 }
 
 - (void)handleDataFromFlowEvent:(NSNotification*)sender{
   [self saveFlow:sender.userInfo];
-  [self sendEventWithName:@"handleDataFromFlowEvent" body:[self getGrouppedFlows]];
+  [self sendEventWithName:@"handleDataFromFlowEvent" body:@{}];
 }
 
 - (void)saveFlow:(NSDictionary *)payload
@@ -71,5 +84,21 @@ error:(__unused RCTResponseSenderBlock)error)
   
   return response;
 }
+
+- (NSArray *)getFlowsByBundleIdentifier:(NSString *)bundleIdentifier
+{
+  RLMRealm *realm = [RLMRealm defaultRealm];
+  RLMResults<Flow *> *results = [Flow allObjectsInRealm:realm];
+  RLMResults<Flow *> *distinctResults = [results objectsWithPredicate:[NSPredicate predicateWithFormat:@"bundleIdentifier == %@", bundleIdentifier]];
+  
+  NSMutableArray *response = [NSMutableArray new];
+  for (Flow *item in distinctResults) {
+    [response addObject:[item payload]];
+  }
+  
+  return response;
+}
+
+
 
 @end

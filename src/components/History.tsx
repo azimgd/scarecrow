@@ -27,6 +27,10 @@ function History(): JSX.Element {
   );
 
   React.useEffect(() => {
+    ScarecrowNetwork.getFlowsByBundleIdentifier('com.microsoft.VSCode')
+      .then(console.log)
+      .catch(console.log);
+
     const subscription = eventEmitter.addListener(
       'handleDataFromFlowEvent',
       handleDataFromFlowEvent,
