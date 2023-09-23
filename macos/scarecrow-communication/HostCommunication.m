@@ -12,7 +12,8 @@
 
 static HostCommunication *sharedInstance = nil;
 
-+ (HostCommunication *)shared {
++ (HostCommunication *)shared
+{
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
     sharedInstance = [[HostCommunication alloc] init];
@@ -20,7 +21,8 @@ static HostCommunication *sharedInstance = nil;
   return sharedInstance;
 }
 
-- (void)initialize {
+- (void)initialize
+{
   NSXPCConnection *newConnection = [[NSXPCConnection alloc] initWithMachServiceName:@"B6BB88CAP5.com.azimgd.scarecrow.scarecrow-network" options:0];
  
   newConnection.remoteObjectInterface = [NSXPCInterface interfaceWithProtocol:@protocol(ExtensionCommunicationProtocol)];
@@ -33,13 +35,20 @@ static HostCommunication *sharedInstance = nil;
   [[newConnection remoteObjectProxy] initialize];
 }
 
-- (void)terminate {
+- (void)terminate
+{
   // [[newConnection remoteObjectProxy] terminate];
   [[HostCommunication shared].connection suspend];
 }
 
-- (void)handleDataFromFlowEvent:(NSDictionary *)payload {
+- (void)handleDataFromFlowEvent:(NSDictionary *)payload
+{
   [[NSNotificationCenter defaultCenter] postNotificationName:@"handleDataFromFlowEvent" object:nil userInfo:payload];
+}
+
+- (void)validateRuleForFlowEvent:(NSDictionary *)payload withCallback:(void (^)(BOOL))withCallback
+{
+  
 }
 
 @end

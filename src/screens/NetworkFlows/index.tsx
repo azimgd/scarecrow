@@ -4,7 +4,7 @@ import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList} from '../../navigation/index';
 import * as ScarecrowNetwork from '../../ScarecrowNetwork';
-import History from '../../components/History';
+import NetworkFlowsTable from './NetworkFlowsTable';
 
 type NetworkFlowsScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -14,21 +14,29 @@ type NetworkFlowsScreenNavigationProp = StackNavigationProp<
 function NetworkFlows(): JSX.Element {
   const navigation = useNavigation<NetworkFlowsScreenNavigationProp>();
 
-  const [history, setHistory] = React.useState<
+  const [tableData, setTableData] = React.useState<
     ScarecrowNetwork.handleDataFromFlowEventPayload[]
   >([]);
 
   const handleDataFromFlowEvent = React.useCallback(
     (event: {string: ScarecrowNetwork.handleDataFromFlowEventPayload}) => {
-      setHistory(Object.values(event));
+      setTableData(Object.values(event));
     },
     [],
   );
 
-  const handleItemSelect = React.useCallback((bundleIdentifier: string) => {
+  const handleDataItemPress = React.useCallback((bundleIdentifier: string) => {
     navigation.navigate('NetworkFlowsItem', {bundleIdentifier});
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const handleDataItemCheckedChange = React.useCallback(
+    (bundleIdentifier: string, checked: boolean) => {
+      checked;
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    },
+    [],
+  );
 
   React.useEffect(() => {
     ScarecrowNetwork.getGrouppedFlows().then(handleDataFromFlowEvent);
@@ -42,7 +50,11 @@ function NetworkFlows(): JSX.Element {
 
   return (
     <ScrollView>
-      <History history={history} handleItemSelect={handleItemSelect} />
+      <NetworkFlowsTable
+        data={tableData}
+        handleDataItemPress={handleDataItemPress}
+        handleDataItemCheckedChange={handleDataItemCheckedChange}
+      />
     </ScrollView>
   );
 }

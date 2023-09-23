@@ -10,6 +10,7 @@
 #import "HostCommunication.h"
 #import <NetworkExtension/NetworkExtension.h>
 #import "Flow.h"
+#import "Rule.h"
 
 @implementation RCTScarecrowNetwork
 
@@ -99,7 +100,5 @@ RCT_EXPORT_METHOD(getFlowsByBundleIdentifier:(NSString *)bundleIdentifier
   
   return response;
 }
-
-
 
 @end

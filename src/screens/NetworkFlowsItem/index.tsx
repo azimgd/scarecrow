@@ -1,15 +1,9 @@
 import React from 'react';
 import {ScrollView} from 'react-native';
-import {useNavigation, useRoute, RouteProp} from '@react-navigation/native';
-import {StackNavigationProp} from '@react-navigation/stack';
+import {useRoute, RouteProp} from '@react-navigation/native';
 import {RootStackParamList} from '../../navigation/index';
 import * as ScarecrowNetwork from '../../ScarecrowNetwork';
-import History from '../../components/History';
-
-type NetworkFlowsItemScreenNavigationProp = StackNavigationProp<
-  RootStackParamList,
-  'NetworkFlowsItem'
->;
+import NetworkFlowsItemTable from './NetworkFlowsItemTable';
 
 type NetworkFlowsItemScreenRouteProp = RouteProp<
   RootStackParamList,
@@ -17,25 +11,18 @@ type NetworkFlowsItemScreenRouteProp = RouteProp<
 >;
 
 function NetworkFlowsItem(): JSX.Element {
-  const navigation = useNavigation<NetworkFlowsItemScreenNavigationProp>();
   const route = useRoute<NetworkFlowsItemScreenRouteProp>();
 
-  const [history, setHistory] = React.useState<
+  const [tableData, setTableData] = React.useState<
     ScarecrowNetwork.handleDataFromFlowEventPayload[]
   >([]);
 
   const handleDataFromFlowEvent = React.useCallback(
     (event: {string: ScarecrowNetwork.handleDataFromFlowEventPayload}) => {
-      setHistory(Object.values(event));
+      setTableData(Object.values(event));
     },
     [],
   );
-
-  const handleItemSelect = React.useCallback((bundleIdentifier: string) => {
-    bundleIdentifier;
-    navigation.navigate('NetworkFlows', undefined);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   React.useEffect(() => {
     ScarecrowNetwork.getFlowsByBundleIdentifier(
@@ -51,7 +38,7 @@ function NetworkFlowsItem(): JSX.Element {
 
   return (
     <ScrollView>
-      <History history={history} handleItemSelect={handleItemSelect} />
+      <NetworkFlowsItemTable data={tableData} />
     </ScrollView>
   );
 }
