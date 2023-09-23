@@ -59,8 +59,8 @@ static HostCommunicationDelegate *sharedInstance = nil;
   RLMRealm *realm = [RLMRealm defaultRealm];
   RLMResults<Rule *> *results = [Rule allObjectsInRealm:realm];
   RLMResults<Rule *> *distinctResults = [results objectsWithPredicate:[NSPredicate predicateWithFormat:@"bundleIdentifier == %@", bundleIdentifier]];
-  
-  return (!distinctResults.count || [distinctResults firstObject].allowed);
+
+  return !distinctResults.count;
 }
 
 @end

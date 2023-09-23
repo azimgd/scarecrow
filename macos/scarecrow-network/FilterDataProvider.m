@@ -64,11 +64,19 @@
   NSXPCConnection *connection = [ExtensionCommunication shared].connection;
   [[connection remoteObjectProxy] handleDataFromFlowEvent:flowEntry.payload];
   
+  dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+  __block NEFilterDataVerdict *verdict = [NEFilterDataVerdict allowVerdict];
+
   [[connection remoteObjectProxy] validateRuleForFlowEvent:flowEntry.payload withCallback:^(BOOL allowed) {
-    
+    if (!allowed) {
+      verdict = [NEFilterDataVerdict dropVerdict];
+    }
+    dispatch_semaphore_signal(sema);
   }];
   
-  return [NEFilterDataVerdict allowVerdict];
+  dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+  
+  return verdict;
 }
 
 - (NEFilterDataVerdict *)handleOutboundDataFromFlow:(NEFilterFlow *)flow readBytesStartOffset:(NSUInteger)offset readBytes:(NSData *)readBytes {
@@ -79,11 +87,19 @@
   NSXPCConnection *connection = [ExtensionCommunication shared].connection;
   [[connection remoteObjectProxy] handleDataFromFlowEvent:flowEntry.payload];
   
+  dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+  __block NEFilterDataVerdict *verdict = [NEFilterDataVerdict allowVerdict];
+
   [[connection remoteObjectProxy] validateRuleForFlowEvent:flowEntry.payload withCallback:^(BOOL allowed) {
-    
+    if (!allowed) {
+      verdict = [NEFilterDataVerdict dropVerdict];
+    }
+    dispatch_semaphore_signal(sema);
   }];
   
-  return [NEFilterDataVerdict allowVerdict];
+  dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+  
+  return verdict;
 }
 
 - (NEFilterDataVerdict *)handleInboundDataCompleteForFlow:(NEFilterFlow *)flow {
