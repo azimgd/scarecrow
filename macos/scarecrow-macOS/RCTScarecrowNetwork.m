@@ -51,25 +51,7 @@ RCT_EXPORT_METHOD(getFlowsByBundleIdentifier:(NSString *)bundleIdentifier
 }
 
 - (void)handleDataFromFlowEvent:(NSNotification*)sender{
-  [self saveFlow:sender.userInfo];
   [self sendEventWithName:@"handleDataFromFlowEvent" body:@{}];
-}
-
-- (void)saveFlow:(NSDictionary *)payload
-{
-  Flow *flow = [Flow new];
-  RLMRealm *realm = [RLMRealm defaultRealm];
-  
-  flow._id = [[NSUUID UUID] UUIDString];
-  flow.direction = [payload objectForKey:@"direction"];
-  flow.remoteEndpoint = [payload objectForKey:@"remoteEndpoint"];
-  flow.remoteUrl = [payload objectForKey:@"remoteUrl"];
-  flow.localizedName = [payload objectForKey:@"localizedName"];
-  flow.bundleIdentifier = [payload objectForKey:@"bundleIdentifier"];
-  
-  [realm transactionWithBlock:^{
-    [realm addObject:flow];
-  }];
 }
 
 - (NSDictionary *)getGrouppedFlows

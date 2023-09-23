@@ -43,12 +43,12 @@ static HostCommunication *sharedInstance = nil;
 
 - (void)handleDataFromFlowEvent:(NSDictionary *)payload
 {
-  [[NSNotificationCenter defaultCenter] postNotificationName:@"handleDataFromFlowEvent" object:nil userInfo:payload];
+  [[self delegate] handleDataFromFlowEvent:payload];
 }
 
-- (void)validateRuleForFlowEvent:(NSDictionary *)payload withCallback:(void (^)(BOOL))withCallback
+- (void)validateRuleForFlowEvent:(NSDictionary *)payload withCallback:(void(^)(BOOL allowed))callback
 {
-  
+  [[self delegate] validateRuleForFlowEvent:payload withCallback:callback];
 }
 
 @end

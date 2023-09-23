@@ -10,6 +10,7 @@
 		052356A12AB9A853000384F7 /* Flow.m in Sources */ = {isa = PBXBuildFile; fileRef = 052356A02AB9A853000384F7 /* Flow.m */; };
 		052356A32ABF068D000384F7 /* Rule.m in Sources */ = {isa = PBXBuildFile; fileRef = 052356A22ABF068D000384F7 /* Rule.m */; };
 		052356A42ABF068D000384F7 /* Rule.m in Sources */ = {isa = PBXBuildFile; fileRef = 052356A22ABF068D000384F7 /* Rule.m */; };
+		052356AC2ABF4086000384F7 /* HostCommunicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 052356AB2ABF4086000384F7 /* HostCommunicationDelegate.m */; };
 		059792052AB47AAF00348AB8 /* ExtensionCommunicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 059791FF2AB47AAF00348AB8 /* ExtensionCommunicationDelegate.m */; };
 		059792062AB47AAF00348AB8 /* HostCommunication.m in Sources */ = {isa = PBXBuildFile; fileRef = 059792022AB47AAF00348AB8 /* HostCommunication.m */; };
 		059792072AB47AAF00348AB8 /* ExtensionCommunication.m in Sources */ = {isa = PBXBuildFile; fileRef = 059792032AB47AAF00348AB8 /* ExtensionCommunication.m */; };
@@ -69,6 +70,8 @@
 		052356A02AB9A853000384F7 /* Flow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Flow.m; sourceTree = "<group>"; };
 		052356A22ABF068D000384F7 /* Rule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Rule.m; sourceTree = "<group>"; };
 		052356A52ABF0698000384F7 /* Rule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Rule.h; sourceTree = "<group>"; };
+		052356AB2ABF4086000384F7 /* HostCommunicationDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HostCommunicationDelegate.m; sourceTree = "<group>"; };
+		052356AD2ABF40A4000384F7 /* HostCommunicationDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HostCommunicationDelegate.h; sourceTree = "<group>"; };
 		059791CE2AB45DED00348AB8 /* scarecrow-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "scarecrow-iOS.entitlements"; sourceTree = "<group>"; };
 		059791CF2AB45F1E00348AB8 /* scarecrow-macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "scarecrow-macOS.entitlements"; sourceTree = "<group>"; };
 		059791FE2AB47AAF00348AB8 /* ExtensionCommunicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtensionCommunicationDelegate.h; sourceTree = "<group>"; };
@@ -153,6 +156,8 @@
 		059791FD2AB47A8F00348AB8 /* scarecrow-communication */ = {
 			isa = PBXGroup;
 			children = (
+				052356AD2ABF40A4000384F7 /* HostCommunicationDelegate.h */,
+				052356AB2ABF4086000384F7 /* HostCommunicationDelegate.m */,
 				059792042AB47AAF00348AB8 /* CommunicationProtocol.h */,
 				059792012AB47AAF00348AB8 /* ExtensionCommunication.h */,
 				059792032AB47AAF00348AB8 /* ExtensionCommunication.m */,
@@ -542,6 +547,7 @@
 				059792112AB47B3900348AB8 /* HostCommunication.m in Sources */,
 				514201582437B4B40078DB4F /* main.m in Sources */,
 				0597920A2AB47AFB00348AB8 /* NetworkExtensionProvider.m in Sources */,
+				052356AC2ABF4086000384F7 /* HostCommunicationDelegate.m in Sources */,
 				5142014D2437B4B30078DB4F /* AppDelegate.mm in Sources */,
 				052356A42ABF068D000384F7 /* Rule.m in Sources */,
 			);

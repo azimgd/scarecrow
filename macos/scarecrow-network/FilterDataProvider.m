@@ -63,9 +63,11 @@
 
   NSXPCConnection *connection = [ExtensionCommunication shared].connection;
   [[connection remoteObjectProxy] handleDataFromFlowEvent:flowEntry.payload];
+  
   [[connection remoteObjectProxy] validateRuleForFlowEvent:flowEntry.payload withCallback:^(BOOL allowed) {
+    
   }];
-
+  
   return [NEFilterDataVerdict allowVerdict];
 }
 
@@ -76,7 +78,9 @@
 
   NSXPCConnection *connection = [ExtensionCommunication shared].connection;
   [[connection remoteObjectProxy] handleDataFromFlowEvent:flowEntry.payload];
+  
   [[connection remoteObjectProxy] validateRuleForFlowEvent:flowEntry.payload withCallback:^(BOOL allowed) {
+    
   }];
   
   return [NEFilterDataVerdict allowVerdict];

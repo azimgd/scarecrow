@@ -16,7 +16,7 @@
 // Extension -> Host
 @protocol HostCommunicationProtocol
 - (void)handleDataFromFlowEvent:(NSDictionary *)payload;
-- (void)validateRuleForFlowEvent:(NSDictionary *)payload withCallback:(void(^)(BOOL allowed))withCallback;
+- (void)validateRuleForFlowEvent:(NSDictionary *)payload withCallback:(void(^)(BOOL allowed))callback;
 @end
 
 #endif /* CommunicationProtocol_h */

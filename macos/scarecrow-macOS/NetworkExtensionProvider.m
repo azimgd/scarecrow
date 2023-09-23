@@ -10,6 +10,7 @@
 
 #import "CommunicationProtocol.h"
 #import "HostCommunication.h"
+#import "HostCommunicationDelegate.h"
 
 NSString *const networkExtensionBundleId = @"com.azimgd.scarecrow.scarecrow-network";
 
@@ -64,6 +65,7 @@ static NetworkExtensionProvider *sharedInstance = nil;
     NEFilterManager.sharedManager.enabled = true;
 
     [NEFilterManager.sharedManager saveToPreferencesWithCompletionHandler:^(NSError * _Nullable error) {
+      [HostCommunication shared].delegate = [HostCommunicationDelegate shared];
       [[HostCommunication shared] initialize];
     }];
   }];
