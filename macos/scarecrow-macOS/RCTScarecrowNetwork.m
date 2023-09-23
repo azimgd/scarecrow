@@ -92,7 +92,8 @@ RCT_EXPORT_METHOD(getFlowsByBundleIdentifier:(NSString *)bundleIdentifier
   RLMResults<Flow *> *distinctResults = [results objectsWithPredicate:[NSPredicate predicateWithFormat:@"bundleIdentifier == %@", bundleIdentifier]];
   
   NSMutableArray *response = [NSMutableArray new];
-  for (Flow *item in distinctResults) {
+  for (NSInteger offset = 0; offset < 10; offset++) {
+    Flow *item = distinctResults[offset];
     [response addObject:[item payload]];
   }
   

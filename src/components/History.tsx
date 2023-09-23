@@ -1,67 +1,41 @@
-import React from 'react';
-import {NativeEventEmitter, NativeModules} from 'react-native';
+import React, {PropsWithChildren} from 'react';
+import {TouchableOpacity} from 'react-native';
 import {ListItem, Separator, YStack, SizableText} from 'tamagui';
 import {ArrowUp, ArrowDown} from '@tamagui/lucide-icons';
+import * as ScarecrowNetwork from '../ScarecrowNetwork';
 
-const {ScarecrowNetwork} = NativeModules;
-const eventEmitter = new NativeEventEmitter(ScarecrowNetwork);
+type HistoryProps = PropsWithChildren<{
+  history: ScarecrowNetwork.handleDataFromFlowEventPayload[];
+  handleItemSelect: (bundleIdentifier: string) => void;
+}>;
 
-type handleDataFromFlowEventPayload = {
-  remoteEndpoint: string;
-  remoteUrl: string;
-  direction: string;
-  localizedName: string;
-  bundleIdentifier: string;
-};
-
-function History(): JSX.Element {
-  const [history, setHistory] = React.useState<
-    handleDataFromFlowEventPayload[]
-  >([]);
-
-  const handleDataFromFlowEvent = React.useCallback(
-    (event: {string: handleDataFromFlowEventPayload}) => {
-      setHistory(Object.values(event));
-    },
-    [],
-  );
-
-  React.useEffect(() => {
-    ScarecrowNetwork.getFlowsByBundleIdentifier('com.microsoft.VSCode')
-      .then(console.log)
-      .catch(console.log);
-
-    const subscription = eventEmitter.addListener(
-      'handleDataFromFlowEvent',
-      handleDataFromFlowEvent,
-    );
-    return () => subscription.remove();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
+function History({history, handleItemSelect}: HistoryProps): JSX.Element {
   return (
     <YStack separator={<Separator />}>
       {history.map((item, index) => (
-        <ListItem
-          backgroundColor="$borderColor"
-          title={item.remoteEndpoint}
-          subTitle={
-            <SizableText theme="alt1" size="$3">
-              {item.localizedName} {item.bundleIdentifier}
+        <TouchableOpacity
+          onPress={() => handleItemSelect(item.bundleIdentifier)}
+          key={index}>
+          <ListItem
+            backgroundColor="$borderColor"
+            title={item.remoteEndpoint}
+            subTitle={
+              <SizableText theme="alt1" size="$3">
+                {item.localizedName} {item.bundleIdentifier}
+              </SizableText>
+            }
+            icon={
+              item.direction === 'outbound' ? (
+                <ArrowUp color="#0097e6" />
+              ) : (
+                <ArrowDown color="#44bd32" />
+              )
+            }>
+            <SizableText theme="alt2" size="$3">
+              {item.remoteUrl}
             </SizableText>
-          }
-          key={index}
-          icon={
-            item.direction === 'outbound' ? (
-              <ArrowUp color="#0097e6" />
-            ) : (
-              <ArrowDown color="#44bd32" />
-            )
-          }>
-          <SizableText theme="alt2" size="$3">
-            {item.remoteUrl}
-          </SizableText>
-        </ListItem>
+          </ListItem>
+        </TouchableOpacity>
       ))}
     </YStack>
   );

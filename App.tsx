@@ -1,8 +1,8 @@
 import React from 'react';
-import {StatusBar, useColorScheme, ScrollView} from 'react-native';
+import {StatusBar, useColorScheme} from 'react-native';
 import {TamaguiProvider, XStack} from 'tamagui';
 import config from './tamagui.config';
-import History from './src/components/History';
+import Navigation from './src/navigation';
 import Sidebar from './src/components/Sidebar';
 
 function App(): JSX.Element {
@@ -15,9 +15,7 @@ function App(): JSX.Element {
       <XStack fullscreen backgroundColor="$background">
         <Sidebar />
 
-        <ScrollView>
-          <History />
-        </ScrollView>
+        <Navigation />
       </XStack>
     </TamaguiProvider>
   );
