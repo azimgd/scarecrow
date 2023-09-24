@@ -92,9 +92,6 @@
 		059792202AB47E6500348AB8 /* scarecrow_network.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = scarecrow_network.entitlements; sourceTree = "<group>"; };
 		059792282AB484DB00348AB8 /* RCTScarecrowNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCTScarecrowNetwork.h; sourceTree = "<group>"; };
 		059792292AB484FC00348AB8 /* RCTScarecrowNetwork.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCTScarecrowNetwork.m; sourceTree = "<group>"; };
-		0597922B2AB4875800348AB8 /* ExtensionCommunicationProviderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtensionCommunicationProviderDelegate.h; sourceTree = "<group>"; };
-		0597922C2AB4875900348AB8 /* ExtensionCommunicationProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtensionCommunicationProvider.m; sourceTree = "<group>"; };
-		0597922D2AB4875900348AB8 /* ExtensionCommunicationProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtensionCommunicationProvider.h; sourceTree = "<group>"; };
 		0597922E2AB4875900348AB8 /* scarecrow_filter_data.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = scarecrow_filter_data.entitlements; sourceTree = "<group>"; };
 		05CBE5692AB6DFBF000F6BC1 /* FlowEntry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlowEntry.h; sourceTree = "<group>"; };
 		05CBE56A2AB6DFCA000F6BC1 /* FlowEntry.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlowEntry.m; sourceTree = "<group>"; };
@@ -174,9 +171,6 @@
 			children = (
 				05CBE5692AB6DFBF000F6BC1 /* FlowEntry.h */,
 				05CBE56A2AB6DFCA000F6BC1 /* FlowEntry.m */,
-				0597922D2AB4875900348AB8 /* ExtensionCommunicationProvider.h */,
-				0597922C2AB4875900348AB8 /* ExtensionCommunicationProvider.m */,
-				0597922B2AB4875800348AB8 /* ExtensionCommunicationProviderDelegate.h */,
 				0597922E2AB4875900348AB8 /* scarecrow_filter_data.entitlements */,
 				0597921A2AB47E6500348AB8 /* FilterDataProvider.h */,
 				0597921B2AB47E6500348AB8 /* FilterDataProvider.m */,
