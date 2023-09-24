@@ -35,7 +35,7 @@ function NetworkFlowsTable({
             iconAfter={
               <Switch
                 size="$2"
-                defaultChecked={item.rule?.allowed}
+                defaultChecked={item.rule.allowed}
                 onCheckedChange={(checked: boolean) =>
                   handleDataItemCheckedChange(item.bundleIdentifier, checked)
                 }>

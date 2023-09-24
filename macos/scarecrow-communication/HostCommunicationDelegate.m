@@ -41,25 +41,25 @@ static HostCommunicationDelegate *sharedInstance = nil;
 {
   Flow *flow = [Flow new];
   RLMRealm *realm = [RLMRealm defaultRealm];
-  
+
   flow._id = [[NSUUID UUID] UUIDString];
   flow.direction = [payload objectForKey:@"direction"];
   flow.remoteEndpoint = [payload objectForKey:@"remoteEndpoint"];
   flow.remoteUrl = [payload objectForKey:@"remoteUrl"];
   flow.localizedName = [payload objectForKey:@"localizedName"];
   flow.bundleIdentifier = [payload objectForKey:@"bundleIdentifier"];
-  
+
   __block Rule *rule = [Rule objectInRealm:realm forPrimaryKey:flow.bundleIdentifier];
-  
+
   [realm transactionWithBlock:^{
     if (!rule) {
       Rule *rule = [Rule new];
       rule.bundleIdentifier = flow.bundleIdentifier;
       rule.allowed = true;
-      
+
       [realm addObject:rule];
     }
-  
+
     [realm addObject:flow];
   }];
 }

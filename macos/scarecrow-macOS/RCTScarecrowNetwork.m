@@ -11,6 +11,7 @@
 #import <NetworkExtension/NetworkExtension.h>
 #import "Flow.h"
 #import "Rule.h"
+#import "HostCommunication.h"
 
 @implementation RCTScarecrowNetwork
 
@@ -55,21 +56,10 @@ RCT_EXPORT_METHOD(toggleFlowRule:(NSString *)bundleIdentifier
   error:(__unused RCTResponseSenderBlock)reject)
 {
   RLMRealm *realm = [RLMRealm defaultRealm];
-  Rule *rule = [Rule objectInRealm:realm forPrimaryKey:bundleIdentifier];
-
-  if (rule) {
-    [realm transactionWithBlock:^{
-      rule.allowed = !rule.allowed;
-    }];
-  } else {
-    [realm transactionWithBlock:^{
-      Rule *rule = [Rule new];
-      rule.bundleIdentifier = bundleIdentifier;
-      rule.allowed = true;
-      
-      [realm addObject:rule];
-    }];
-  }
+  [realm transactionWithBlock:^{
+    Rule *rule = [Rule objectInRealm:realm forPrimaryKey:bundleIdentifier];
+    rule.allowed = !rule.allowed;
+  }];
 
   resolve(@{});
 }
@@ -105,7 +95,7 @@ RCT_EXPORT_METHOD(toggleFlowRule:(NSString *)bundleIdentifier
     Flow *item = distinctResults[offset];
     [response addObject:[item payload]];
   }
-  
+
   return response;
 }
 
