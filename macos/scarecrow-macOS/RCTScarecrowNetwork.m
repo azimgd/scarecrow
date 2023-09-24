@@ -11,7 +11,6 @@
 #import <NetworkExtension/NetworkExtension.h>
 #import "Flow.h"
 #import "Rule.h"
-#import "HostCommunication.h"
 
 @implementation RCTScarecrowNetwork
 
@@ -55,11 +54,7 @@ RCT_EXPORT_METHOD(toggleFlowRule:(NSString *)bundleIdentifier
   resolve:(RCTPromiseResolveBlock)resolve
   error:(__unused RCTResponseSenderBlock)reject)
 {
-  RLMRealm *realm = [RLMRealm defaultRealm];
-  [realm transactionWithBlock:^{
-    Rule *rule = [Rule objectInRealm:realm forPrimaryKey:bundleIdentifier];
-    rule.allowed = !rule.allowed;
-  }];
+  [[HostCommunication shared] toggleFlowRule:bundleIdentifier];
 
   resolve(@{});
 }

@@ -51,4 +51,9 @@ static HostCommunication *sharedInstance = nil;
   [[self delegate] validateRuleForFlowEvent:payload withCallback:callback];
 }
 
+- (void)toggleFlowRule:(NSString *)bundleIdentifier
+{
+  [[self delegate] toggleFlowRule:bundleIdentifier];
+}
+
 @end

@@ -72,4 +72,13 @@ static HostCommunicationDelegate *sharedInstance = nil;
   return rule.allowed;
 }
 
+- (void)toggleFlowRule:(NSString *)bundleIdentifier
+{
+  RLMRealm *realm = [RLMRealm defaultRealm];
+  [realm transactionWithBlock:^{
+    Rule *rule = [Rule objectInRealm:realm forPrimaryKey:bundleIdentifier];
+    rule.allowed = !rule.allowed;
+  }];
+}
+
 @end

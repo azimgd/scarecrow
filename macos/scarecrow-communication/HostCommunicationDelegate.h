@@ -16,6 +16,7 @@
 
 - (void)handleDataFromFlowEvent:(NSDictionary *)payload;
 - (void)validateRuleForFlowEvent:(NSDictionary *)payload withCallback:(void(^)(BOOL allowed))callback;
+- (void)toggleFlowRule:(NSString *)bundleIdentifier;
 
 @end
 
