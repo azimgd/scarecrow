@@ -21,7 +21,7 @@
     @"remoteEndpoint": self.remoteEndpoint ?: [NSNull null],
     @"remoteUrl": self.remoteUrl ?: [NSNull null],
     @"localizedName": self.localizedName ?: [NSNull null],
-    @"bundleIdentifier": self.bundleIdentifier ?: [NSNull null]
+    @"bundleIdentifier": self.bundleIdentifier ?: [NSNull null],
   };
 }
 

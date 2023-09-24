@@ -49,7 +49,17 @@ static HostCommunicationDelegate *sharedInstance = nil;
   flow.localizedName = [payload objectForKey:@"localizedName"];
   flow.bundleIdentifier = [payload objectForKey:@"bundleIdentifier"];
   
+  __block Rule *rule = [Rule objectInRealm:realm forPrimaryKey:flow.bundleIdentifier];
+  
   [realm transactionWithBlock:^{
+    if (!rule) {
+      Rule *rule = [Rule new];
+      rule.bundleIdentifier = flow.bundleIdentifier;
+      rule.allowed = true;
+      
+      [realm addObject:rule];
+    }
+  
     [realm addObject:flow];
   }];
 }
@@ -57,10 +67,9 @@ static HostCommunicationDelegate *sharedInstance = nil;
 - (BOOL)validateFlowForBundleIdentifier:(NSString *)bundleIdentifier
 {
   RLMRealm *realm = [RLMRealm defaultRealm];
-  RLMResults<Rule *> *results = [Rule allObjectsInRealm:realm];
-  RLMResults<Rule *> *distinctResults = [results objectsWithPredicate:[NSPredicate predicateWithFormat:@"bundleIdentifier == %@", bundleIdentifier]];
+  Rule *rule = [Rule objectInRealm:realm forPrimaryKey:bundleIdentifier];
 
-  return !distinctResults.count;
+  return rule.allowed;
 }
 
 @end

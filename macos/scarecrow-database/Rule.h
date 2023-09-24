@@ -11,10 +11,9 @@
 #import <Realm/Realm.h>
 
 @interface Rule : RLMObject
-  @property NSString * _id;
   @property NSString *bundleIdentifier;
   @property BOOL allowed;
-    
+
   - (NSDictionary *)payload;
 @end
 

@@ -33,7 +33,7 @@ function NetworkFlows(): JSX.Element {
   const handleDataItemCheckedChange = React.useCallback(
     (bundleIdentifier: string, checked: boolean) => {
       checked;
-      // eslint-disable-next-line react-hooks/exhaustive-deps
+      ScarecrowNetwork.toggleFlowRule(bundleIdentifier);
     },
     [],
   );

@@ -50,8 +50,32 @@ RCT_EXPORT_METHOD(getFlowsByBundleIdentifier:(NSString *)bundleIdentifier
   resolve([self getFlowsByBundleIdentifier:bundleIdentifier]);
 }
 
+RCT_EXPORT_METHOD(toggleFlowRule:(NSString *)bundleIdentifier
+  resolve:(RCTPromiseResolveBlock)resolve
+  error:(__unused RCTResponseSenderBlock)reject)
+{
+  RLMRealm *realm = [RLMRealm defaultRealm];
+  Rule *rule = [Rule objectInRealm:realm forPrimaryKey:bundleIdentifier];
+
+  if (rule) {
+    [realm transactionWithBlock:^{
+      rule.allowed = !rule.allowed;
+    }];
+  } else {
+    [realm transactionWithBlock:^{
+      Rule *rule = [Rule new];
+      rule.bundleIdentifier = bundleIdentifier;
+      rule.allowed = true;
+      
+      [realm addObject:rule];
+    }];
+  }
+
+  resolve(@{});
+}
+
 - (void)handleDataFromFlowEvent:(NSNotification*)sender{
-  [self sendEventWithName:@"handleDataFromFlowEvent" body:@{}];
+  [self sendEventWithName:@"handleDataFromFlowEvent" body:[self getGrouppedFlows]];
 }
 
 - (NSDictionary *)getGrouppedFlows
@@ -62,9 +86,11 @@ RCT_EXPORT_METHOD(getFlowsByBundleIdentifier:(NSString *)bundleIdentifier
   
   NSMutableDictionary *response = [NSMutableDictionary new];
   for (Flow *item in distinctResults) {
-    response[item.bundleIdentifier] = [item payload];
+    NSMutableDictionary *flow = [NSMutableDictionary dictionaryWithDictionary:[item payload]];
+    flow[@"rule"] = [[Rule objectInRealm:realm forPrimaryKey:item.bundleIdentifier] payload];
+    response[item.bundleIdentifier] = flow;
   }
-  
+ 
   return response;
 }
 
@@ -75,7 +101,7 @@ RCT_EXPORT_METHOD(getFlowsByBundleIdentifier:(NSString *)bundleIdentifier
   RLMResults<Flow *> *distinctResults = [results objectsWithPredicate:[NSPredicate predicateWithFormat:@"bundleIdentifier == %@", bundleIdentifier]];
   
   NSMutableArray *response = [NSMutableArray new];
-  for (NSInteger offset = 0; offset < 10; offset++) {
+  for (NSInteger offset = 0; offset < MIN(distinctResults.count, 10); offset++) {
     Flow *item = distinctResults[offset];
     [response addObject:[item payload]];
   }

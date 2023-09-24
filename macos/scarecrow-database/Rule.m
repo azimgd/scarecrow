@@ -11,12 +11,11 @@
 @implementation Rule
 
 + (NSString *)primaryKey {
-  return @"_id";
+  return @"bundleIdentifier";
 }
 
 - (NSDictionary *)payload {
   return @{
-    @"_id": self._id ?: [NSNull null],
     @"bundleIdentifier": self.bundleIdentifier ?: [NSNull null],
     @"allowed": self.allowed ? @YES : @NO
   };
