@@ -7,10 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		052356A12AB9A853000384F7 /* Flow.m in Sources */ = {isa = PBXBuildFile; fileRef = 052356A02AB9A853000384F7 /* Flow.m */; };
 		052356AC2ABF4086000384F7 /* HostCommunicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 052356AB2ABF4086000384F7 /* HostCommunicationDelegate.m */; };
-		056C2BE22AC07E22002FBEBC /* Rule.m in Sources */ = {isa = PBXBuildFile; fileRef = 056C2BE02AC07E22002FBEBC /* Rule.m */; };
-		056C2BE32AC085A5002FBEBC /* Rule.m in Sources */ = {isa = PBXBuildFile; fileRef = 056C2BE02AC07E22002FBEBC /* Rule.m */; };
 		059792052AB47AAF00348AB8 /* ExtensionCommunicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 059791FF2AB47AAF00348AB8 /* ExtensionCommunicationDelegate.m */; };
 		059792062AB47AAF00348AB8 /* HostCommunication.m in Sources */ = {isa = PBXBuildFile; fileRef = 059792022AB47AAF00348AB8 /* HostCommunication.m */; };
 		059792072AB47AAF00348AB8 /* ExtensionCommunication.m in Sources */ = {isa = PBXBuildFile; fileRef = 059792032AB47AAF00348AB8 /* ExtensionCommunication.m */; };
@@ -66,12 +63,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0523569F2AB9A82A000384F7 /* Flow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Flow.h; sourceTree = "<group>"; };
-		052356A02AB9A853000384F7 /* Flow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Flow.m; sourceTree = "<group>"; };
 		052356AB2ABF4086000384F7 /* HostCommunicationDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HostCommunicationDelegate.m; sourceTree = "<group>"; };
 		052356AD2ABF40A4000384F7 /* HostCommunicationDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HostCommunicationDelegate.h; sourceTree = "<group>"; };
-		056C2BE02AC07E22002FBEBC /* Rule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rule.m; sourceTree = "<group>"; };
-		056C2BE12AC07E22002FBEBC /* Rule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rule.h; sourceTree = "<group>"; };
 		059791CE2AB45DED00348AB8 /* scarecrow-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "scarecrow-iOS.entitlements"; sourceTree = "<group>"; };
 		059791CF2AB45F1E00348AB8 /* scarecrow-macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "scarecrow-macOS.entitlements"; sourceTree = "<group>"; };
 		059791FE2AB47AAF00348AB8 /* ExtensionCommunicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtensionCommunicationDelegate.h; sourceTree = "<group>"; };
@@ -92,7 +85,6 @@
 		059792202AB47E6500348AB8 /* scarecrow_network.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = scarecrow_network.entitlements; sourceTree = "<group>"; };
 		059792282AB484DB00348AB8 /* RCTScarecrowNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCTScarecrowNetwork.h; sourceTree = "<group>"; };
 		059792292AB484FC00348AB8 /* RCTScarecrowNetwork.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCTScarecrowNetwork.m; sourceTree = "<group>"; };
-		0597922E2AB4875900348AB8 /* scarecrow_filter_data.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = scarecrow_filter_data.entitlements; sourceTree = "<group>"; };
 		05CBE5692AB6DFBF000F6BC1 /* FlowEntry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlowEntry.h; sourceTree = "<group>"; };
 		05CBE56A2AB6DFCA000F6BC1 /* FlowEntry.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlowEntry.m; sourceTree = "<group>"; };
 		05EE329E2AB5CAB800410158 /* libbsm.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbsm.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/lib/libbsm.tbd; sourceTree = DEVELOPER_DIR; };
@@ -142,10 +134,6 @@
 		0523569E2AB99F79000384F7 /* scarecrow-database */ = {
 			isa = PBXGroup;
 			children = (
-				056C2BE12AC07E22002FBEBC /* Rule.h */,
-				056C2BE02AC07E22002FBEBC /* Rule.m */,
-				0523569F2AB9A82A000384F7 /* Flow.h */,
-				052356A02AB9A853000384F7 /* Flow.m */,
 			);
 			path = "scarecrow-database";
 			sourceTree = "<group>";
@@ -171,7 +159,6 @@
 			children = (
 				05CBE5692AB6DFBF000F6BC1 /* FlowEntry.h */,
 				05CBE56A2AB6DFCA000F6BC1 /* FlowEntry.m */,
-				0597922E2AB4875900348AB8 /* scarecrow_filter_data.entitlements */,
 				0597921A2AB47E6500348AB8 /* FilterDataProvider.h */,
 				0597921B2AB47E6500348AB8 /* FilterDataProvider.m */,
 				0597921D2AB47E6500348AB8 /* main.m */,
@@ -520,7 +507,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				059792062AB47AAF00348AB8 /* HostCommunication.m in Sources */,
-				056C2BE22AC07E22002FBEBC /* Rule.m in Sources */,
 				059792072AB47AAF00348AB8 /* ExtensionCommunication.m in Sources */,
 				059792052AB47AAF00348AB8 /* ExtensionCommunicationDelegate.m in Sources */,
 			);
@@ -530,13 +516,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				056C2BE32AC085A5002FBEBC /* Rule.m in Sources */,
 				0597922A2AB484FC00348AB8 /* RCTScarecrowNetwork.m in Sources */,
 				0597920B2AB47B3900348AB8 /* CommunicationProtocol.h in Sources */,
 				0597920C2AB47B3900348AB8 /* ExtensionCommunication.h in Sources */,
 				0597920D2AB47B3900348AB8 /* ExtensionCommunication.m in Sources */,
 				0597920E2AB47B3900348AB8 /* ExtensionCommunicationDelegate.h in Sources */,
-				052356A12AB9A853000384F7 /* Flow.m in Sources */,
 				0597920F2AB47B3900348AB8 /* ExtensionCommunicationDelegate.m in Sources */,
 				059792102AB47B3900348AB8 /* HostCommunication.h in Sources */,
 				059792112AB47B3900348AB8 /* HostCommunication.m in Sources */,

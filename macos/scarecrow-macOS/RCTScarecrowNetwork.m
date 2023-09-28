@@ -9,8 +9,6 @@
 #import "RCTScarecrowNetwork.h"
 #import "HostCommunication.h"
 #import <NetworkExtension/NetworkExtension.h>
-#import "Flow.h"
-#import "Rule.h"
 
 @implementation RCTScarecrowNetwork
 
@@ -40,58 +38,27 @@ error:(__unused RCTResponseSenderBlock)reject)
 RCT_EXPORT_METHOD(getGrouppedFlows:(RCTPromiseResolveBlock)resolve
   error:(__unused RCTResponseSenderBlock)reject)
 {
-  resolve([self getGrouppedFlows]);
+  resolve(@{});
 }
 
 RCT_EXPORT_METHOD(getFlowsByBundleIdentifier:(NSString *)bundleIdentifier
   resolve:(RCTPromiseResolveBlock)resolve
   error:(__unused RCTResponseSenderBlock)reject)
 {
-  resolve([self getFlowsByBundleIdentifier:bundleIdentifier]);
+  resolve(@[]);
 }
 
 RCT_EXPORT_METHOD(toggleFlowRule:(NSString *)bundleIdentifier
   resolve:(RCTPromiseResolveBlock)resolve
   error:(__unused RCTResponseSenderBlock)reject)
 {
-  [[HostCommunication shared] toggleFlowRule:bundleIdentifier];
-
-  resolve(@{});
+  [[HostCommunication shared] toggleFlowRule:bundleIdentifier withCallback:^(BOOL status) {
+    resolve(@{});
+  }];
 }
 
 - (void)handleDataFromFlowEvent:(NSNotification*)sender{
-  [self sendEventWithName:@"handleDataFromFlowEvent" body:[self getGrouppedFlows]];
-}
-
-- (NSDictionary *)getGrouppedFlows
-{
-  RLMRealm *realm = [RLMRealm defaultRealm];
-  RLMResults<Flow *> *results = [Flow allObjectsInRealm:realm];
-  RLMResults<Flow *> *distinctResults = [results distinctResultsUsingKeyPaths:@[@"bundleIdentifier"]];
-  
-  NSMutableDictionary *response = [NSMutableDictionary new];
-  for (Flow *item in distinctResults) {
-    NSMutableDictionary *flow = [NSMutableDictionary dictionaryWithDictionary:[item payload]];
-    flow[@"rule"] = [[Rule objectInRealm:realm forPrimaryKey:item.bundleIdentifier] payload];
-    response[item.bundleIdentifier] = flow;
-  }
- 
-  return response;
-}
-
-- (NSArray *)getFlowsByBundleIdentifier:(NSString *)bundleIdentifier
-{
-  RLMRealm *realm = [RLMRealm defaultRealm];
-  RLMResults<Flow *> *results = [Flow allObjectsInRealm:realm];
-  RLMResults<Flow *> *distinctResults = [results objectsWithPredicate:[NSPredicate predicateWithFormat:@"bundleIdentifier == %@", bundleIdentifier]];
-  
-  NSMutableArray *response = [NSMutableArray new];
-  for (NSInteger offset = 0; offset < MIN(distinctResults.count, 10); offset++) {
-    Flow *item = distinctResults[offset];
-    [response addObject:[item payload]];
-  }
-
-  return response;
+  [self sendEventWithName:@"handleDataFromFlowEvent" body:@{}];
 }
 
 @end
