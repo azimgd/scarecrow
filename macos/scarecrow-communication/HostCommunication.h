@@ -17,8 +17,8 @@
 @property (weak) NSXPCConnection *connection;
 @property (weak) HostCommunicationDelegate *delegate;
 
-- (void)initialize:(void(^)(void))callback;
-- (void)terminate;
+- (void)startConnection;
+- (void)stopConnection;
 
 @end
 

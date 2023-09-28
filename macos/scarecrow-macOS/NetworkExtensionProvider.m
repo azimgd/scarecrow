@@ -26,7 +26,7 @@ static NetworkExtensionProvider *sharedInstance = nil;
   return sharedInstance;
 }
 
-- (void)enable:(void(^)(void))callback;
+- (void)activate:(void(^)(void))callback;
 {
   OSSystemExtensionRequest *activateSystemRequest = [OSSystemExtensionRequest
     activationRequestForExtension:networkExtensionBundleId
@@ -36,10 +36,10 @@ static NetworkExtensionProvider *sharedInstance = nil;
   activateSystemRequest.delegate = self;
   [OSSystemExtensionManager.sharedManager submitRequest:activateSystemRequest];
   self.active = true;
-  self.enableCallback = callback;
+  self.activateCallback = callback;
 }
 
-- (void)disable:(void(^)(void))callback;
+- (void)deactivate:(void(^)(void))callback;
 {
   OSSystemExtensionRequest *deactivateSystemRequest = [OSSystemExtensionRequest
     deactivationRequestForExtension:networkExtensionBundleId
@@ -49,40 +49,7 @@ static NetworkExtensionProvider *sharedInstance = nil;
   deactivateSystemRequest.delegate = self;
   [OSSystemExtensionManager.sharedManager submitRequest:deactivateSystemRequest];
   self.active = false;
-  self.disableCallback = callback;
-}
-
-- (void)activate
-{
-  [NEFilterManager.sharedManager loadFromPreferencesWithCompletionHandler:^(NSError * _Nullable error) {
-    NEFilterProviderConfiguration* configuration = [[NEFilterProviderConfiguration alloc] init];
-    configuration.filterPackets = false;
-    configuration.filterDataProviderBundleIdentifier = networkExtensionBundleId;
-    configuration.filterSockets = true;
-    configuration.filterPacketProviderBundleIdentifier = networkExtensionBundleId;
-    
-    NEFilterManager.sharedManager.localizedDescription = networkExtensionBundleId;
-    NEFilterManager.sharedManager.providerConfiguration = configuration;
-
-    NEFilterManager.sharedManager.enabled = true;
-
-    [NEFilterManager.sharedManager saveToPreferencesWithCompletionHandler:^(NSError * _Nullable error) {
-      [HostCommunication shared].delegate = [HostCommunicationDelegate shared];
-      [[HostCommunication shared] initialize:self.enableCallback];
-    }];
-  }];
-}
-
-- (void)deactivate
-{
-  [NEFilterManager.sharedManager loadFromPreferencesWithCompletionHandler:^(NSError * _Nullable error) {
-    self.disableCallback();
-    NEFilterManager.sharedManager.enabled = false;
-
-    [NEFilterManager.sharedManager removeFromPreferencesWithCompletionHandler:^(NSError * _Nullable error) {
-      [[HostCommunication shared] terminate];
-    }];
-  }];
+  self.deactivateCallback = callback;
 }
 
 - (void)status:(void (^)(BOOL))callback
@@ -110,9 +77,33 @@ static NetworkExtensionProvider *sharedInstance = nil;
 - (void)request:(nonnull OSSystemExtensionRequest *)request didFinishWithResult:(OSSystemExtensionRequestResult)result
 {
   if (self.active) {
-    [self activate];
+    [NEFilterManager.sharedManager loadFromPreferencesWithCompletionHandler:^(NSError * _Nullable error) {
+      NEFilterProviderConfiguration* configuration = [[NEFilterProviderConfiguration alloc] init];
+      configuration.filterPackets = false;
+      configuration.filterDataProviderBundleIdentifier = networkExtensionBundleId;
+      configuration.filterSockets = true;
+      configuration.filterPacketProviderBundleIdentifier = networkExtensionBundleId;
+      
+      NEFilterManager.sharedManager.localizedDescription = networkExtensionBundleId;
+      NEFilterManager.sharedManager.providerConfiguration = configuration;
+
+      NEFilterManager.sharedManager.enabled = true;
+      self.activateCallback();
+
+      [HostCommunication shared].delegate = [HostCommunicationDelegate shared];
+      [[HostCommunication shared] startConnection];
+
+      [NEFilterManager.sharedManager saveToPreferencesWithCompletionHandler:^(NSError * _Nullable error) {}];
+    }];
   } else {
-    [self deactivate];
+    [NEFilterManager.sharedManager loadFromPreferencesWithCompletionHandler:^(NSError * _Nullable error) {
+      self.deactivateCallback();
+      [[HostCommunication shared] stopConnection];
+
+      NEFilterManager.sharedManager.enabled = false;
+
+      [NEFilterManager.sharedManager removeFromPreferencesWithCompletionHandler:^(NSError * _Nullable error) {}];
+    }];
   }
 }
 

@@ -21,7 +21,7 @@ static HostCommunication *sharedInstance = nil;
   return sharedInstance;
 }
 
-- (void)initialize:(void(^)(void))callback
+- (void)startConnection
 {
   NSXPCConnection *newConnection = [[NSXPCConnection alloc] initWithMachServiceName:@"B6BB88CAP5.com.azimgd.scarecrow.scarecrow-network" options:0];
  
@@ -32,12 +32,12 @@ static HostCommunication *sharedInstance = nil;
   [newConnection resume];
   [HostCommunication shared].connection = newConnection;
   
-  [[newConnection remoteObjectProxy] initialize:callback];
+  [[newConnection remoteObjectProxy] startConnection];
 }
 
-- (void)terminate
+- (void)stopConnection
 {
-  [[[HostCommunication shared].connection remoteObjectProxy] terminate];
+  [[[HostCommunication shared].connection remoteObjectProxy] stopConnection];
   [[HostCommunication shared].connection suspend];
 }
 

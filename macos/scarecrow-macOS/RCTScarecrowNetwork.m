@@ -18,10 +18,10 @@ RCT_EXPORT_MODULE();
   return @[@"handleDataFromFlowEvent"];
 }
 
-RCT_EXPORT_METHOD(enable:(RCTPromiseResolveBlock)resolve
+RCT_EXPORT_METHOD(activate:(RCTPromiseResolveBlock)resolve
 error:(__unused RCTResponseSenderBlock)reject)
 {
-  [[NetworkExtensionProvider shared] enable:^{
+  [[NetworkExtensionProvider shared] activate:^{
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(handleDataFromFlowEvent:) name:@"handleDataFromFlowEvent" object:nil];
     
     [[NetworkExtensionProvider shared] status:^(BOOL status) {
@@ -30,10 +30,10 @@ error:(__unused RCTResponseSenderBlock)reject)
   }];
 }
 
-RCT_EXPORT_METHOD(disable:(RCTPromiseResolveBlock)resolve
+RCT_EXPORT_METHOD(deactivate:(RCTPromiseResolveBlock)resolve
 error:(__unused RCTResponseSenderBlock)reject)
 {
-  [[NetworkExtensionProvider shared] disable:^{
+  [[NetworkExtensionProvider shared] deactivate:^{
     [[NSNotificationCenter defaultCenter]removeObserver:@"handleDataFromFlowEvent"];
     
     [[NetworkExtensionProvider shared] status:^(BOOL status) {
@@ -42,7 +42,7 @@ error:(__unused RCTResponseSenderBlock)reject)
   }];
 }
 
-RCT_EXPORT_METHOD(isEnabled:(RCTPromiseResolveBlock)resolve
+RCT_EXPORT_METHOD(getStatus:(RCTPromiseResolveBlock)resolve
 error:(__unused RCTResponseSenderBlock)reject)
 {
   [[NetworkExtensionProvider shared] status:^(BOOL status) {

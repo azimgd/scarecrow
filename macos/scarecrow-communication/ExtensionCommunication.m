@@ -20,11 +20,10 @@ static ExtensionCommunication *sharedInstance = nil;
   return sharedInstance;
 }
 
-- (void)initialize:(void(^)(void))callback {
-  callback();
+- (void)startConnection {
 }
 
-- (void)terminate {
+- (void)stopConnection {
 }
 
 @end

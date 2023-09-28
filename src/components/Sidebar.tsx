@@ -9,7 +9,7 @@ function Sidebar(): JSX.Element {
   const [status, setStatus] = React.useState<boolean | undefined>(false);
 
   const requestStatus = React.useCallback(() => {
-    ScarecrowNetwork.isEnabled().then((status: boolean) => {
+    ScarecrowNetwork.getStatus().then((status: boolean) => {
       setStatus(status);
     });
   }, []);
@@ -22,15 +22,11 @@ function Sidebar(): JSX.Element {
   const handlePress = React.useCallback(() => {
     setStatus(undefined);
 
-    ScarecrowNetwork.isEnabled().then((status: boolean) => {
+    ScarecrowNetwork.getStatus().then((status: boolean) => {
       if (status) {
-        ScarecrowNetwork.disable().then((status: boolean) => {
-          setStatus(status);
-        });
+        ScarecrowNetwork.deactivate().then(setStatus);
       } else {
-        ScarecrowNetwork.enable().then((status: boolean) => {
-          setStatus(status);
-        });
+        ScarecrowNetwork.activate().then(setStatus);
       }
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -46,8 +42,8 @@ function Sidebar(): JSX.Element {
           theme="active"
           onPress={handlePress}
           disabled={status === undefined}>
-          {status === true ? 'Start Scarecrow' : null}
-          {status === false ? 'Stop Scarecrow' : null}
+          {status === true ? 'Stop Scarecrow' : null}
+          {status === false ? 'Start Scarecrow' : null}
           {status === undefined ? 'Loading' : null}
         </Button>
 
