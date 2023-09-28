@@ -18,7 +18,7 @@
 @property (weak) HostCommunicationDelegate *delegate;
 
 - (void)initialize:(void(^)(void))callback;
-- (void)terminate:(void(^)(void))callback;
+- (void)terminate;
 
 @end
 

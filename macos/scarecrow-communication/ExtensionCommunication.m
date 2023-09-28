@@ -24,8 +24,7 @@ static ExtensionCommunication *sharedInstance = nil;
   callback();
 }
 
-- (void)terminate:(void(^)(void))callback {
-  callback();
+- (void)terminate {
 }
 
 @end

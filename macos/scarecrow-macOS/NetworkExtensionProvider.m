@@ -76,11 +76,19 @@ static NetworkExtensionProvider *sharedInstance = nil;
 - (void)deactivate
 {
   [NEFilterManager.sharedManager loadFromPreferencesWithCompletionHandler:^(NSError * _Nullable error) {
+    self.disableCallback();
     NEFilterManager.sharedManager.enabled = false;
 
     [NEFilterManager.sharedManager removeFromPreferencesWithCompletionHandler:^(NSError * _Nullable error) {
-      [[HostCommunication shared] terminate:self.disableCallback];
+      [[HostCommunication shared] terminate];
     }];
+  }];
+}
+
+- (void)status:(void (^)(BOOL))callback
+{
+  [NEFilterManager.sharedManager loadFromPreferencesWithCompletionHandler:^(NSError * _Nullable error) {
+    callback(NEFilterManager.sharedManager.isEnabled);
   }];
 }
 

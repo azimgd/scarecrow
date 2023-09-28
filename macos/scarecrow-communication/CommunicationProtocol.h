@@ -11,7 +11,7 @@
 // Host -> Extension
 @protocol ExtensionCommunicationProtocol
 - (void)initialize:(void(^)(void))callback;
-- (void)terminate:(void(^)(void))callback;
+- (void)terminate;
 @end
 
 // Extension -> Host

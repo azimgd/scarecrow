@@ -18,25 +18,36 @@ RCT_EXPORT_MODULE();
   return @[@"handleDataFromFlowEvent"];
 }
 
-RCT_EXPORT_METHOD(enable)
+RCT_EXPORT_METHOD(enable:(RCTPromiseResolveBlock)resolve
+error:(__unused RCTResponseSenderBlock)reject)
 {
   [[NetworkExtensionProvider shared] enable:^{
-
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(handleDataFromFlowEvent:) name:@"handleDataFromFlowEvent" object:nil];
+    
+    [[NetworkExtensionProvider shared] status:^(BOOL status) {
+      resolve(@(status));
+    }];
   }];
-  [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(handleDataFromFlowEvent:) name:@"handleDataFromFlowEvent" object:nil];
 }
 
-RCT_EXPORT_METHOD(disable)
+RCT_EXPORT_METHOD(disable:(RCTPromiseResolveBlock)resolve
+error:(__unused RCTResponseSenderBlock)reject)
 {
   [[NetworkExtensionProvider shared] disable:^{
-
+    [[NSNotificationCenter defaultCenter]removeObserver:@"handleDataFromFlowEvent"];
+    
+    [[NetworkExtensionProvider shared] status:^(BOOL status) {
+      resolve(@(status));
+    }];
   }];
 }
 
 RCT_EXPORT_METHOD(isEnabled:(RCTPromiseResolveBlock)resolve
 error:(__unused RCTResponseSenderBlock)reject)
 {
-  resolve(NEFilterManager.sharedManager.isEnabled ? @YES : @NO);
+  [[NetworkExtensionProvider shared] status:^(BOOL status) {
+    resolve(@(status));
+  }];
 }
 
 RCT_EXPORT_METHOD(getGrouppedFlows:(RCTPromiseResolveBlock)resolve

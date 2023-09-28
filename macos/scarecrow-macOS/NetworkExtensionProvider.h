@@ -21,6 +21,7 @@
 
   - (void)enable:(void(^)(void))callback;
   - (void)disable:(void(^)(void))callback;;
+  - (void)status:(void(^)(BOOL status))callback;
 @end
 
 #endif /* FilterDataExtensionProvider_h */

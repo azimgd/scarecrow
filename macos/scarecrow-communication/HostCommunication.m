@@ -35,9 +35,9 @@ static HostCommunication *sharedInstance = nil;
   [[newConnection remoteObjectProxy] initialize:callback];
 }
 
-- (void)terminate:(void(^)(void))callback
+- (void)terminate
 {
-  [[[HostCommunication shared].connection remoteObjectProxy] terminate:callback];
+  [[[HostCommunication shared].connection remoteObjectProxy] terminate];
   [[HostCommunication shared].connection suspend];
 }
 
