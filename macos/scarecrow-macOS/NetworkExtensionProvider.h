@@ -15,12 +15,8 @@
   @property (class, nonatomic, readonly) NetworkExtensionProvider *shared;
   @property (nonatomic, assign) BOOL active;
 
-  @property (nonatomic, copy) void (^activateCallback)(void);
-  @property (nonatomic, copy) void (^deactivateCallback)(void);
-
-
-  - (void)activate:(void(^)(void))callback;
-  - (void)deactivate:(void(^)(void))callback;;
+  - (void)activate;
+  - (void)deactivate;
   - (void)status:(void(^)(BOOL status))callback;
 @end
 

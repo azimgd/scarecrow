@@ -32,7 +32,7 @@ static HostCommunication *sharedInstance = nil;
   [newConnection resume];
   [HostCommunication shared].connection = newConnection;
   
-  [[newConnection remoteObjectProxy] startConnection];
+  [[[HostCommunication shared].connection remoteObjectProxy] startConnection];
 }
 
 - (void)stopConnection

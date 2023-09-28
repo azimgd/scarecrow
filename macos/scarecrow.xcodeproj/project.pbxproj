@@ -8,15 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		052356AC2ABF4086000384F7 /* HostCommunicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 052356AB2ABF4086000384F7 /* HostCommunicationDelegate.m */; };
-		059792052AB47AAF00348AB8 /* ExtensionCommunicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 059791FF2AB47AAF00348AB8 /* ExtensionCommunicationDelegate.m */; };
 		059792062AB47AAF00348AB8 /* HostCommunication.m in Sources */ = {isa = PBXBuildFile; fileRef = 059792022AB47AAF00348AB8 /* HostCommunication.m */; };
 		059792072AB47AAF00348AB8 /* ExtensionCommunication.m in Sources */ = {isa = PBXBuildFile; fileRef = 059792032AB47AAF00348AB8 /* ExtensionCommunication.m */; };
 		0597920A2AB47AFB00348AB8 /* NetworkExtensionProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 059792092AB47AFB00348AB8 /* NetworkExtensionProvider.m */; };
 		0597920B2AB47B3900348AB8 /* CommunicationProtocol.h in Sources */ = {isa = PBXBuildFile; fileRef = 059792042AB47AAF00348AB8 /* CommunicationProtocol.h */; };
 		0597920C2AB47B3900348AB8 /* ExtensionCommunication.h in Sources */ = {isa = PBXBuildFile; fileRef = 059792012AB47AAF00348AB8 /* ExtensionCommunication.h */; };
 		0597920D2AB47B3900348AB8 /* ExtensionCommunication.m in Sources */ = {isa = PBXBuildFile; fileRef = 059792032AB47AAF00348AB8 /* ExtensionCommunication.m */; };
-		0597920E2AB47B3900348AB8 /* ExtensionCommunicationDelegate.h in Sources */ = {isa = PBXBuildFile; fileRef = 059791FE2AB47AAF00348AB8 /* ExtensionCommunicationDelegate.h */; };
-		0597920F2AB47B3900348AB8 /* ExtensionCommunicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 059791FF2AB47AAF00348AB8 /* ExtensionCommunicationDelegate.m */; };
 		059792102AB47B3900348AB8 /* HostCommunication.h in Sources */ = {isa = PBXBuildFile; fileRef = 059792002AB47AAF00348AB8 /* HostCommunication.h */; };
 		059792112AB47B3900348AB8 /* HostCommunication.m in Sources */ = {isa = PBXBuildFile; fileRef = 059792022AB47AAF00348AB8 /* HostCommunication.m */; };
 		059792182AB47E6500348AB8 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 059792172AB47E6500348AB8 /* NetworkExtension.framework */; };
@@ -141,13 +138,9 @@
 		059791FD2AB47A8F00348AB8 /* scarecrow-communication */ = {
 			isa = PBXGroup;
 			children = (
-				052356AD2ABF40A4000384F7 /* HostCommunicationDelegate.h */,
-				052356AB2ABF4086000384F7 /* HostCommunicationDelegate.m */,
 				059792042AB47AAF00348AB8 /* CommunicationProtocol.h */,
 				059792012AB47AAF00348AB8 /* ExtensionCommunication.h */,
 				059792032AB47AAF00348AB8 /* ExtensionCommunication.m */,
-				059791FE2AB47AAF00348AB8 /* ExtensionCommunicationDelegate.h */,
-				059791FF2AB47AAF00348AB8 /* ExtensionCommunicationDelegate.m */,
 				059792002AB47AAF00348AB8 /* HostCommunication.h */,
 				059792022AB47AAF00348AB8 /* HostCommunication.m */,
 			);
@@ -157,6 +150,8 @@
 		059792192AB47E6500348AB8 /* scarecrow-network */ = {
 			isa = PBXGroup;
 			children = (
+				059791FE2AB47AAF00348AB8 /* ExtensionCommunicationDelegate.h */,
+				059791FF2AB47AAF00348AB8 /* ExtensionCommunicationDelegate.m */,
 				05CBE5692AB6DFBF000F6BC1 /* FlowEntry.h */,
 				05CBE56A2AB6DFCA000F6BC1 /* FlowEntry.m */,
 				0597921A2AB47E6500348AB8 /* FilterDataProvider.h */,
@@ -191,6 +186,8 @@
 		5142014A2437B4B30078DB4F /* scarecrow-macOS */ = {
 			isa = PBXGroup;
 			children = (
+				052356AD2ABF40A4000384F7 /* HostCommunicationDelegate.h */,
+				052356AB2ABF4086000384F7 /* HostCommunicationDelegate.m */,
 				059792082AB47AFB00348AB8 /* NetworkExtensionProvider.h */,
 				059792092AB47AFB00348AB8 /* NetworkExtensionProvider.m */,
 				059792282AB484DB00348AB8 /* RCTScarecrowNetwork.h */,
@@ -508,7 +505,6 @@
 			files = (
 				059792062AB47AAF00348AB8 /* HostCommunication.m in Sources */,
 				059792072AB47AAF00348AB8 /* ExtensionCommunication.m in Sources */,
-				059792052AB47AAF00348AB8 /* ExtensionCommunicationDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,8 +516,6 @@
 				0597920B2AB47B3900348AB8 /* CommunicationProtocol.h in Sources */,
 				0597920C2AB47B3900348AB8 /* ExtensionCommunication.h in Sources */,
 				0597920D2AB47B3900348AB8 /* ExtensionCommunication.m in Sources */,
-				0597920E2AB47B3900348AB8 /* ExtensionCommunicationDelegate.h in Sources */,
-				0597920F2AB47B3900348AB8 /* ExtensionCommunicationDelegate.m in Sources */,
 				059792102AB47B3900348AB8 /* HostCommunication.h in Sources */,
 				059792112AB47B3900348AB8 /* HostCommunication.m in Sources */,
 				514201582437B4B40078DB4F /* main.m in Sources */,

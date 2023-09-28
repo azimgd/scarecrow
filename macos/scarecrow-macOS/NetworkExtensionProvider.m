@@ -26,7 +26,7 @@ static NetworkExtensionProvider *sharedInstance = nil;
   return sharedInstance;
 }
 
-- (void)activate:(void(^)(void))callback;
+- (void)activate
 {
   OSSystemExtensionRequest *activateSystemRequest = [OSSystemExtensionRequest
     activationRequestForExtension:networkExtensionBundleId
@@ -36,10 +36,9 @@ static NetworkExtensionProvider *sharedInstance = nil;
   activateSystemRequest.delegate = self;
   [OSSystemExtensionManager.sharedManager submitRequest:activateSystemRequest];
   self.active = true;
-  self.activateCallback = callback;
 }
 
-- (void)deactivate:(void(^)(void))callback;
+- (void)deactivate
 {
   OSSystemExtensionRequest *deactivateSystemRequest = [OSSystemExtensionRequest
     deactivationRequestForExtension:networkExtensionBundleId
@@ -49,7 +48,6 @@ static NetworkExtensionProvider *sharedInstance = nil;
   deactivateSystemRequest.delegate = self;
   [OSSystemExtensionManager.sharedManager submitRequest:deactivateSystemRequest];
   self.active = false;
-  self.deactivateCallback = callback;
 }
 
 - (void)status:(void (^)(BOOL))callback
@@ -88,21 +86,18 @@ static NetworkExtensionProvider *sharedInstance = nil;
       NEFilterManager.sharedManager.providerConfiguration = configuration;
 
       NEFilterManager.sharedManager.enabled = true;
-      self.activateCallback();
-
-      [HostCommunication shared].delegate = [HostCommunicationDelegate shared];
-      [[HostCommunication shared] startConnection];
 
       [NEFilterManager.sharedManager saveToPreferencesWithCompletionHandler:^(NSError * _Nullable error) {}];
+
+      [[NSNotificationCenter defaultCenter] postNotificationName:@"startConnection" object:nil userInfo:@{}];
     }];
   } else {
     [NEFilterManager.sharedManager loadFromPreferencesWithCompletionHandler:^(NSError * _Nullable error) {
-      self.deactivateCallback();
-      [[HostCommunication shared] stopConnection];
-
       NEFilterManager.sharedManager.enabled = false;
 
       [NEFilterManager.sharedManager removeFromPreferencesWithCompletionHandler:^(NSError * _Nullable error) {}];
+
+      [[NSNotificationCenter defaultCenter] postNotificationName:@"stopConnection" object:nil userInfo:@{}];
     }];
   }
 }

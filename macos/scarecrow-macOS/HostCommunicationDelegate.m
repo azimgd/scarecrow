@@ -21,6 +21,14 @@ static HostCommunicationDelegate *sharedInstance = nil;
   return sharedInstance;
 }
 
+- (void)startConnection
+{
+}
+
+- (void)stopConnection
+{
+}
+
 - (void)handleDataFromFlowEvent:(NSDictionary *)payload
 {
   [[NSNotificationCenter defaultCenter] postNotificationName:@"handleDataFromFlowEvent" object:nil userInfo:payload];

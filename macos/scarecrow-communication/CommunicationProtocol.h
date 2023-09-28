@@ -16,6 +16,8 @@
 
 // Extension -> Host
 @protocol HostCommunicationProtocol
+- (void)startConnection;
+- (void)stopConnection;
 - (void)handleDataFromFlowEvent:(NSDictionary *)payload;
 - (void)validateRuleForFlowEvent:(NSDictionary *)payload withCallback:(void(^)(BOOL allowed))callback;
 - (void)toggleFlowRule:(NSString *)bundleIdentifier withCallback:(void(^)(BOOL status))callback;

@@ -9,9 +9,7 @@ function Sidebar(): JSX.Element {
   const [status, setStatus] = React.useState<boolean | undefined>(false);
 
   const requestStatus = React.useCallback(() => {
-    ScarecrowNetwork.getStatus().then((status: boolean) => {
-      setStatus(status);
-    });
+    ScarecrowNetwork.getStatus().then(setStatus);
   }, []);
 
   React.useEffect(() => {
