@@ -26,7 +26,7 @@ static NetworkExtensionProvider *sharedInstance = nil;
   return sharedInstance;
 }
 
-- (void)enable
+- (void)enable:(void(^)(void))callback;
 {
   OSSystemExtensionRequest *activateSystemRequest = [OSSystemExtensionRequest
     activationRequestForExtension:networkExtensionBundleId
@@ -36,9 +36,10 @@ static NetworkExtensionProvider *sharedInstance = nil;
   activateSystemRequest.delegate = self;
   [OSSystemExtensionManager.sharedManager submitRequest:activateSystemRequest];
   self.active = true;
+  self.enableCallback = callback;
 }
 
-- (void)disable
+- (void)disable:(void(^)(void))callback;
 {
   OSSystemExtensionRequest *deactivateSystemRequest = [OSSystemExtensionRequest
     deactivationRequestForExtension:networkExtensionBundleId
@@ -48,6 +49,7 @@ static NetworkExtensionProvider *sharedInstance = nil;
   deactivateSystemRequest.delegate = self;
   [OSSystemExtensionManager.sharedManager submitRequest:deactivateSystemRequest];
   self.active = false;
+  self.disableCallback = callback;
 }
 
 - (void)activate
@@ -66,7 +68,7 @@ static NetworkExtensionProvider *sharedInstance = nil;
 
     [NEFilterManager.sharedManager saveToPreferencesWithCompletionHandler:^(NSError * _Nullable error) {
       [HostCommunication shared].delegate = [HostCommunicationDelegate shared];
-      [[HostCommunication shared] initialize];
+      [[HostCommunication shared] initialize:self.enableCallback];
     }];
   }];
 }
@@ -77,7 +79,7 @@ static NetworkExtensionProvider *sharedInstance = nil;
     NEFilterManager.sharedManager.enabled = false;
 
     [NEFilterManager.sharedManager removeFromPreferencesWithCompletionHandler:^(NSError * _Nullable error) {
-      [[HostCommunication shared] terminate];
+      [[HostCommunication shared] terminate:self.disableCallback];
     }];
   }];
 }

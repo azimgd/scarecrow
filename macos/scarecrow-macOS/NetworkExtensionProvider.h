@@ -15,8 +15,12 @@
   @property (class, nonatomic, readonly) NetworkExtensionProvider *shared;
   @property (nonatomic, assign) BOOL active;
 
-  - (void)enable;
-  - (void)disable;
+  @property (nonatomic, copy) void (^enableCallback)(void);
+  @property (nonatomic, copy) void (^disableCallback)(void);
+
+
+  - (void)enable:(void(^)(void))callback;
+  - (void)disable:(void(^)(void))callback;;
 @end
 
 #endif /* FilterDataExtensionProvider_h */

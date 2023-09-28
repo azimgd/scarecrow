@@ -20,13 +20,17 @@ RCT_EXPORT_MODULE();
 
 RCT_EXPORT_METHOD(enable)
 {
-  [[NetworkExtensionProvider shared] enable];
+  [[NetworkExtensionProvider shared] enable:^{
+
+  }];
   [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(handleDataFromFlowEvent:) name:@"handleDataFromFlowEvent" object:nil];
 }
 
 RCT_EXPORT_METHOD(disable)
 {
-  [[NetworkExtensionProvider shared] disable];
+  [[NetworkExtensionProvider shared] disable:^{
+
+  }];
 }
 
 RCT_EXPORT_METHOD(isEnabled:(RCTPromiseResolveBlock)resolve

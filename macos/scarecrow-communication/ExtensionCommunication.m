@@ -20,7 +20,12 @@ static ExtensionCommunication *sharedInstance = nil;
   return sharedInstance;
 }
 
-- (void)initialize {
+- (void)initialize:(void(^)(void))callback {
+  callback();
+}
+
+- (void)terminate:(void(^)(void))callback {
+  callback();
 }
 
 @end
