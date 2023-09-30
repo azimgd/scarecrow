@@ -46,14 +46,10 @@ static HostCommunication *sharedInstance = nil;
   [[self delegate] handleDataFromFlowEvent:payload];
 }
 
-- (void)validateRuleForFlowEvent:(NSDictionary *)payload withCallback:(void(^)(BOOL allowed))callback
+- (void)toggleFlowRule:(NSString *)bundleIdentifier
 {
-  [[self delegate] validateRuleForFlowEvent:payload withCallback:callback];
-}
-
-- (void)toggleFlowRule:(NSString *)bundleIdentifier withCallback:(void(^)(BOOL status))callback
-{
-  [[self delegate] toggleFlowRule:bundleIdentifier withCallback:callback];
+  [[[HostCommunication shared].connection remoteObjectProxy] toggleFlowRule:bundleIdentifier];
+  [[self delegate] toggleFlowRule:bundleIdentifier];
 }
 
 @end

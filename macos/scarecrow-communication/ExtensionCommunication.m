@@ -26,4 +26,11 @@ static ExtensionCommunication *sharedInstance = nil;
 - (void)stopConnection {
 }
 
+- (void)toggleFlowRule:(NSString *)bundleIdentifier
+{
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"toggleFlowRule" object:nil userInfo:@{
+    @"bundleIdentifier": bundleIdentifier,
+  }];
+}
+
 @end

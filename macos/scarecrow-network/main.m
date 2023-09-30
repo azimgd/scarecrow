@@ -14,10 +14,10 @@ int main(int argc, char *argv[])
   @autoreleasepool {
     [NEProvider startSystemExtensionMode];
     
-    ExtensionCommunicationDelegate *CommunicationDelegate = [ExtensionCommunicationDelegate new];
+    ExtensionCommunicationDelegate *extensionCommunicationDelegate = [ExtensionCommunicationDelegate new];
     NSXPCListener *listener = [[NSXPCListener alloc] initWithMachServiceName:@"B6BB88CAP5.com.azimgd.scarecrow.scarecrow-network"];
 
-    listener.delegate = CommunicationDelegate;
+    listener.delegate = extensionCommunicationDelegate;
     [listener resume];
 
     [[NSRunLoop mainRunLoop] run];

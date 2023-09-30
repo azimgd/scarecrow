@@ -80,9 +80,8 @@ RCT_EXPORT_METHOD(toggleFlowRule:(NSString *)bundleIdentifier
   resolve:(RCTPromiseResolveBlock)resolve
   error:(__unused RCTResponseSenderBlock)reject)
 {
-  [[HostCommunication shared] toggleFlowRule:bundleIdentifier withCallback:^(BOOL status) {
-    resolve(@{});
-  }];
+  [[HostCommunication shared] toggleFlowRule:bundleIdentifier];
+  resolve(@{});
 }
 
 - (void)handleDataFromFlowEvent:(NSNotification*)sender{

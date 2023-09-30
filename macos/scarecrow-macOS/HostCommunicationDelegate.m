@@ -36,12 +36,6 @@ static HostCommunicationDelegate *sharedInstance = nil;
   [self saveFlow:payload];
 }
 
-- (void)validateRuleForFlowEvent:(NSDictionary *)payload withCallback:(void(^)(BOOL allowed))callback
-{
-  NSString *bundleIdentifier = [payload objectForKey:@"bundleIdentifier"];
-  callback([self validateFlowForBundleIdentifier:bundleIdentifier]);
-}
-
 - (void)saveFlow:(NSDictionary *)payload
 {
 }
@@ -52,10 +46,9 @@ static HostCommunicationDelegate *sharedInstance = nil;
   return status;
 }
 
-- (void)toggleFlowRule:(NSString *)bundleIdentifier withCallback:(void(^)(BOOL status))callback
+- (void)toggleFlowRule:(NSString *)bundleIdentifier
 {
   BOOL status = YES;
-  callback(status);
 }
 
 @end

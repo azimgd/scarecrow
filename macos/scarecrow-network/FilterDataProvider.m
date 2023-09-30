@@ -8,6 +8,7 @@
 #import "FilterDataProvider.h"
 #import "ExtensionCommunication.h"
 #import "FlowEntry.h"
+#import "Validator.h"
 #import <os/log.h>
 
 @implementation FilterDataProvider
@@ -33,7 +34,7 @@
     action:NEFilterActionFilterData
   ];
 
-  NEFilterSettings* filterSettings = [
+  NEFilterSettings* filterSettings = [  
     [NEFilterSettings alloc]
     initWithRules:@[filterRule]
     defaultAction:NEFilterActionAllow
@@ -64,18 +65,13 @@
   NSXPCConnection *connection = [ExtensionCommunication shared].connection;
   [[connection remoteObjectProxy] handleDataFromFlowEvent:flowEntry.payload];
   
-  dispatch_semaphore_t sema = dispatch_semaphore_create(0);
-  __block NEFilterDataVerdict *verdict = [NEFilterDataVerdict allowVerdict];
+  NEFilterDataVerdict *verdict = [NEFilterDataVerdict allowVerdict];
 
-  [[connection remoteObjectProxy] validateRuleForFlowEvent:flowEntry.payload withCallback:^(BOOL allowed) {
-    if (!allowed) {
-      verdict = [NEFilterDataVerdict dropVerdict];
-    }
-    dispatch_semaphore_signal(sema);
-  }];
-  
-  dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
-  
+  NSString *bundleIdentifier = [[flowEntry payload] objectForKey:@"bundleIdentifier"];
+  if (![Validator.shared validate:bundleIdentifier]) {
+    verdict = [NEFilterDataVerdict dropVerdict];
+  }
+
   return verdict;
 }
 
@@ -87,18 +83,13 @@
   NSXPCConnection *connection = [ExtensionCommunication shared].connection;
   [[connection remoteObjectProxy] handleDataFromFlowEvent:flowEntry.payload];
   
-  dispatch_semaphore_t sema = dispatch_semaphore_create(0);
-  __block NEFilterDataVerdict *verdict = [NEFilterDataVerdict allowVerdict];
+  NEFilterDataVerdict *verdict = [NEFilterDataVerdict allowVerdict];
 
-  [[connection remoteObjectProxy] validateRuleForFlowEvent:flowEntry.payload withCallback:^(BOOL allowed) {
-    if (!allowed) {
-      verdict = [NEFilterDataVerdict dropVerdict];
-    }
-    dispatch_semaphore_signal(sema);
-  }];
-  
-  dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
-  
+  NSString *bundleIdentifier = [[flowEntry payload] objectForKey:@"bundleIdentifier"];
+  if (![Validator.shared validate:bundleIdentifier]) {
+    verdict = [NEFilterDataVerdict dropVerdict];
+  }
+
   return verdict;
 }
 
