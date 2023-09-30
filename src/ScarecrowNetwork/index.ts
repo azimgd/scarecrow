@@ -20,5 +20,5 @@ export const getFlowsByBundleIdentifier =
 export const toggleFlowRule = ScarecrowNetwork.toggleFlowRule;
 
 export const handleDataFromFlowEvent = (
-  listener: (event: {string: handleDataFromFlowEventPayload}) => void,
+  listener: (event: handleDataFromFlowEventPayload) => void,
 ) => eventEmitter.addListener('handleDataFromFlowEvent', listener);

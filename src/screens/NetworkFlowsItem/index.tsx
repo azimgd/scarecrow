@@ -19,7 +19,7 @@ function NetworkFlowsItem(): JSX.Element {
 
   const handleDataFromFlowEvent = React.useCallback(
     (event: {string: ScarecrowNetwork.handleDataFromFlowEventPayload}) => {
-      setTableData(Object.values(event));
+      // setTableData(Object.values(event));
     },
     [],
   );

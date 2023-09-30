@@ -85,7 +85,7 @@ RCT_EXPORT_METHOD(toggleFlowRule:(NSString *)bundleIdentifier
 }
 
 - (void)handleDataFromFlowEvent:(NSNotification*)sender{
-  [self sendEventWithName:@"handleDataFromFlowEvent" body:@{}];
+  [self sendEventWithName:@"handleDataFromFlowEvent" body:sender.userInfo];
 }
 
 - (void)startConnection:(NSNotification*)sender{

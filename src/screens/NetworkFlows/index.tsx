@@ -19,8 +19,22 @@ function NetworkFlows(): JSX.Element {
   >([]);
 
   const handleDataFromFlowEvent = React.useCallback(
-    (event: {string: ScarecrowNetwork.handleDataFromFlowEventPayload}) => {
-      setTableData(Object.values(event));
+    (event: ScarecrowNetwork.handleDataFromFlowEventPayload) => {
+      if (!event.bundleIdentifier) {
+        return;
+      }
+
+      setTableData(state => {
+        const itemIndex = state.findIndex(
+          item => item.bundleIdentifier === event.bundleIdentifier,
+        );
+
+        if (itemIndex === -1) {
+          return state.concat(event);
+        }
+
+        return state;
+      });
     },
     [],
   );
