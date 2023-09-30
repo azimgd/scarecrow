@@ -27,19 +27,10 @@ static Validator *sharedInstance = nil;
 - (void)toggleFlowRule:(NSNotification*)sender {
   NSString *bundleIdentifier = [sender.userInfo objectForKey:@"bundleIdentifier"];
   
-  NSLog(@"wiwi contains %@ %@", bundleIdentifier, sharedInstance.rules);
   if (sharedInstance.rules[bundleIdentifier] == nil) {
-    sharedInstance.rules[bundleIdentifier] = @YES;
+    sharedInstance.rules[bundleIdentifier] = @NO;
   } else {
     sharedInstance.rules[bundleIdentifier] = @(![sharedInstance.rules[bundleIdentifier] boolValue]);
-  }
-}
-
-- (BOOL)validate:(NSString *)bundleIdentifier {
-  if ([sharedInstance.rules doesContain:bundleIdentifier]) {
-    return [sharedInstance.rules[bundleIdentifier] boolValue];
-  } else {
-    return YES;
   }
 }
 

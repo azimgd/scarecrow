@@ -65,10 +65,14 @@
   NSXPCConnection *connection = [ExtensionCommunication shared].connection;
   [[connection remoteObjectProxy] handleDataFromFlowEvent:flowEntry.payload];
   
-  NEFilterDataVerdict *verdict = [NEFilterDataVerdict allowVerdict];
+  NEFilterDataVerdict *verdict;
 
   NSString *bundleIdentifier = [[flowEntry payload] objectForKey:@"bundleIdentifier"];
-  if (![Validator.shared validate:bundleIdentifier]) {
+  if (Validator.shared.rules[bundleIdentifier] == nil) {
+    verdict = [NEFilterDataVerdict allowVerdict];
+  } else if ([Validator.shared.rules[bundleIdentifier] boolValue]) {
+    verdict = [NEFilterDataVerdict allowVerdict];
+  } else {
     verdict = [NEFilterDataVerdict dropVerdict];
   }
 
@@ -83,13 +87,17 @@
   NSXPCConnection *connection = [ExtensionCommunication shared].connection;
   [[connection remoteObjectProxy] handleDataFromFlowEvent:flowEntry.payload];
   
-  NEFilterDataVerdict *verdict = [NEFilterDataVerdict allowVerdict];
+  NEFilterDataVerdict *verdict;
 
   NSString *bundleIdentifier = [[flowEntry payload] objectForKey:@"bundleIdentifier"];
-  if (![Validator.shared validate:bundleIdentifier]) {
+  if (Validator.shared.rules[bundleIdentifier] == nil) {
+    verdict = [NEFilterDataVerdict allowVerdict];
+  } else if ([Validator.shared.rules[bundleIdentifier] boolValue]) {
+    verdict = [NEFilterDataVerdict allowVerdict];
+  } else {
     verdict = [NEFilterDataVerdict dropVerdict];
   }
-
+  
   return verdict;
 }
 
