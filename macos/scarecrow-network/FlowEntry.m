@@ -10,10 +10,12 @@
 
 @implementation FlowEntry
 
-- (instancetype)initWithFlow:(NEFilterFlow *)flow {
+- (instancetype)initWithFlow:(NEFilterFlow *)flow size:(NSNumber *)size {
   self = [super init];
   if (self) {
     _flow = [flow copy];
+    _size = size;
+    _date = [NSDate date];
   }
   return self;
 }
@@ -23,6 +25,7 @@
   NEFilterSocketFlow *socketFlow = (NEFilterSocketFlow*)_flow;
   NSRunningApplication *runningApplication = [self runningApplicationFromAppAuditToken:socketFlow.sourceAppAuditToken];
 
+  NSString *identifier = (socketFlow.identifier) ? [socketFlow.identifier UUIDString] : @"";
   NSString *remoteEndpoint = (socketFlow.remoteEndpoint) ? socketFlow.remoteEndpoint.description : @"";
   NSString *remoteUrl = (socketFlow.URL) ? socketFlow.URL.description : @"";
   NSString *direction = socketFlow.direction == 1 ? @"inbound" : @"outbound";
@@ -32,11 +35,14 @@
     runningApplication.bundleIdentifier : @"";
 
   return @{
+    @"identifier": identifier,
     @"direction": direction,
     @"remoteEndpoint": remoteEndpoint,
     @"remoteUrl": remoteUrl,
     @"localizedName": localizedName,
     @"bundleIdentifier": bundleIdentifier,
+    @"size": _size,
+    @"date": _date,
   };
 }
 

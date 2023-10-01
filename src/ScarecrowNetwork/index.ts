@@ -9,6 +9,8 @@ export type handleDataFromFlowEventPayload = {
   rule: {
     allowed: boolean;
   };
+  size: number;
+  date: string;
 };
 
 const {ScarecrowNetwork} = NativeModules;

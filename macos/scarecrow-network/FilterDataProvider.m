@@ -60,7 +60,7 @@
 - (NEFilterDataVerdict *)handleInboundDataFromFlow:(NEFilterFlow *)flow readBytesStartOffset:(NSUInteger)offset readBytes:(NSData *)readBytes {
   os_log(OS_LOG_DEFAULT, "[scarecrow-filter] handleInboundDataFromFlow");
 
-  FlowEntry *flowEntry = [[FlowEntry alloc] initWithFlow:flow];
+  FlowEntry *flowEntry = [[FlowEntry alloc] initWithFlow:flow size:[NSNumber numberWithFloat:(readBytes.length/1000.0f)]];
 
   NSXPCConnection *connection = [ExtensionCommunication shared].connection;
   [[connection remoteObjectProxy] handleDataFromFlowEvent:flowEntry.payload];
@@ -82,7 +82,7 @@
 - (NEFilterDataVerdict *)handleOutboundDataFromFlow:(NEFilterFlow *)flow readBytesStartOffset:(NSUInteger)offset readBytes:(NSData *)readBytes {
   os_log(OS_LOG_DEFAULT, "[scarecrow-filter] handleOutboundDataFromFlow");
   
-  FlowEntry *flowEntry = [[FlowEntry alloc] initWithFlow:flow];
+  FlowEntry *flowEntry = [[FlowEntry alloc] initWithFlow:flow size:[NSNumber numberWithFloat:(readBytes.length/1000.0f)]];
 
   NSXPCConnection *connection = [ExtensionCommunication shared].connection;
   [[connection remoteObjectProxy] handleDataFromFlowEvent:flowEntry.payload];

@@ -15,8 +15,10 @@
 @interface FlowEntry : NSObject
 
 @property (nonatomic, copy) NEFilterFlow *flow;
+@property (nonatomic, copy) NSNumber *size;
+@property (nonatomic, copy) NSDate *date;
 
-- (instancetype)initWithFlow:(NEFilterFlow *)flow;
+- (instancetype)initWithFlow:(NEFilterFlow *)flow size:(NSNumber *)size;
 - (NSDictionary *)payload;
 
 @end

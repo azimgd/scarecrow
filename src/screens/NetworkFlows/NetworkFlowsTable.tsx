@@ -1,7 +1,7 @@
 import React, {PropsWithChildren} from 'react';
 import {TouchableOpacity} from 'react-native';
 import {ListItem, YStack, SizableText, Switch} from 'tamagui';
-import {ArrowUp, ArrowDown} from '@tamagui/lucide-icons';
+import {AppWindow} from '@tamagui/lucide-icons';
 import * as ScarecrowNetwork from '../../ScarecrowNetwork';
 
 type NetworkFlowsTableProps = PropsWithChildren<{
@@ -42,13 +42,7 @@ function NetworkFlowsTable({
                 <Switch.Thumb animation="quick" />
               </Switch>
             }
-            icon={
-              item.direction === 'outbound' ? (
-                <ArrowUp color="#0097e6" />
-              ) : (
-                <ArrowDown color="#44bd32" />
-              )
-            }
+            icon={<AppWindow color="#0097e6" />}
           />
         </TouchableOpacity>
       ))}

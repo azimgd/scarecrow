@@ -53,12 +53,16 @@ function NetworkFlows(): JSX.Element {
   );
 
   React.useEffect(() => {
-    ScarecrowNetwork.getGrouppedFlows().then(handleDataFromFlowEvent);
-
-    const subscription = ScarecrowNetwork.handleDataFromFlowEvent(
-      handleDataFromFlowEvent,
+    ScarecrowNetwork.getGrouppedFlows().then(
+      (flows: ScarecrowNetwork.handleDataFromFlowEventPayload[]) =>
+        setTableData(flows),
     );
-    return () => subscription.remove();
+
+    // const subscription = ScarecrowNetwork.handleDataFromFlowEvent(
+    //   handleDataFromFlowEvent,
+    // );
+
+    // return () => subscription.remove();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

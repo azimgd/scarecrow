@@ -18,8 +18,8 @@ function NetworkFlowsItem(): JSX.Element {
   >([]);
 
   const handleDataFromFlowEvent = React.useCallback(
-    (event: {string: ScarecrowNetwork.handleDataFromFlowEventPayload}) => {
-      // setTableData(Object.values(event));
+    (event: ScarecrowNetwork.handleDataFromFlowEventPayload[]) => {
+      setTableData(event);
     },
     [],
   );
@@ -28,11 +28,6 @@ function NetworkFlowsItem(): JSX.Element {
     ScarecrowNetwork.getFlowsByBundleIdentifier(
       route.params.bundleIdentifier,
     ).then(handleDataFromFlowEvent);
-
-    const subscription = ScarecrowNetwork.handleDataFromFlowEvent(
-      handleDataFromFlowEvent,
-    );
-    return () => subscription.remove();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "HostCommunicationDelegate.h"
+#import "Flow.h"
 
 @implementation HostCommunicationDelegate
 
@@ -31,6 +32,12 @@ static HostCommunicationDelegate *sharedInstance = nil;
 
 - (void)handleDataFromFlowEvent:(NSDictionary *)payload
 {
+  RLMRealm *realm = [RLMRealm defaultRealm];
+  Flow *flow = [[Flow alloc] initWithValue:payload];
+  [realm transactionWithBlock:^() {
+    [realm addOrUpdateObject:flow];
+  }];
+
   [[NSNotificationCenter defaultCenter] postNotificationName:@"handleDataFromFlowEvent" object:nil userInfo:payload];
 
   [self saveFlow:payload];

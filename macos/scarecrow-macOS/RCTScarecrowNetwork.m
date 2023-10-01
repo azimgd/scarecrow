@@ -9,6 +9,7 @@
 #import "RCTScarecrowNetwork.h"
 #import "HostCommunication.h"
 #import <NetworkExtension/NetworkExtension.h>
+#import "Flow.h"
 
 @implementation RCTScarecrowNetwork
 
@@ -66,14 +67,59 @@ error:(__unused RCTResponseSenderBlock)reject)
 RCT_EXPORT_METHOD(getGrouppedFlows:(RCTPromiseResolveBlock)resolve
   error:(__unused RCTResponseSenderBlock)reject)
 {
-  resolve(@{});
+  RLMRealm *realm = [RLMRealm defaultRealm];
+  RLMResults *flows = [Flow allObjectsInRealm:realm];
+  RLMResults *distinctFlows = [flows distinctResultsUsingKeyPaths:@[@"bundleIdentifier"]];
+
+  NSMutableArray *response = [NSMutableArray array];
+  for (Flow *flow in distinctFlows) {
+    NSMutableDictionary *item = [NSMutableDictionary dictionaryWithDictionary:[flow dictionaryWithValuesForKeys:@[
+      @"direction",
+      @"remoteEndpoint",
+      @"remoteUrl",
+      @"localizedName",
+      @"bundleIdentifier",
+      @"size",
+      @"date",
+    ]]];
+    
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
+    item[@"date"] = [dateFormat stringFromDate:item[@"date"]];
+
+    [response addObject:item];
+  }
+    
+  resolve(response);
 }
 
 RCT_EXPORT_METHOD(getFlowsByBundleIdentifier:(NSString *)bundleIdentifier
   resolve:(RCTPromiseResolveBlock)resolve
   error:(__unused RCTResponseSenderBlock)reject)
 {
-  resolve(@[]);
+  RLMRealm *realm = [RLMRealm defaultRealm];
+  RLMResults *flows = [Flow objectsInRealm:realm withPredicate:[NSPredicate predicateWithFormat:@"bundleIdentifier = %@", bundleIdentifier]];
+
+  NSMutableArray *response = [NSMutableArray array];
+  for (Flow *flow in flows) {
+    NSMutableDictionary *item = [NSMutableDictionary dictionaryWithDictionary:[flow dictionaryWithValuesForKeys:@[
+      @"direction",
+      @"remoteEndpoint",
+      @"remoteUrl",
+      @"localizedName",
+      @"bundleIdentifier",
+      @"size",
+      @"date",
+    ]]];
+    
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
+    item[@"date"] = [dateFormat stringFromDate:item[@"date"]];
+    
+    [response addObject:item];
+  }
+
+  resolve(response);
 }
 
 RCT_EXPORT_METHOD(toggleFlowRule:(NSString *)bundleIdentifier
@@ -85,7 +131,7 @@ RCT_EXPORT_METHOD(toggleFlowRule:(NSString *)bundleIdentifier
 }
 
 - (void)handleDataFromFlowEvent:(NSNotification*)sender{
-  [self sendEventWithName:@"handleDataFromFlowEvent" body:sender.userInfo];
+//  [self sendEventWithName:@"handleDataFromFlowEvent" body:@{}];
 }
 
 - (void)startConnection:(NSNotification*)sender{
