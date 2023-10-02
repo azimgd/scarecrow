@@ -30,7 +30,12 @@ function RootStack() {
     [theme],
   );
 
-  const screenOptions = React.useMemo<StackNavigationOptions>(() => ({}), []);
+  const screenOptions = React.useMemo<StackNavigationOptions>(
+    () => ({
+      headerShown: false,
+    }),
+    [],
+  );
 
   return (
     <NavigationContainer theme={navigationTheme}>

@@ -5,6 +5,7 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList} from '../../navigation/index';
 import * as ScarecrowNetwork from '../../ScarecrowNetwork';
 import NetworkFlowsTable from './NetworkFlowsTable';
+import {ListItem, Text, View} from 'tamagui';
 
 type NetworkFlowsScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -67,13 +68,24 @@ function NetworkFlows(): JSX.Element {
   }, []);
 
   return (
-    <ScrollView>
-      <NetworkFlowsTable
-        data={tableData}
-        handleDataItemPress={handleDataItemPress}
-        handleDataItemCheckedChange={handleDataItemCheckedChange}
-      />
-    </ScrollView>
+    <View>
+      <ListItem
+        backgroundColor="$colorTransparent"
+        borderBottomColor="$borderColor"
+        borderBottomWidth="$0.25">
+        <Text color="#cccccc">View by</Text>
+      </ListItem>
+
+      <View borderLeftColor="$borderColor" borderLeftWidth="$0.5">
+        <ScrollView>
+          <NetworkFlowsTable
+            data={tableData}
+            handleDataItemPress={handleDataItemPress}
+            handleDataItemCheckedChange={handleDataItemCheckedChange}
+          />
+        </ScrollView>
+      </View>
+    </View>
   );
 }
 

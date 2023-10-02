@@ -25,7 +25,6 @@ function NetworkFlowsTable({
           onPress={() => handleDataItemPress(item.bundleIdentifier)}
           key={index}>
           <ListItem
-            backgroundColor="$borderColor"
             title={item.remoteEndpoint}
             subTitle={
               <SizableText theme="alt1" size="$3">

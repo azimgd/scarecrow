@@ -1,7 +1,7 @@
 import React from 'react';
 import {NativeModules} from 'react-native';
 import {View, YStack, ListItem, Button, Text} from 'tamagui';
-import {ArrowUp} from '@tamagui/lucide-icons';
+import {AppWindow, Globe2, ListFilter, CheckCircle2, AlertCircle} from '@tamagui/lucide-icons';
 
 const {ScarecrowNetwork} = NativeModules;
 
@@ -31,11 +31,71 @@ function Sidebar(): JSX.Element {
   }, []);
 
   return (
-    <YStack width={360}>
-      <ListItem title="All Requests" icon={<ArrowUp color="#0097e6" />} />
-      <ListItem title="HTTPS Requests" icon={<ArrowUp color="#0097e6" />} />
+    <YStack width={360} space="$2">
+      <YStack>
+        <ListItem
+          backgroundColor="$colorTransparent"
+          borderBottomColor="$borderColor"
+          borderBottomWidth="$0.25"
+          iconAfter={<ListFilter />}>
+          <Text color="#cccccc">View by</Text>
+        </ListItem>
 
-      <View paddingHorizontal="$4">
+        <ListItem
+          backgroundColor="$colorTransparent"
+          title="Applications"
+          icon={<AppWindow />}
+          iconAfter={
+            <Text color="#cccccc" fontSize="$2">
+              50
+            </Text>
+          }
+        />
+        <ListItem
+          backgroundColor="$colorTransparent"
+          title="Hostnames"
+          icon={<Globe2 />}
+          iconAfter={
+            <Text color="#cccccc" fontSize="$2">
+              50
+            </Text>
+          }
+        />
+      </YStack>
+
+      <YStack>
+        <ListItem
+          backgroundColor="$colorTransparent"
+          borderBottomColor="$borderColor"
+          borderBottomWidth="$0.25"
+          iconAfter={<ListFilter />}>
+          <Text color="#cccccc">Rules</Text>
+        </ListItem>
+
+        <ListItem
+          backgroundColor="$colorTransparent"
+          title="Global"
+          icon={<CheckCircle2 />}
+          iconAfter={
+            <Text color="#cccccc" fontSize="$2">
+              50
+            </Text>
+          }
+        />
+
+        <ListItem
+          backgroundColor="$colorTransparent"
+          title="Temporary"
+          icon={<AlertCircle />}
+          iconAfter={
+            <Text color="#cccccc" fontSize="$2">
+              50
+            </Text>
+          }
+        />
+      </YStack>
+
+      <YStack paddingHorizontal="$4" space="$4">
         <Button
           theme="active"
           onPress={handlePress}
@@ -46,12 +106,12 @@ function Sidebar(): JSX.Element {
         </Button>
 
         {status !== false ? (
-          <Text paddingTop="$4">
+          <Text fontSize="$2">
             You need to allow system extension under Preferences - Privacy &
             Security
           </Text>
         ) : null}
-      </View>
+      </YStack>
     </YStack>
   );
 }

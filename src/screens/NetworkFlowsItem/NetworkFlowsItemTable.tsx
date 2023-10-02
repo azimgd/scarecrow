@@ -15,7 +15,6 @@ function NetworkFlowsItemTable({
       {data.map((item, index) => (
         <ListItem
           key={index}
-          backgroundColor="$borderColor"
           title={item.remoteEndpoint}
           subTitle={
             <SizableText theme="alt1" size="$3">
