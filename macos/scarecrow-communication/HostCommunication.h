@@ -9,13 +9,11 @@
 #define HostCommunication_h
 
 #import "CommunicationProtocol.h"
-#import "HostCommunicationDelegate.h"
 
 @interface HostCommunication : NSObject <HostCommunicationProtocol>
 
 @property (class, nonatomic, readonly) HostCommunication *shared;
 @property (weak) NSXPCConnection *connection;
-@property (weak) HostCommunicationDelegate *delegate;
 
 - (void)startConnection;
 - (void)stopConnection;

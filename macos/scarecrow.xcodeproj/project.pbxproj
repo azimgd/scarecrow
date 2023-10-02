@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		052356AC2ABF4086000384F7 /* HostCommunicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 052356AB2ABF4086000384F7 /* HostCommunicationDelegate.m */; };
 		055CC6772AC6C91E00DBFB48 /* Validator.m in Sources */ = {isa = PBXBuildFile; fileRef = 055CC6762AC6C91E00DBFB48 /* Validator.m */; };
 		059792062AB47AAF00348AB8 /* HostCommunication.m in Sources */ = {isa = PBXBuildFile; fileRef = 059792022AB47AAF00348AB8 /* HostCommunication.m */; };
 		059792072AB47AAF00348AB8 /* ExtensionCommunication.m in Sources */ = {isa = PBXBuildFile; fileRef = 059792032AB47AAF00348AB8 /* ExtensionCommunication.m */; };
@@ -28,6 +27,7 @@
 		0597923A2AB4881D00348AB8 /* ExtensionCommunicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 059791FF2AB47AAF00348AB8 /* ExtensionCommunicationDelegate.m */; };
 		0597923B2AB4882400348AB8 /* HostCommunication.m in Sources */ = {isa = PBXBuildFile; fileRef = 059792022AB47AAF00348AB8 /* HostCommunication.m */; };
 		05B70CE12AC8878C00BE9F95 /* Flow.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B70CE02AC8878C00BE9F95 /* Flow.m */; };
+		05C0D54D2ACADA2500A0846D /* IndexData.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C0D54C2ACADA2500A0846D /* IndexData.m */; };
 		05CBE56B2AB6DFCA000F6BC1 /* FlowEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 05CBE56A2AB6DFCA000F6BC1 /* FlowEntry.m */; };
 		05EE329F2AB5CAC000410158 /* libbsm.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 05EE329E2AB5CAB800410158 /* libbsm.tbd */; };
 		1364A44A6D4288254489D593 /* libPods-scarecrow-macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 82DBFF4F4989BE7D4E09CC98 /* libPods-scarecrow-macOS.a */; };
@@ -62,8 +62,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		052356AB2ABF4086000384F7 /* HostCommunicationDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HostCommunicationDelegate.m; sourceTree = "<group>"; };
-		052356AD2ABF40A4000384F7 /* HostCommunicationDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HostCommunicationDelegate.h; sourceTree = "<group>"; };
 		055CC6752AC6C91400DBFB48 /* Validator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Validator.h; sourceTree = "<group>"; };
 		055CC6762AC6C91E00DBFB48 /* Validator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Validator.m; sourceTree = "<group>"; };
 		059791CE2AB45DED00348AB8 /* scarecrow-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "scarecrow-iOS.entitlements"; sourceTree = "<group>"; };
@@ -88,6 +86,8 @@
 		059792292AB484FC00348AB8 /* RCTScarecrowNetwork.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCTScarecrowNetwork.m; sourceTree = "<group>"; };
 		05B70CE02AC8878C00BE9F95 /* Flow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Flow.m; sourceTree = "<group>"; };
 		05B70CE22AC8879300BE9F95 /* Flow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Flow.h; sourceTree = "<group>"; };
+		05C0D54C2ACADA2500A0846D /* IndexData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IndexData.m; sourceTree = "<group>"; };
+		05C0D54E2ACADA2F00A0846D /* IndexData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IndexData.h; sourceTree = "<group>"; };
 		05CBE5692AB6DFBF000F6BC1 /* FlowEntry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlowEntry.h; sourceTree = "<group>"; };
 		05CBE56A2AB6DFCA000F6BC1 /* FlowEntry.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlowEntry.m; sourceTree = "<group>"; };
 		05EE329E2AB5CAB800410158 /* libbsm.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbsm.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/lib/libbsm.tbd; sourceTree = DEVELOPER_DIR; };
@@ -173,6 +173,15 @@
 			path = database;
 			sourceTree = "<group>";
 		};
+		05C0D54B2ACADA1600A0846D /* data */ = {
+			isa = PBXGroup;
+			children = (
+				05C0D54C2ACADA2500A0846D /* IndexData.m */,
+				05C0D54E2ACADA2F00A0846D /* IndexData.h */,
+			);
+			path = data;
+			sourceTree = "<group>";
+		};
 		1517CA80ACE7A3CDC372A4E4 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -196,9 +205,8 @@
 		5142014A2437B4B30078DB4F /* scarecrow-macOS */ = {
 			isa = PBXGroup;
 			children = (
+				05C0D54B2ACADA1600A0846D /* data */,
 				05B70CDF2AC8877E00BE9F95 /* database */,
-				052356AD2ABF40A4000384F7 /* HostCommunicationDelegate.h */,
-				052356AB2ABF4086000384F7 /* HostCommunicationDelegate.m */,
 				059792082AB47AFB00348AB8 /* NetworkExtensionProvider.h */,
 				059792092AB47AFB00348AB8 /* NetworkExtensionProvider.m */,
 				059792282AB484DB00348AB8 /* RCTScarecrowNetwork.h */,
@@ -531,8 +539,8 @@
 				059792102AB47B3900348AB8 /* HostCommunication.h in Sources */,
 				059792112AB47B3900348AB8 /* HostCommunication.m in Sources */,
 				514201582437B4B40078DB4F /* main.m in Sources */,
+				05C0D54D2ACADA2500A0846D /* IndexData.m in Sources */,
 				0597920A2AB47AFB00348AB8 /* NetworkExtensionProvider.m in Sources */,
-				052356AC2ABF4086000384F7 /* HostCommunicationDelegate.m in Sources */,
 				5142014D2437B4B30078DB4F /* AppDelegate.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

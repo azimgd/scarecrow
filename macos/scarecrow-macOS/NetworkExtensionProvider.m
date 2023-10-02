@@ -8,10 +8,6 @@
 #import <Foundation/Foundation.h>
 #import "NetworkExtensionProvider.h"
 
-#import "CommunicationProtocol.h"
-#import "HostCommunication.h"
-#import "HostCommunicationDelegate.h"
-
 NSString *const networkExtensionBundleId = @"com.azimgd.scarecrow.scarecrow-network";
 
 @implementation NetworkExtensionProvider
