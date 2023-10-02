@@ -34,10 +34,11 @@ static IndexData *sharedInstance = nil;
 {
   RLMRealm *realm = [RLMRealm defaultRealm];
   RLMResults *flows = [Flow objectsInRealm:realm withPredicate:predicate];
+  RLMResults *sortedFlows = [flows sortedResultsUsingKeyPath:@"date" ascending:NO];
 
   NSMutableArray *response = [NSMutableArray array];
 
-  for (Flow *flow in flows) {
+  for (Flow *flow in sortedFlows) {
     NSDictionary *flowDictionary = [flow dictionaryWithValuesForKeys:sharedInstance.flowKeys];
     NSMutableDictionary *item = [NSMutableDictionary dictionaryWithDictionary:flowDictionary];
     
@@ -55,17 +56,14 @@ static IndexData *sharedInstance = nil;
 {
   RLMRealm *realm = [RLMRealm defaultRealm];
   RLMResults *flows = [Flow allObjectsInRealm:realm];
-  RLMResults *distinctFlows = [flows distinctResultsUsingKeyPaths:groupKeys];
+  RLMResults *sortedFlows = [flows sortedResultsUsingKeyPath:@"date" ascending:NO];
+  RLMResults *distinctFlows = [sortedFlows distinctResultsUsingKeyPaths:groupKeys];
 
   NSMutableArray *response = [NSMutableArray array];
 
   for (Flow *flow in distinctFlows) {
     NSDictionary *flowDictionary = [flow dictionaryWithValuesForKeys:sharedInstance.flowKeys];
     NSMutableDictionary *item = [NSMutableDictionary dictionaryWithDictionary:flowDictionary];
-
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
-    item[@"date"] = [dateFormat stringFromDate:item[@"date"]];
 
     NSString *propertyName = groupKeys.firstObject;
     NSString *valueToMatch = flow[propertyName];

@@ -19,27 +19,6 @@ function NetworkFlows(): JSX.Element {
     ScarecrowNetwork.handleDataFromFlowEventPayload[]
   >([]);
 
-  const handleDataFromFlowEvent = React.useCallback(
-    (event: ScarecrowNetwork.handleDataFromFlowEventPayload) => {
-      if (!event.bundleIdentifier) {
-        return;
-      }
-
-      setTableData(state => {
-        const itemIndex = state.findIndex(
-          item => item.bundleIdentifier === event.bundleIdentifier,
-        );
-
-        if (itemIndex === -1) {
-          return state.concat(event);
-        }
-
-        return state;
-      });
-    },
-    [],
-  );
-
   const handleDataItemPress = React.useCallback((bundleIdentifier: string) => {
     navigation.navigate('NetworkFlowsItem', {bundleIdentifier});
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -54,17 +33,13 @@ function NetworkFlows(): JSX.Element {
   );
 
   React.useEffect(() => {
-    ScarecrowNetwork.getGrouppedFlowsByBundleIdentifier().then(
-      (flows: ScarecrowNetwork.handleDataFromFlowEventPayload[]) =>
-        setTableData(flows),
+    ScarecrowNetwork.getGrouppedFlowsByBundleIdentifier().then(setTableData);
+
+    const subscription = ScarecrowNetwork.handleDataFromFlowEvent(
+      () => ScarecrowNetwork.getGrouppedFlowsByBundleIdentifier().then(setTableData),
     );
 
-    // const subscription = ScarecrowNetwork.handleDataFromFlowEvent(
-    //   handleDataFromFlowEvent,
-    // );
-
-    // return () => subscription.remove();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    return () => subscription.remove();
   }, []);
 
   return (

@@ -18,17 +18,10 @@ function NetworkFlowsItem(): JSX.Element {
     ScarecrowNetwork.handleDataFromFlowEventPayload[]
   >([]);
 
-  const handleDataFromFlowEvent = React.useCallback(
-    (event: ScarecrowNetwork.handleDataFromFlowEventPayload[]) => {
-      setTableData(event);
-    },
-    [],
-  );
-
   React.useEffect(() => {
     ScarecrowNetwork.getFlowsByBundleIdentifier(
       route.params.bundleIdentifier,
-    ).then(handleDataFromFlowEvent);
+    ).then(setTableData);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
