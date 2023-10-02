@@ -77,7 +77,7 @@ function Sidebar(): JSX.Element {
             navigation.navigate('NetworkFlows', {viewBy: 'bundleIdentifier'})
           }
           backgroundColor={
-            route.params.viewBy === 'bundleIdentifier'
+            route.params?.viewBy === 'bundleIdentifier'
               ? '$blue10'
               : '$colorTransparent'
           }
@@ -94,7 +94,7 @@ function Sidebar(): JSX.Element {
             navigation.navigate('NetworkFlows', {viewBy: 'remoteEndpoint'})
           }
           backgroundColor={
-            route.params.viewBy === 'remoteEndpoint'
+            route.params?.viewBy === 'remoteEndpoint'
               ? '$blue10'
               : '$colorTransparent'
           }
@@ -118,6 +118,7 @@ function Sidebar(): JSX.Element {
         </ListItem>
 
         <ListItem
+          onPress={() => navigation.navigate('FlowRules')}
           backgroundColor="$colorTransparent"
           title="Global"
           icon={<CheckCircle2 />}
@@ -129,6 +130,7 @@ function Sidebar(): JSX.Element {
         />
 
         <ListItem
+          onPress={() => navigation.navigate('FlowRules')}
           backgroundColor="$colorTransparent"
           title="Temporary"
           icon={<AlertCircle />}

@@ -114,11 +114,20 @@ RCT_EXPORT_METHOD(getFlowsByRemoteEndpoint:(NSString *)remoteEndpoint
 }
 
 RCT_EXPORT_METHOD(updateFlowRule:(NSString *)bundleIdentifier
+  payload:(BOOL)payload
   resolve:(RCTPromiseResolveBlock)resolve
   error:(__unused RCTResponseSenderBlock)reject)
 {
-  [[HostCommunication shared] updateFlowRule:bundleIdentifier];
+  [IndexData.shared updateFlowRule:bundleIdentifier payload:payload];
+  [[HostCommunication shared] updateFlowRule:bundleIdentifier payload:payload];
   resolve(@{});
+}
+
+RCT_EXPORT_METHOD(getRules:(RCTPromiseResolveBlock)resolve
+  error:(__unused RCTResponseSenderBlock)reject)
+{
+  NSArray *response = [IndexData.shared getRules];
+  resolve(response);
 }
 
 - (void)handleDataFromFlowEvent:(NSNotification*)sender{

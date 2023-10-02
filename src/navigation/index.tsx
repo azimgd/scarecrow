@@ -6,11 +6,13 @@ import {
 import {NavigationContainer, DarkTheme} from '@react-navigation/native';
 import NetworkFlows from '../screens/NetworkFlows';
 import NetworkFlowsItem from '../screens/NetworkFlowsItem';
+import FlowRules from '../screens/FlowRules';
 import {useTheme} from 'tamagui';
 
 export type RootStackParamList = {
   NetworkFlows: {viewBy: 'bundleIdentifier' | 'remoteEndpoint'};
   NetworkFlowsItem: {bundleIdentifier: string};
+  FlowRules: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -46,6 +48,7 @@ function RootStack() {
           initialParams={{viewBy: 'bundleIdentifier'}}
         />
         <Stack.Screen name="NetworkFlowsItem" component={NetworkFlowsItem} />
+        <Stack.Screen name="FlowRules" component={FlowRules} />
       </Stack.Navigator>
     </NavigationContainer>
   );

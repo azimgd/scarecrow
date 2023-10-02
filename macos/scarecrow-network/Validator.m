@@ -25,13 +25,9 @@ static Validator *sharedInstance = nil;
 }
 
 - (void)updateFlowRule:(NSNotification*)sender {
-  NSString *bundleIdentifier = [sender.userInfo objectForKey:@"bundleIdentifier"];
-  
-  if (sharedInstance.rules[bundleIdentifier] == nil) {
-    sharedInstance.rules[bundleIdentifier] = @NO;
-  } else {
-    sharedInstance.rules[bundleIdentifier] = @(![sharedInstance.rules[bundleIdentifier] boolValue]);
-  }
+  NSString *bundleIdentifier = sender.userInfo[@"bundleIdentifier"];
+  BOOL payload = [sender.userInfo[@"payload"] boolValue];
+  sharedInstance.rules[bundleIdentifier] = @(payload);
 }
 
 @end

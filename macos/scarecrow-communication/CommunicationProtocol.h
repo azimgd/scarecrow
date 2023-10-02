@@ -12,7 +12,7 @@
 @protocol ExtensionCommunicationProtocol
 - (void)startConnection;
 - (void)stopConnection;
-- (void)updateFlowRule:(NSString *)bundleIdentifier;
+- (void)updateFlowRule:(NSString *)bundleIdentifier payload:(BOOL)payload;
 @end
 
 // Extension -> Host
@@ -20,7 +20,7 @@
 - (void)startConnection;
 - (void)stopConnection;
 - (void)handleDataFromFlowEvent:(NSDictionary *)payload;
-- (void)updateFlowRule:(NSString *)bundleIdentifier;
+- (void)updateFlowRule:(NSString *)bundleIdentifier payload:(BOOL)payload;
 @end
 
 #endif /* CommunicationProtocol_h */

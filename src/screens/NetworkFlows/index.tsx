@@ -32,8 +32,7 @@ function NetworkFlows(): JSX.Element {
 
   const handleDataItemCheckedChange = React.useCallback(
     (bundleIdentifier: string, checked: boolean) => {
-      checked;
-      ScarecrowNetwork.updateFlowRule(bundleIdentifier);
+      ScarecrowNetwork.updateFlowRule(bundleIdentifier, checked);
     },
     [],
   );

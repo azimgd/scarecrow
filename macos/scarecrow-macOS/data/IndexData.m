@@ -26,6 +26,11 @@ static IndexData *sharedInstance = nil;
       @"size",
       @"date"
     ];
+    sharedInstance.ruleKeys = @[
+      @"remoteEndpoint",
+      @"bundleIdentifier",
+      @"allowed"
+    ];
   });
   return sharedInstance;
 }
@@ -114,5 +119,45 @@ static IndexData *sharedInstance = nil;
     [realm addOrUpdateObject:flow];
   }];
 }
+
+- (void)updateFlowRule:(NSString *)bundleIdentifier payload:(BOOL)payload
+{
+  RLMRealm *realm = [RLMRealm defaultRealm];
+  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"bundleIdentifier = %@", bundleIdentifier];
+  RLMResults *rules = [Rule objectsWithPredicate:predicate];
+
+  [realm transactionWithBlock:^() {
+    if (rules.count) {
+      Rule *rule = rules.firstObject;
+      rule.allowed = payload;
+    } else {
+      Rule *rule = [[Rule alloc] initWithValue:@{
+        @"identifier": [[NSUUID UUID] UUIDString],
+        @"bundleIdentifier": bundleIdentifier,
+        @"remoteEndpoint": @"",
+        @"allowed": @(NO),
+      }];
+      [realm addObject:rule];
+    }
+  }];
+}
+
+- (NSArray *)getRules
+{
+  RLMRealm *realm = [RLMRealm defaultRealm];
+  RLMResults *rules = [Rule allObjectsInRealm:realm];
+
+  NSMutableArray *response = [NSMutableArray array];
+
+  for (Rule *rule in rules) {
+    NSDictionary *ruleDictionary = [rule dictionaryWithValuesForKeys:sharedInstance.ruleKeys];
+    NSMutableDictionary *item = [NSMutableDictionary dictionaryWithDictionary:ruleDictionary];
+
+    [response addObject:item];
+  }
+  
+  return response;
+}
+
 
 @end
