@@ -28,6 +28,7 @@
 		0597923B2AB4882400348AB8 /* HostCommunication.m in Sources */ = {isa = PBXBuildFile; fileRef = 059792022AB47AAF00348AB8 /* HostCommunication.m */; };
 		05B70CE12AC8878C00BE9F95 /* Flow.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B70CE02AC8878C00BE9F95 /* Flow.m */; };
 		05C0D54D2ACADA2500A0846D /* IndexData.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C0D54C2ACADA2500A0846D /* IndexData.m */; };
+		05C0D5502ACB36BB00A0846D /* Rule.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C0D54F2ACB36BB00A0846D /* Rule.m */; };
 		05CBE56B2AB6DFCA000F6BC1 /* FlowEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 05CBE56A2AB6DFCA000F6BC1 /* FlowEntry.m */; };
 		05EE329F2AB5CAC000410158 /* libbsm.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 05EE329E2AB5CAB800410158 /* libbsm.tbd */; };
 		1364A44A6D4288254489D593 /* libPods-scarecrow-macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 82DBFF4F4989BE7D4E09CC98 /* libPods-scarecrow-macOS.a */; };
@@ -88,6 +89,8 @@
 		05B70CE22AC8879300BE9F95 /* Flow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Flow.h; sourceTree = "<group>"; };
 		05C0D54C2ACADA2500A0846D /* IndexData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IndexData.m; sourceTree = "<group>"; };
 		05C0D54E2ACADA2F00A0846D /* IndexData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IndexData.h; sourceTree = "<group>"; };
+		05C0D54F2ACB36BB00A0846D /* Rule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Rule.m; sourceTree = "<group>"; };
+		05C0D5512ACB36C200A0846D /* Rule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Rule.h; sourceTree = "<group>"; };
 		05CBE5692AB6DFBF000F6BC1 /* FlowEntry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlowEntry.h; sourceTree = "<group>"; };
 		05CBE56A2AB6DFCA000F6BC1 /* FlowEntry.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlowEntry.m; sourceTree = "<group>"; };
 		05EE329E2AB5CAB800410158 /* libbsm.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbsm.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/lib/libbsm.tbd; sourceTree = DEVELOPER_DIR; };
@@ -169,6 +172,8 @@
 			children = (
 				05B70CE02AC8878C00BE9F95 /* Flow.m */,
 				05B70CE22AC8879300BE9F95 /* Flow.h */,
+				05C0D54F2ACB36BB00A0846D /* Rule.m */,
+				05C0D5512ACB36C200A0846D /* Rule.h */,
 			);
 			path = database;
 			sourceTree = "<group>";
@@ -536,6 +541,7 @@
 				0597920C2AB47B3900348AB8 /* ExtensionCommunication.h in Sources */,
 				0597920D2AB47B3900348AB8 /* ExtensionCommunication.m in Sources */,
 				05B70CE12AC8878C00BE9F95 /* Flow.m in Sources */,
+				05C0D5502ACB36BB00A0846D /* Rule.m in Sources */,
 				059792102AB47B3900348AB8 /* HostCommunication.h in Sources */,
 				059792112AB47B3900348AB8 /* HostCommunication.m in Sources */,
 				514201582437B4B40078DB4F /* main.m in Sources */,

@@ -29,7 +29,7 @@ export const countGrouppedFlowsByRemoteEndpoint =
   ScarecrowNetwork.countGrouppedFlowsByRemoteEndpoint;
 export const getFlowsByBundleIdentifier =
   ScarecrowNetwork.getFlowsByBundleIdentifier;
-export const toggleFlowRule = ScarecrowNetwork.toggleFlowRule;
+export const updateFlowRule = ScarecrowNetwork.updateFlowRule;
 
 export const handleDataFromFlowEvent = (
   listener: (event: handleDataFromFlowEventPayload) => void,

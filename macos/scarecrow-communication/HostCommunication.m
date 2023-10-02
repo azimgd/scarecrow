@@ -46,9 +46,9 @@ static HostCommunication *sharedInstance = nil;
   [[NSNotificationCenter defaultCenter] postNotificationName:@"handleDataFromFlowEvent" object:nil userInfo:payload];
 }
 
-- (void)toggleFlowRule:(NSString *)bundleIdentifier
+- (void)updateFlowRule:(NSString *)bundleIdentifier
 {
-  [[[HostCommunication shared].connection remoteObjectProxy] toggleFlowRule:bundleIdentifier];
+  [[[HostCommunication shared].connection remoteObjectProxy] updateFlowRule:bundleIdentifier];
 }
 
 @end

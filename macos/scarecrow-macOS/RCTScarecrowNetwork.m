@@ -113,11 +113,11 @@ RCT_EXPORT_METHOD(getFlowsByRemoteEndpoint:(NSString *)remoteEndpoint
   resolve(response);
 }
 
-RCT_EXPORT_METHOD(toggleFlowRule:(NSString *)bundleIdentifier
+RCT_EXPORT_METHOD(updateFlowRule:(NSString *)bundleIdentifier
   resolve:(RCTPromiseResolveBlock)resolve
   error:(__unused RCTResponseSenderBlock)reject)
 {
-  [[HostCommunication shared] toggleFlowRule:bundleIdentifier];
+  [[HostCommunication shared] updateFlowRule:bundleIdentifier];
   resolve(@{});
 }
 
