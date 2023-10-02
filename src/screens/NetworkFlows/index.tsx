@@ -54,7 +54,7 @@ function NetworkFlows(): JSX.Element {
   );
 
   React.useEffect(() => {
-    ScarecrowNetwork.getGrouppedFlows().then(
+    ScarecrowNetwork.getGrouppedFlowsByBundleIdentifier().then(
       (flows: ScarecrowNetwork.handleDataFromFlowEventPayload[]) =>
         setTableData(flows),
     );

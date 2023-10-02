@@ -64,7 +64,7 @@ error:(__unused RCTResponseSenderBlock)reject)
   }];
 }
 
-RCT_EXPORT_METHOD(getGrouppedFlows:(RCTPromiseResolveBlock)resolve
+RCT_EXPORT_METHOD(getGrouppedFlowsByBundleIdentifier:(RCTPromiseResolveBlock)resolve
   error:(__unused RCTResponseSenderBlock)reject)
 {
   RLMRealm *realm = [RLMRealm defaultRealm];
@@ -97,12 +97,76 @@ RCT_EXPORT_METHOD(getGrouppedFlows:(RCTPromiseResolveBlock)resolve
   resolve(response);
 }
 
+RCT_EXPORT_METHOD(getGrouppedFlowsByRemoteEndpoint:(RCTPromiseResolveBlock)resolve
+  error:(__unused RCTResponseSenderBlock)reject)
+{
+  RLMRealm *realm = [RLMRealm defaultRealm];
+  RLMResults *flows = [Flow allObjectsInRealm:realm];
+  RLMResults *distinctFlows = [flows distinctResultsUsingKeyPaths:@[@"remoteEndpoint"]];
+
+  NSLog(@"wiwi 99 %@", distinctFlows);
+
+  NSMutableArray *response = [NSMutableArray array];
+  for (Flow *flow in distinctFlows) {
+    NSMutableDictionary *item = [NSMutableDictionary dictionaryWithDictionary:[flow dictionaryWithValuesForKeys:@[
+      @"direction",
+      @"remoteEndpoint",
+      @"remoteUrl",
+      @"localizedName",
+      @"bundleIdentifier",
+      @"size",
+      @"date",
+    ]]];
+    
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
+    item[@"date"] = [dateFormat stringFromDate:item[@"date"]];
+
+    RLMResults *flows = [Flow objectsInRealm:realm withPredicate:[NSPredicate predicateWithFormat:@"remoteEndpoint = %@", flow.bundleIdentifier]];
+    item[@"totalSize"] = [flows sumOfProperty:@"size"];
+    item[@"totalCount"] = @([flows count]);
+
+    [response addObject:item];
+  }
+    
+  resolve(response);
+}
+
 RCT_EXPORT_METHOD(getFlowsByBundleIdentifier:(NSString *)bundleIdentifier
   resolve:(RCTPromiseResolveBlock)resolve
   error:(__unused RCTResponseSenderBlock)reject)
 {
   RLMRealm *realm = [RLMRealm defaultRealm];
   RLMResults *flows = [Flow objectsInRealm:realm withPredicate:[NSPredicate predicateWithFormat:@"bundleIdentifier = %@", bundleIdentifier]];
+
+  NSMutableArray *response = [NSMutableArray array];
+  for (Flow *flow in flows) {
+    NSMutableDictionary *item = [NSMutableDictionary dictionaryWithDictionary:[flow dictionaryWithValuesForKeys:@[
+      @"direction",
+      @"remoteEndpoint",
+      @"remoteUrl",
+      @"localizedName",
+      @"bundleIdentifier",
+      @"size",
+      @"date",
+    ]]];
+    
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
+    item[@"date"] = [dateFormat stringFromDate:item[@"date"]];
+    
+    [response addObject:item];
+  }
+
+  resolve(response);
+}
+
+RCT_EXPORT_METHOD(getFlowsByRemoteEndpoint:(NSString *)remoteEndpoint
+  resolve:(RCTPromiseResolveBlock)resolve
+  error:(__unused RCTResponseSenderBlock)reject)
+{
+  RLMRealm *realm = [RLMRealm defaultRealm];
+  RLMResults *flows = [Flow objectsInRealm:realm withPredicate:[NSPredicate predicateWithFormat:@"remoteEndpoint = %@", remoteEndpoint]];
 
   NSMutableArray *response = [NSMutableArray array];
   for (Flow *flow in flows) {

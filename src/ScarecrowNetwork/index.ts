@@ -19,7 +19,10 @@ export type handleDataFromFlowEventPayload = {
 const {ScarecrowNetwork} = NativeModules;
 const eventEmitter = new NativeEventEmitter(ScarecrowNetwork);
 
-export const getGrouppedFlows = ScarecrowNetwork.getGrouppedFlows;
+export const getGrouppedFlowsByBundleIdentifier =
+  ScarecrowNetwork.getGrouppedFlowsByBundleIdentifier;
+export const getGrouppedFlowsByRemoteEndpoint =
+  ScarecrowNetwork.getGrouppedFlowsByRemoteEndpoint;
 export const getFlowsByBundleIdentifier =
   ScarecrowNetwork.getFlowsByBundleIdentifier;
 export const toggleFlowRule = ScarecrowNetwork.toggleFlowRule;
