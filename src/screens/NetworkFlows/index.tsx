@@ -1,19 +1,25 @@
 import React from 'react';
-import {ScrollView} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import {ScrollView, EmitterSubscription} from 'react-native';
+import {useNavigation, useRoute, RouteProp} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList} from '../../navigation/index';
 import * as ScarecrowNetwork from '../../ScarecrowNetwork';
 import NetworkFlowsTable from './NetworkFlowsTable';
-import {ListItem, Text, View} from 'tamagui';
+import Window from '../../components/Window';
 
 type NetworkFlowsScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
   'NetworkFlows'
 >;
 
+type NetworkFlowsScreenRouteProp = RouteProp<
+  RootStackParamList,
+  'NetworkFlows'
+>;
+
 function NetworkFlows(): JSX.Element {
   const navigation = useNavigation<NetworkFlowsScreenNavigationProp>();
+  const route = useRoute<NetworkFlowsScreenRouteProp>();
 
   const [tableData, setTableData] = React.useState<
     ScarecrowNetwork.handleDataFromFlowEventPayload[]
@@ -33,34 +39,37 @@ function NetworkFlows(): JSX.Element {
   );
 
   React.useEffect(() => {
-    ScarecrowNetwork.getGrouppedFlowsByBundleIdentifier().then(setTableData);
+    let listener: EmitterSubscription;
 
-    const subscription = ScarecrowNetwork.handleDataFromFlowEvent(
-      () => ScarecrowNetwork.getGrouppedFlowsByBundleIdentifier().then(setTableData),
-    );
+    if (route.params?.viewBy === 'bundleIdentifier') {
+      ScarecrowNetwork.getGrouppedFlowsByBundleIdentifier().then(setTableData);
+      listener = ScarecrowNetwork.handleDataFromFlowEvent(() =>
+        ScarecrowNetwork.getGrouppedFlowsByBundleIdentifier().then(
+          setTableData,
+        ),
+      );
+    }
 
-    return () => subscription.remove();
-  }, []);
+    if (route.params?.viewBy === 'remoteEndpoint') {
+      ScarecrowNetwork.getGrouppedFlowsByRemoteEndpoint().then(setTableData);
+      listener = ScarecrowNetwork.handleDataFromFlowEvent(() =>
+        ScarecrowNetwork.getGrouppedFlowsByRemoteEndpoint().then(setTableData),
+      );
+    }
+
+    return () => listener.remove();
+  }, [route.params?.viewBy]);
 
   return (
-    <View>
-      <ListItem
-        backgroundColor="$colorTransparent"
-        borderBottomColor="$borderColor"
-        borderBottomWidth="$0.25">
-        <Text color="#cccccc">View by</Text>
-      </ListItem>
-
-      <View borderLeftColor="$borderColor" borderLeftWidth="$0.5">
-        <ScrollView>
-          <NetworkFlowsTable
-            data={tableData}
-            handleDataItemPress={handleDataItemPress}
-            handleDataItemCheckedChange={handleDataItemCheckedChange}
-          />
-        </ScrollView>
-      </View>
-    </View>
+    <Window title="View by Applications">
+      <ScrollView>
+        <NetworkFlowsTable
+          data={tableData}
+          handleDataItemPress={handleDataItemPress}
+          handleDataItemCheckedChange={handleDataItemCheckedChange}
+        />
+      </ScrollView>
+    </Window>
   );
 }
 

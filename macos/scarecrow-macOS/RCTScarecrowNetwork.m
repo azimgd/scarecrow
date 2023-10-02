@@ -71,11 +71,27 @@ RCT_EXPORT_METHOD(getGrouppedFlowsByBundleIdentifier:(RCTPromiseResolveBlock)res
   resolve(response);
 }
 
+RCT_EXPORT_METHOD(countGrouppedFlowsByBundleIdentifier:(RCTPromiseResolveBlock)resolve
+  error:(__unused RCTResponseSenderBlock)reject)
+{
+  NSArray *groupKeys = @[@"bundleIdentifier"];
+  NSNumber *response = [IndexData.shared countFlowsWithGroupKeys:groupKeys];
+  resolve(response);
+}
+
 RCT_EXPORT_METHOD(getGrouppedFlowsByRemoteEndpoint:(RCTPromiseResolveBlock)resolve
   error:(__unused RCTResponseSenderBlock)reject)
 {
   NSArray *groupKeys = @[@"remoteEndpoint"];
   NSArray *response = [IndexData.shared getFlowsWithGroupKeys:groupKeys];
+  resolve(response);
+}
+
+RCT_EXPORT_METHOD(countGrouppedFlowsByRemoteEndpoint:(RCTPromiseResolveBlock)resolve
+  error:(__unused RCTResponseSenderBlock)reject)
+{
+  NSArray *groupKeys = @[@"remoteEndpoint"];
+  NSNumber *response = [IndexData.shared countFlowsWithGroupKeys:groupKeys];
   resolve(response);
 }
 

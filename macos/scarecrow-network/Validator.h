@@ -13,7 +13,6 @@
 @property (class, nonatomic, readonly) Validator *shared;
 @property (nonatomic, readwrite) NSMutableDictionary *rules;
 
-- (BOOL)validate:(NSString *)bundleIdentifier;
 - (void)toggleFlowRule:(NSNotification *)sender;
 
 @end

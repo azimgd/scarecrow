@@ -21,8 +21,12 @@ const eventEmitter = new NativeEventEmitter(ScarecrowNetwork);
 
 export const getGrouppedFlowsByBundleIdentifier =
   ScarecrowNetwork.getGrouppedFlowsByBundleIdentifier;
+export const countGrouppedFlowsByBundleIdentifier =
+  ScarecrowNetwork.countGrouppedFlowsByBundleIdentifier;
 export const getGrouppedFlowsByRemoteEndpoint =
   ScarecrowNetwork.getGrouppedFlowsByRemoteEndpoint;
+export const countGrouppedFlowsByRemoteEndpoint =
+  ScarecrowNetwork.countGrouppedFlowsByRemoteEndpoint;
 export const getFlowsByBundleIdentifier =
   ScarecrowNetwork.getFlowsByBundleIdentifier;
 export const toggleFlowRule = ScarecrowNetwork.toggleFlowRule;

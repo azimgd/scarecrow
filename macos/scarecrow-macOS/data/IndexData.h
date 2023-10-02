@@ -17,7 +17,9 @@
 @property (nonatomic, copy) NSArray *flowKeys;
 
 - (NSArray *)getFlowsWithPredicate:(NSPredicate *)predicate;
+- (NSNumber *)countFlowsWithPredicate:(NSPredicate *)predicate;
 - (NSArray *)getFlowsWithGroupKeys:(NSArray<NSString *> *)groupKeys;
+- (NSNumber *)countFlowsWithGroupKeys:(NSArray<NSString *> *)groupKeys;
 - (void)createFlow:(NSDictionary *)payload;
 
 @end

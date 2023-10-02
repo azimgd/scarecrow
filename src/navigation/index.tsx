@@ -9,7 +9,7 @@ import NetworkFlowsItem from '../screens/NetworkFlowsItem';
 import {useTheme} from 'tamagui';
 
 export type RootStackParamList = {
-  NetworkFlows: undefined;
+  NetworkFlows: {viewBy: 'bundleIdentifier' | 'remoteEndpoint'};
   NetworkFlowsItem: {bundleIdentifier: string};
 };
 
@@ -40,7 +40,11 @@ function RootStack() {
   return (
     <NavigationContainer theme={navigationTheme}>
       <Stack.Navigator screenOptions={screenOptions}>
-        <Stack.Screen name="NetworkFlows" component={NetworkFlows} />
+        <Stack.Screen
+          name="NetworkFlows"
+          component={NetworkFlows}
+          initialParams={{viewBy: 'bundleIdentifier'}}
+        />
         <Stack.Screen name="NetworkFlowsItem" component={NetworkFlowsItem} />
       </Stack.Navigator>
     </NavigationContainer>

@@ -1,20 +1,51 @@
 import React from 'react';
 import {NativeModules} from 'react-native';
-import {View, YStack, ListItem, Button, Text} from 'tamagui';
-import {AppWindow, Globe2, ListFilter, CheckCircle2, AlertCircle} from '@tamagui/lucide-icons';
+import {useNavigation, useRoute, RouteProp} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {RootStackParamList} from '../navigation/index';
+import {YStack, ListItem, Button, Text} from 'tamagui';
+import {
+  AppWindow,
+  Globe2,
+  ListFilter,
+  CheckCircle2,
+  AlertCircle,
+} from '@tamagui/lucide-icons';
+
+type NetworkFlowsScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  'NetworkFlows'
+>;
+
+type NetworkFlowsScreenRouteProp = RouteProp<
+  RootStackParamList,
+  'NetworkFlows'
+>;
 
 const {ScarecrowNetwork} = NativeModules;
 
 function Sidebar(): JSX.Element {
-  const [status, setStatus] = React.useState<boolean | undefined>(false);
+  const navigation = useNavigation<NetworkFlowsScreenNavigationProp>();
+  const route = useRoute<NetworkFlowsScreenRouteProp>();
 
-  const requestStatus = React.useCallback(() => {
-    ScarecrowNetwork.getStatus().then(setStatus);
-  }, []);
+  const [status, setStatus] = React.useState<boolean | undefined>(false);
+  const [
+    countGrouppedFlowsByBundleIdentifier,
+    setCountGrouppedFlowsByBundleIdentifier,
+  ] = React.useState<number>(0);
+  const [
+    countGrouppedFlowsByRemoteEndpoint,
+    setCountGrouppedFlowsByRemoteEndpoint,
+  ] = React.useState<number>(0);
 
   React.useEffect(() => {
-    requestStatus();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    ScarecrowNetwork.getStatus().then(setStatus);
+    ScarecrowNetwork.countGrouppedFlowsByBundleIdentifier().then(
+      setCountGrouppedFlowsByBundleIdentifier,
+    );
+    ScarecrowNetwork.countGrouppedFlowsByRemoteEndpoint().then(
+      setCountGrouppedFlowsByRemoteEndpoint,
+    );
   }, []);
 
   const handlePress = React.useCallback(() => {
@@ -42,22 +73,36 @@ function Sidebar(): JSX.Element {
         </ListItem>
 
         <ListItem
-          backgroundColor="$colorTransparent"
+          onPress={() =>
+            navigation.navigate('NetworkFlows', {viewBy: 'bundleIdentifier'})
+          }
+          backgroundColor={
+            route.params.viewBy === 'bundleIdentifier'
+              ? '$blue10'
+              : '$colorTransparent'
+          }
           title="Applications"
           icon={<AppWindow />}
           iconAfter={
             <Text color="#cccccc" fontSize="$2">
-              50
+              {countGrouppedFlowsByBundleIdentifier}
             </Text>
           }
         />
         <ListItem
-          backgroundColor="$colorTransparent"
+          onPress={() =>
+            navigation.navigate('NetworkFlows', {viewBy: 'remoteEndpoint'})
+          }
+          backgroundColor={
+            route.params.viewBy === 'remoteEndpoint'
+              ? '$blue10'
+              : '$colorTransparent'
+          }
           title="Hostnames"
           icon={<Globe2 />}
           iconAfter={
             <Text color="#cccccc" fontSize="$2">
-              50
+              {countGrouppedFlowsByRemoteEndpoint}
             </Text>
           }
         />
@@ -97,7 +142,7 @@ function Sidebar(): JSX.Element {
 
       <YStack paddingHorizontal="$4" space="$4">
         <Button
-          theme="active"
+          backgroundColor="$blue10"
           onPress={handlePress}
           disabled={status === undefined}>
           {status === true ? 'Stop Scarecrow' : null}

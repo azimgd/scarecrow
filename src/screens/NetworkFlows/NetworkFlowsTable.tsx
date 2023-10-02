@@ -28,7 +28,7 @@ function NetworkFlowsTable({
             title={item.remoteEndpoint}
             subTitle={
               <SizableText theme="alt1" size="$3">
-                {item.localizedName} {item.bundleIdentifier}
+                {item.localizedName || item.bundleIdentifier || 'System'}{' '}
                 {item.totalSize.toFixed(2)} kb {item.totalCount} items
               </SizableText>
             }

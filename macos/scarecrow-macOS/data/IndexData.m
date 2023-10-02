@@ -47,9 +47,21 @@ static IndexData *sharedInstance = nil;
     item[@"date"] = [dateFormat stringFromDate:item[@"date"]];
     
     [response addObject:item];
+    
+    if (response.count >= 100) {
+      break;
+    }
   }
   
   return response;
+}
+
+- (NSNumber *)countFlowsWithPredicate:(NSPredicate *)predicate
+{
+  RLMRealm *realm = [RLMRealm defaultRealm];
+  RLMResults *flows = [Flow objectsInRealm:realm withPredicate:predicate];
+
+  return @(flows.count);
 }
 
 - (NSArray *)getFlowsWithGroupKeys:(NSArray<NSString *> *)groupKeys
@@ -75,9 +87,22 @@ static IndexData *sharedInstance = nil;
     item[@"totalCount"] = @([flows count]);
 
     [response addObject:item];
+    
+    if (response.count >= 100) {
+      break;
+    }
   }
   
   return response;
+}
+
+- (NSNumber *)countFlowsWithGroupKeys:(NSArray<NSString *> *)groupKeys
+{
+  RLMRealm *realm = [RLMRealm defaultRealm];
+  RLMResults *flows = [Flow allObjectsInRealm:realm];
+  RLMResults *distinctFlows = [flows distinctResultsUsingKeyPaths:groupKeys];
+
+  return @(distinctFlows.count);
 }
 
 - (void)createFlow:(NSDictionary *)payload
