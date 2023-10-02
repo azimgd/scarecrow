@@ -11,6 +11,9 @@ export type handleDataFromFlowEventPayload = {
   };
   size: number;
   date: string;
+
+  totalSize: number;
+  totalCount: number;
 };
 
 const {ScarecrowNetwork} = NativeModules;

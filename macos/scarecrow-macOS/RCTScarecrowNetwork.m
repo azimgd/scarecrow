@@ -87,6 +87,10 @@ RCT_EXPORT_METHOD(getGrouppedFlows:(RCTPromiseResolveBlock)resolve
     [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
     item[@"date"] = [dateFormat stringFromDate:item[@"date"]];
 
+    RLMResults *flows = [Flow objectsInRealm:realm withPredicate:[NSPredicate predicateWithFormat:@"bundleIdentifier = %@", flow.bundleIdentifier]];
+    item[@"totalSize"] = [flows sumOfProperty:@"size"];
+    item[@"totalCount"] = @([flows count]);
+
     [response addObject:item];
   }
     
