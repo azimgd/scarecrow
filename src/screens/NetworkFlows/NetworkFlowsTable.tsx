@@ -1,6 +1,6 @@
 import React, {PropsWithChildren} from 'react';
 import {TouchableOpacity} from 'react-native';
-import {ListItem, YStack, SizableText, Switch} from 'tamagui';
+import {ListItem, YStack, SizableText, Switch, Image} from 'tamagui';
 import {AppWindow} from '@tamagui/lucide-icons';
 import * as ScarecrowNetwork from '../../ScarecrowNetwork';
 
@@ -42,7 +42,17 @@ function NetworkFlowsTable({
                 <Switch.Thumb animation="quick" />
               </Switch>
             }
-            icon={<AppWindow color="#0097e6" />}
+            icon={
+              item.image ? (
+                <Image
+                  source={{uri: `data:image/png;base64,${item.image}`}}
+                  width={20}
+                  height={20}
+                />
+              ) : (
+                <AppWindow width={20} height={20} strokeWidth={1.5} />
+              )
+            }
           />
         </TouchableOpacity>
       ))}
