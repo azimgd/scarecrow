@@ -4,6 +4,7 @@ import {
   StackNavigationOptions,
 } from '@react-navigation/stack';
 import {NavigationContainer, DarkTheme} from '@react-navigation/native';
+import Splash from '../screens/Splash';
 import NetworkFlows from '../screens/NetworkFlows';
 import NetworkFlowsItem from '../screens/NetworkFlowsItem';
 import FlowRules from '../screens/FlowRules';
@@ -13,6 +14,7 @@ export type RootStackParamList = {
   NetworkFlows: {viewBy: 'bundleIdentifier' | 'remoteEndpoint'};
   NetworkFlowsItem: {bundleIdentifier: string};
   FlowRules: undefined;
+  Splash: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -42,11 +44,8 @@ function RootStack() {
   return (
     <NavigationContainer theme={navigationTheme}>
       <Stack.Navigator screenOptions={screenOptions}>
-        <Stack.Screen
-          name="NetworkFlows"
-          component={NetworkFlows}
-          initialParams={{viewBy: 'bundleIdentifier'}}
-        />
+        <Stack.Screen name="Splash" component={Splash} />
+        <Stack.Screen name="NetworkFlows" component={NetworkFlows} />
         <Stack.Screen name="NetworkFlowsItem" component={NetworkFlowsItem} />
         <Stack.Screen name="FlowRules" component={FlowRules} />
       </Stack.Navigator>

@@ -25,11 +25,10 @@ function NetworkFlowsTable({
           onPress={() => handleDataItemPress(item.bundleIdentifier)}
           key={index}>
           <ListItem
-            title={item.remoteEndpoint}
+            title={item.localizedName}
             subTitle={
               <SizableText theme="alt1" size="$3">
-                {item.localizedName || item.bundleIdentifier || 'System'}{' '}
-                {item.totalSize.toFixed(2)} kb {item.totalCount} items
+                {item.remoteEndpoint} {(item.totalSize / 1024).toFixed(2)} kb {item.totalCount} items
               </SizableText>
             }
             iconAfter={

@@ -3,7 +3,7 @@ import {NativeModules} from 'react-native';
 import {useNavigation, useRoute, RouteProp} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList} from '../navigation/index';
-import {YStack, ListItem, Button, Text} from 'tamagui';
+import {YStack, ListItem, Text} from 'tamagui';
 import {
   AppWindow,
   Globe2,
@@ -28,7 +28,6 @@ function Sidebar(): JSX.Element {
   const navigation = useNavigation<NetworkFlowsScreenNavigationProp>();
   const route = useRoute<NetworkFlowsScreenRouteProp>();
 
-  const [status, setStatus] = React.useState<boolean | undefined>(false);
   const [
     countGrouppedFlowsByBundleIdentifier,
     setCountGrouppedFlowsByBundleIdentifier,
@@ -39,26 +38,12 @@ function Sidebar(): JSX.Element {
   ] = React.useState<number>(0);
 
   React.useEffect(() => {
-    ScarecrowNetwork.getStatus().then(setStatus);
     ScarecrowNetwork.countGrouppedFlowsByBundleIdentifier().then(
       setCountGrouppedFlowsByBundleIdentifier,
     );
     ScarecrowNetwork.countGrouppedFlowsByRemoteEndpoint().then(
       setCountGrouppedFlowsByRemoteEndpoint,
     );
-  }, []);
-
-  const handlePress = React.useCallback(() => {
-    setStatus(undefined);
-
-    ScarecrowNetwork.getStatus().then((status: boolean) => {
-      if (status) {
-        ScarecrowNetwork.deactivate().then(setStatus);
-      } else {
-        ScarecrowNetwork.activate().then(setStatus);
-      }
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -140,24 +125,6 @@ function Sidebar(): JSX.Element {
             </Text>
           }
         />
-      </YStack>
-
-      <YStack paddingHorizontal="$4" space="$4">
-        <Button
-          backgroundColor="$blue10"
-          onPress={handlePress}
-          disabled={status === undefined}>
-          {status === true ? 'Stop Scarecrow' : null}
-          {status === false ? 'Start Scarecrow' : null}
-          {status === undefined ? 'Loading' : null}
-        </Button>
-
-        {status !== false ? (
-          <Text fontSize="$2">
-            You need to allow system extension under Preferences - Privacy &
-            Security
-          </Text>
-        ) : null}
       </YStack>
     </YStack>
   );
