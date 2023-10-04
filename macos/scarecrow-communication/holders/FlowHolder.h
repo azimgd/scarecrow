@@ -9,8 +9,6 @@
 #define FlowHolder_h
 
 #import <NetworkExtension/NetworkExtension.h>
-#import <bsm/libbsm.h>
-#import <AppKit/AppKit.h>
 
 @interface FlowHolder : NSObject
 

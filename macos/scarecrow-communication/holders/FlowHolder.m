@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "FlowHolder.h"
+#import "ProcessHolder.h"
 
 @implementation FlowHolder
 
@@ -23,16 +24,17 @@
 - (NSDictionary *)payload
 {
   NEFilterSocketFlow *socketFlow = (NEFilterSocketFlow*)_flow;
-  NSRunningApplication *runningApplication = [self runningApplicationFromAppAuditToken:socketFlow.sourceAppAuditToken];
 
   NSString *identifier = (socketFlow.identifier) ? [socketFlow.identifier UUIDString] : @"";
   NSString *remoteEndpoint = (socketFlow.remoteEndpoint) ? socketFlow.remoteEndpoint.description : @"";
   NSString *remoteUrl = (socketFlow.URL) ? socketFlow.URL.description : @"";
   NSString *direction = socketFlow.direction == 1 ? @"inbound" : @"outbound";
-  NSString *localizedName = (runningApplication && runningApplication.localizedName) ?
-    runningApplication.localizedName : @"";
-  NSString *bundleIdentifier = (runningApplication && runningApplication.bundleIdentifier) ?
-    runningApplication.bundleIdentifier : @"";
+  
+  audit_token_t *auditToken = (audit_token_t*)socketFlow.sourceAppAuditToken.bytes;
+  ProcessHolder *processHolder = [[ProcessHolder alloc] init:auditToken];
+  
+  NSString *localizedName = [[processHolder payload] objectForKey:@"localizedName"];
+  NSString *bundleIdentifier = [[processHolder payload] objectForKey:@"bundleIdentifier"];
 
   return @{
     @"identifier": identifier,
@@ -44,11 +46,6 @@
     @"size": _size,
     @"date": _date,
   };
-}
-
-- (NSRunningApplication *)runningApplicationFromAppAuditToken:(NSData *)sourceAppAuditToken {
-  pid_t sourceAppPID = audit_token_to_pid(*(audit_token_t*)sourceAppAuditToken.bytes);
-  return [NSRunningApplication runningApplicationWithProcessIdentifier:sourceAppPID];
 }
 
 @end
