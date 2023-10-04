@@ -17,6 +17,7 @@
 
 @property (nonatomic, copy) NSString *path;
 @property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *icon;
 
 - (instancetype)init:(audit_token_t *)auditToken;
 
@@ -24,6 +25,7 @@
 
 - (NSString *)getProcessPathForPID:(pid_t)processID;
 - (NSString *)getProcessNameForPID:(pid_t)processID executablePath:(NSString *)executablePath;
+- (NSString *)getIconForExecutablePath:(NSString *)executablePath;
 
 @end
 

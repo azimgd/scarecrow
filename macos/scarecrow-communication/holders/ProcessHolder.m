@@ -16,6 +16,7 @@
   if (self) {
     _path = [self getProcessPathForPID:audit_token_to_pid(*auditToken)];
     _name = [self getProcessNameForPID:audit_token_to_pid(*auditToken) executablePath:_path];
+    _icon = [self getIconForExecutablePath:_path];
   }
 
   return self;
@@ -26,6 +27,7 @@
   return @{
     @"bundleIdentifier": _path ?: @"",
     @"localizedName": _name ?: @"",
+    @"icon": _icon ?: @"",
   };
 }
 
@@ -158,6 +160,58 @@ NSBundle *findAppBundleAtPath(NSString *executablePath)
   }
 
   return applicationBundle;
+}
+
+NSString* imageToBase64(NSImage *image)
+{
+  NSData* imageData = [image TIFFRepresentation];
+  NSString* base64String = [imageData base64EncodedStringWithOptions:0];
+  return base64String;
+}
+
+- (NSString *)getIconForExecutablePath:(NSString *)executablePath
+{
+  NSString* iconFile = nil;
+  NSString* iconPath = nil;
+  NSString* iconExtension = nil;
+  NSImage* icon = nil;
+  static NSImage* documentIcon = nil;
+  NSBundle* processBundle = nil;
+  
+  if (YES != [[NSFileManager defaultManager] fileExistsAtPath:executablePath]) {
+    icon = [[NSWorkspace sharedWorkspace] iconForFileType:NSFileTypeForHFSTypeCode(kGenericApplicationIcon)];
+    [icon setSize:NSMakeSize(128, 128)];
+  } else {
+    processBundle = findAppBundleAtPath(executablePath);
+      
+    if (processBundle != nil) {
+      iconFile = processBundle.infoDictionary[@"CFBundleIconFile"];
+      iconExtension = [iconFile pathExtension];
+      
+      if ([iconExtension isEqualTo:@""]) {
+        iconExtension = @"icns";
+      }
+      
+      iconPath = [processBundle pathForResource:[iconFile stringByDeletingPathExtension] ofType:iconExtension];
+      icon = [[NSImage alloc] initWithContentsOfFile:iconPath];
+    }
+    
+    if ((processBundle == nil) || (icon == nil)) {
+      icon = [[NSWorkspace sharedWorkspace] iconForFile:executablePath];
+      
+      if (documentIcon == nil) {
+        documentIcon = [[NSWorkspace sharedWorkspace] iconForFileType:NSFileTypeForHFSTypeCode(kGenericDocumentIcon)];
+      }
+      
+      if ([icon isEqual:documentIcon]) {
+        icon = [[NSWorkspace sharedWorkspace] iconForFileType:NSFileTypeForHFSTypeCode(kGenericApplicationIcon)];
+      }
+
+      [icon setSize:NSMakeSize(128, 128)];
+    }
+  }
+
+  return imageToBase64(icon);
 }
 
 

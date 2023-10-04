@@ -90,7 +90,6 @@ static IndexData *sharedInstance = nil;
     RLMResults *flows = [Flow objectsInRealm:realm withPredicate:predicate];
     item[@"totalSize"] = [flows sumOfProperty:@"size"];
     item[@"totalCount"] = @([flows count]);
-    item[@"image"] = [self getImageWithBundleIdentifier:flow.bundleIdentifier];
 
     [response addObject:item];
     
@@ -158,32 +157,6 @@ static IndexData *sharedInstance = nil;
   }
   
   return response;
-}
-
-- (NSString *)getImageWithBundleIdentifier:(NSString *)bundleIdentifier
-{
-  NSArray<NSRunningApplication *> *runningApplications = [NSRunningApplication runningApplicationsWithBundleIdentifier:bundleIdentifier];
-  
-  if (runningApplications.count == 0) {
-    return nil;
-  }
-  
-  NSRunningApplication *runningApplication = runningApplications.firstObject;
-  
-  if (runningApplication.icon == nil) {
-    return nil;
-  }
-  
-  NSImage *resizedImage = [[NSImage alloc] initWithSize:NSSizeFromString(@"{60, 60}")];
-  [resizedImage lockFocus];
-  [runningApplication.icon drawInRect:NSMakeRect(0, 0, 60, 60) fromRect:NSZeroRect operation:NSCompositingOperationCopy fraction:1.0];
-  [resizedImage unlockFocus];
-
-  NSData *imageData = [resizedImage TIFFRepresentation];
-  NSBitmapImageRep *imageRep = [NSBitmapImageRep imageRepWithData:imageData];
-  NSDictionary *properties = @{ NSImageInterlaced: @NO };
-  NSData *pngData = [imageRep representationUsingType:NSBitmapImageFileTypePNG properties:properties];
-  return [pngData base64EncodedStringWithOptions:0];
 }
 
 @end

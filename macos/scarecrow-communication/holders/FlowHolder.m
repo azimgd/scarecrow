@@ -35,6 +35,7 @@
   
   NSString *localizedName = [[processHolder payload] objectForKey:@"localizedName"];
   NSString *bundleIdentifier = [[processHolder payload] objectForKey:@"bundleIdentifier"];
+  NSString *icon = [[processHolder payload] objectForKey:@"icon"];
 
   return @{
     @"identifier": identifier,
@@ -43,6 +44,7 @@
     @"remoteUrl": remoteUrl,
     @"localizedName": localizedName,
     @"bundleIdentifier": bundleIdentifier,
+    @"icon": icon,
     @"size": _size,
     @"date": _date,
   };
