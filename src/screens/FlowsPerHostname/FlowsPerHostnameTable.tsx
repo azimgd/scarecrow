@@ -4,7 +4,7 @@ import {ListItem, YStack, SizableText, Switch, Image} from 'tamagui';
 import {AppWindow} from '@tamagui/lucide-icons';
 import * as ScarecrowNetwork from '../../ScarecrowNetwork';
 
-type NetworkFlowsTableProps = PropsWithChildren<{
+type FlowsPerHostnameTableProps = PropsWithChildren<{
   data: ScarecrowNetwork.handleDataFromFlowEventPayload[];
   handleDataItemPress: (bundleIdentifier: string) => void;
   handleDataItemCheckedChange: (
@@ -13,11 +13,11 @@ type NetworkFlowsTableProps = PropsWithChildren<{
   ) => void;
 }>;
 
-function NetworkFlowsTable({
+function FlowsPerHostnameTable({
   data,
   handleDataItemPress,
   handleDataItemCheckedChange,
-}: NetworkFlowsTableProps): JSX.Element {
+}: FlowsPerHostnameTableProps): JSX.Element {
   return (
     <YStack>
       {data.map((item, index) => (
@@ -59,4 +59,4 @@ function NetworkFlowsTable({
   );
 }
 
-export default NetworkFlowsTable;
+export default FlowsPerHostnameTable;

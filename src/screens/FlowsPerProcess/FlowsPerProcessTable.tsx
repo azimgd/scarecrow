@@ -1,10 +1,10 @@
 import React, {PropsWithChildren} from 'react';
 import {TouchableOpacity} from 'react-native';
-import {ListItem, YStack, Switch} from 'tamagui';
+import {ListItem, YStack, SizableText, Switch, Image} from 'tamagui';
 import {AppWindow} from '@tamagui/lucide-icons';
 import * as ScarecrowNetwork from '../../ScarecrowNetwork';
 
-type FlowsPerHostnameTableProps = PropsWithChildren<{
+type FlowsPerProcessTableProps = PropsWithChildren<{
   data: ScarecrowNetwork.handleDataFromFlowEventPayload[];
   handleDataItemPress: (bundleIdentifier: string) => void;
   handleDataItemCheckedChange: (
@@ -13,11 +13,11 @@ type FlowsPerHostnameTableProps = PropsWithChildren<{
   ) => void;
 }>;
 
-function FlowsPerHostnameTable({
+function FlowsPerProcessTable({
   data,
   handleDataItemPress,
   handleDataItemCheckedChange,
-}: FlowsPerHostnameTableProps): JSX.Element {
+}: FlowsPerProcessTableProps): JSX.Element {
   return (
     <YStack>
       {data.map((item, index) => (
@@ -25,18 +25,33 @@ function FlowsPerHostnameTable({
           onPress={() => handleDataItemPress(item.bundleIdentifier)}
           key={index}>
           <ListItem
-            title={item.remoteEndpoint || item.bundleIdentifier}
+            title={item.localizedName}
+            subTitle={
+              <SizableText theme="alt1" size="$3">
+                {item.remoteEndpoint} {(item.totalSize / 1024).toFixed(2)} kb {item.totalCount} items
+              </SizableText>
+            }
             iconAfter={
               <Switch
                 size="$2"
-                defaultChecked={item.allowed}
+                defaultChecked={true}
                 onCheckedChange={(checked: boolean) =>
                   handleDataItemCheckedChange(item.bundleIdentifier, checked)
                 }>
                 <Switch.Thumb animation="quick" />
               </Switch>
             }
-            icon={<AppWindow color="#0097e6" />}
+            icon={
+              item.image ? (
+                <Image
+                  source={{uri: `data:image/png;base64,${item.image}`}}
+                  width={20}
+                  height={20}
+                />
+              ) : (
+                <AppWindow width={20} height={20} strokeWidth={1.5} />
+              )
+            }
           />
         </TouchableOpacity>
       ))}
@@ -44,4 +59,4 @@ function FlowsPerHostnameTable({
   );
 }
 
-export default FlowsPerHostnameTable;
+export default FlowsPerProcessTable;

@@ -5,21 +5,21 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList} from '../../navigation/index';
 import {YStack, Button, Text} from 'tamagui';
 
-type NetworkFlowsScreenNavigationProp = StackNavigationProp<
+type FlowsPerHostnameScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
-  'NetworkFlows'
+  'FlowsPerHostname'
 >;
 
-type NetworkFlowsScreenRouteProp = RouteProp<
+type FlowsPerHostnameScreenRouteProp = RouteProp<
   RootStackParamList,
-  'NetworkFlows'
+  'FlowsPerHostname'
 >;
 
 const {ScarecrowNetwork} = NativeModules;
 
 function Splash(): JSX.Element {
-  const navigation = useNavigation<NetworkFlowsScreenNavigationProp>();
-  const route = useRoute<NetworkFlowsScreenRouteProp>();
+  const navigation = useNavigation<FlowsPerHostnameScreenNavigationProp>();
+  const route = useRoute<FlowsPerHostnameScreenRouteProp>();
 
   const [status, setStatus] = React.useState<boolean | undefined>(false);
 
@@ -29,7 +29,7 @@ function Splash(): JSX.Element {
 
   React.useEffect(() => {
     if (status) {
-      navigation.navigate('NetworkFlows', {viewBy: 'bundleIdentifier'});
+      navigation.navigate('FlowsPerProcess');
     }
   }, [navigation, status]);
 

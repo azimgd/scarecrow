@@ -3,13 +3,13 @@ import {ListItem, YStack, SizableText} from 'tamagui';
 import {ArrowUp, ArrowDown} from '@tamagui/lucide-icons';
 import * as ScarecrowNetwork from '../../ScarecrowNetwork';
 
-type NetworkFlowsItemTableProps = PropsWithChildren<{
+type FlowsPerHostnameExpandTableProps = PropsWithChildren<{
   data: ScarecrowNetwork.handleDataFromFlowEventPayload[];
 }>;
 
-function NetworkFlowsItemTable({
+function FlowsPerHostnameExpandTable({
   data,
-}: NetworkFlowsItemTableProps): JSX.Element {
+}: FlowsPerHostnameExpandTableProps): JSX.Element {
   return (
     <YStack>
       {data.map((item, index) => (
@@ -38,4 +38,4 @@ function NetworkFlowsItemTable({
   );
 }
 
-export default NetworkFlowsItemTable;
+export default FlowsPerHostnameExpandTable;

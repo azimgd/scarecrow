@@ -5,14 +5,18 @@ import {
 } from '@react-navigation/stack';
 import {NavigationContainer, DarkTheme} from '@react-navigation/native';
 import Splash from '../screens/Splash';
-import NetworkFlows from '../screens/NetworkFlows';
-import NetworkFlowsItem from '../screens/NetworkFlowsItem';
+import FlowsPerHostname from '../screens/FlowsPerHostname';
+import FlowsPerHostnameExpand from '../screens/FlowsPerHostnameExpand';
+import FlowsPerProcess from '../screens/FlowsPerProcess';
+import FlowsPerProcessExpand from '../screens/FlowsPerProcessExpand';
 import FlowRules from '../screens/FlowRules';
 import {useTheme} from 'tamagui';
 
 export type RootStackParamList = {
-  NetworkFlows: {viewBy: 'bundleIdentifier' | 'remoteEndpoint'};
-  NetworkFlowsItem: {bundleIdentifier: string};
+  FlowsPerHostname: undefined;
+  FlowsPerHostnameExpand: {bundleIdentifier: string};
+  FlowsPerProcess: undefined;
+  FlowsPerProcessExpand: {bundleIdentifier: string};
   FlowRules: undefined;
   Splash: undefined;
 };
@@ -45,8 +49,16 @@ function RootStack() {
     <NavigationContainer theme={navigationTheme}>
       <Stack.Navigator screenOptions={screenOptions}>
         <Stack.Screen name="Splash" component={Splash} />
-        <Stack.Screen name="NetworkFlows" component={NetworkFlows} />
-        <Stack.Screen name="NetworkFlowsItem" component={NetworkFlowsItem} />
+        <Stack.Screen name="FlowsPerHostname" component={FlowsPerHostname} />
+        <Stack.Screen name="FlowsPerProcess" component={FlowsPerProcess} />
+        <Stack.Screen
+          name="FlowsPerHostnameExpand"
+          component={FlowsPerHostnameExpand}
+        />
+        <Stack.Screen
+          name="FlowsPerProcessExpand"
+          component={FlowsPerProcessExpand}
+        />
         <Stack.Screen name="FlowRules" component={FlowRules} />
       </Stack.Navigator>
     </NavigationContainer>

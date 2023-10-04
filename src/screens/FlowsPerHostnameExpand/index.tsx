@@ -3,16 +3,16 @@ import {ScrollView} from 'react-native';
 import {useRoute, RouteProp} from '@react-navigation/native';
 import {RootStackParamList} from '../../navigation/index';
 import * as ScarecrowNetwork from '../../ScarecrowNetwork';
-import NetworkFlowsItemTable from './NetworkFlowsItemTable';
+import FlowsPerHostnameExpandTable from './FlowsPerHostnameExpandTable';
 import Window from '../../components/Window';
 
-type NetworkFlowsItemScreenRouteProp = RouteProp<
+type FlowsPerHostnameExpandScreenRouteProp = RouteProp<
   RootStackParamList,
-  'NetworkFlowsItem'
+  'FlowsPerHostnameExpand'
 >;
 
-function NetworkFlowsItem(): JSX.Element {
-  const route = useRoute<NetworkFlowsItemScreenRouteProp>();
+function FlowsPerHostnameExpand(): JSX.Element {
+  const route = useRoute<FlowsPerHostnameExpandScreenRouteProp>();
 
   const [tableData, setTableData] = React.useState<
     ScarecrowNetwork.handleDataFromFlowEventPayload[]
@@ -28,10 +28,10 @@ function NetworkFlowsItem(): JSX.Element {
   return (
     <Window title="View by Applications">
       <ScrollView>
-        <NetworkFlowsItemTable data={tableData} />
+        <FlowsPerHostnameExpandTable data={tableData} />
       </ScrollView>
     </Window>
   );
 }
 
-export default NetworkFlowsItem;
+export default FlowsPerHostnameExpand;

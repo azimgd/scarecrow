@@ -12,21 +12,21 @@ import {
   AlertCircle,
 } from '@tamagui/lucide-icons';
 
-type NetworkFlowsScreenNavigationProp = StackNavigationProp<
+type FlowsPerHostnameScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
-  'NetworkFlows'
+  'FlowsPerHostname'
 >;
 
-type NetworkFlowsScreenRouteProp = RouteProp<
+type FlowsPerHostnameScreenRouteProp = RouteProp<
   RootStackParamList,
-  'NetworkFlows'
+  'FlowsPerHostname'
 >;
 
 const {ScarecrowNetwork} = NativeModules;
 
 function Sidebar(): JSX.Element {
-  const navigation = useNavigation<NetworkFlowsScreenNavigationProp>();
-  const route = useRoute<NetworkFlowsScreenRouteProp>();
+  const navigation = useNavigation<FlowsPerHostnameScreenNavigationProp>();
+  const route = useRoute<FlowsPerHostnameScreenRouteProp>();
 
   const [
     countGrouppedFlowsByBundleIdentifier,
@@ -58,13 +58,9 @@ function Sidebar(): JSX.Element {
         </ListItem>
 
         <ListItem
-          onPress={() =>
-            navigation.navigate('NetworkFlows', {viewBy: 'bundleIdentifier'})
-          }
+          onPress={() => navigation.navigate('FlowsPerHostname')}
           backgroundColor={
-            route.params?.viewBy === 'bundleIdentifier'
-              ? '$blue10'
-              : '$colorTransparent'
+            route.name === 'FlowsPerHostname' ? '$blue10' : '$colorTransparent'
           }
           title="Applications"
           icon={<AppWindow />}
@@ -75,13 +71,9 @@ function Sidebar(): JSX.Element {
           }
         />
         <ListItem
-          onPress={() =>
-            navigation.navigate('NetworkFlows', {viewBy: 'remoteEndpoint'})
-          }
+          onPress={() => navigation.navigate('FlowsPerProcess')}
           backgroundColor={
-            route.params?.viewBy === 'remoteEndpoint'
-              ? '$blue10'
-              : '$colorTransparent'
+            route.name === 'FlowsPerProcess' ? '$blue10' : '$colorTransparent'
           }
           title="Hostnames"
           icon={<Globe2 />}
