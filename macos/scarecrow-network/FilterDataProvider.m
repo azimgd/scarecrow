@@ -7,7 +7,7 @@
 
 #import "FilterDataProvider.h"
 #import "ExtensionCommunication.h"
-#import "FlowEntry.h"
+#import "FlowHolder.h"
 #import "Validator.h"
 #import <os/log.h>
 
@@ -60,14 +60,14 @@
 - (NEFilterDataVerdict *)handleInboundDataFromFlow:(NEFilterFlow *)flow readBytesStartOffset:(NSUInteger)offset readBytes:(NSData *)readBytes {
   os_log(OS_LOG_DEFAULT, "[scarecrow-filter] handleInboundDataFromFlow");
 
-  FlowEntry *flowEntry = [[FlowEntry alloc] initWithFlow:flow size:[NSNumber numberWithFloat:(readBytes.length/1000.0f)]];
+  FlowHolder *flowHolder = [[FlowHolder alloc] init:flow size:[NSNumber numberWithFloat:(readBytes.length/1000.0f)]];
 
   NSXPCConnection *connection = [ExtensionCommunication shared].connection;
-  [[connection remoteObjectProxy] handleDataFromFlowEvent:flowEntry.payload];
+  [[connection remoteObjectProxy] handleDataFromFlowEvent:flowHolder.payload];
   
   NEFilterDataVerdict *verdict;
 
-  NSString *bundleIdentifier = [[flowEntry payload] objectForKey:@"bundleIdentifier"];
+  NSString *bundleIdentifier = [[flowHolder payload] objectForKey:@"bundleIdentifier"];
   if (Validator.shared.rules[bundleIdentifier] == nil) {
     verdict = [NEFilterDataVerdict allowVerdict];
   } else if ([Validator.shared.rules[bundleIdentifier] boolValue]) {
@@ -82,14 +82,14 @@
 - (NEFilterDataVerdict *)handleOutboundDataFromFlow:(NEFilterFlow *)flow readBytesStartOffset:(NSUInteger)offset readBytes:(NSData *)readBytes {
   os_log(OS_LOG_DEFAULT, "[scarecrow-filter] handleOutboundDataFromFlow");
   
-  FlowEntry *flowEntry = [[FlowEntry alloc] initWithFlow:flow size:[NSNumber numberWithFloat:(readBytes.length/1000.0f)]];
+  FlowHolder *flowHolder = [[FlowHolder alloc] init:flow size:[NSNumber numberWithFloat:(readBytes.length/1000.0f)]];
 
   NSXPCConnection *connection = [ExtensionCommunication shared].connection;
-  [[connection remoteObjectProxy] handleDataFromFlowEvent:flowEntry.payload];
+  [[connection remoteObjectProxy] handleDataFromFlowEvent:flowHolder.payload];
   
   NEFilterDataVerdict *verdict;
 
-  NSString *bundleIdentifier = [[flowEntry payload] objectForKey:@"bundleIdentifier"];
+  NSString *bundleIdentifier = [[flowHolder payload] objectForKey:@"bundleIdentifier"];
   if (Validator.shared.rules[bundleIdentifier] == nil) {
     verdict = [NEFilterDataVerdict allowVerdict];
   } else if ([Validator.shared.rules[bundleIdentifier] boolValue]) {

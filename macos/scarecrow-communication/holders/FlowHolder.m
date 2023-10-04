@@ -1,16 +1,16 @@
 //
-//  FlowEntry.m
+//  FlowHolder.m
 //  scarecrow-network
 //
 //  Created by azim on 17.09.2023.
 //
 
 #import <Foundation/Foundation.h>
-#import "FlowEntry.h"
+#import "FlowHolder.h"
 
-@implementation FlowEntry
+@implementation FlowHolder
 
-- (instancetype)initWithFlow:(NEFilterFlow *)flow size:(NSNumber *)size {
+- (instancetype)init:(NEFilterFlow *)flow size:(NSNumber *)size {
   self = [super init];
   if (self) {
     _flow = [flow copy];

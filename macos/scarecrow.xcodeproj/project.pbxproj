@@ -29,7 +29,7 @@
 		05B70CE12AC8878C00BE9F95 /* Flow.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B70CE02AC8878C00BE9F95 /* Flow.m */; };
 		05C0D54D2ACADA2500A0846D /* IndexData.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C0D54C2ACADA2500A0846D /* IndexData.m */; };
 		05C0D5502ACB36BB00A0846D /* Rule.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C0D54F2ACB36BB00A0846D /* Rule.m */; };
-		05CBE56B2AB6DFCA000F6BC1 /* FlowEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 05CBE56A2AB6DFCA000F6BC1 /* FlowEntry.m */; };
+		05CBE56B2AB6DFCA000F6BC1 /* FlowHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 05CBE56A2AB6DFCA000F6BC1 /* FlowHolder.m */; };
 		05EE329F2AB5CAC000410158 /* libbsm.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 05EE329E2AB5CAB800410158 /* libbsm.tbd */; };
 		1364A44A6D4288254489D593 /* libPods-scarecrow-macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 82DBFF4F4989BE7D4E09CC98 /* libPods-scarecrow-macOS.a */; };
 		5142014D2437B4B30078DB4F /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5142014C2437B4B30078DB4F /* AppDelegate.mm */; };
@@ -91,8 +91,8 @@
 		05C0D54E2ACADA2F00A0846D /* IndexData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IndexData.h; sourceTree = "<group>"; };
 		05C0D54F2ACB36BB00A0846D /* Rule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Rule.m; sourceTree = "<group>"; };
 		05C0D5512ACB36C200A0846D /* Rule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Rule.h; sourceTree = "<group>"; };
-		05CBE5692AB6DFBF000F6BC1 /* FlowEntry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlowEntry.h; sourceTree = "<group>"; };
-		05CBE56A2AB6DFCA000F6BC1 /* FlowEntry.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlowEntry.m; sourceTree = "<group>"; };
+		05CBE5692AB6DFBF000F6BC1 /* FlowHolder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlowHolder.h; sourceTree = "<group>"; };
+		05CBE56A2AB6DFCA000F6BC1 /* FlowHolder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlowHolder.m; sourceTree = "<group>"; };
 		05EE329E2AB5CAB800410158 /* libbsm.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbsm.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/lib/libbsm.tbd; sourceTree = DEVELOPER_DIR; };
 		13B07F961A680F5B00A75B9A /* scarecrow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = scarecrow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DE051597B59487549C32721 /* Pods-scarecrow-macOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-scarecrow-macOS.debug.xcconfig"; path = "Target Support Files/Pods-scarecrow-macOS/Pods-scarecrow-macOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -140,6 +140,7 @@
 		059791FD2AB47A8F00348AB8 /* scarecrow-communication */ = {
 			isa = PBXGroup;
 			children = (
+				05C0D56F2ACD8A9D00A0846D /* holders */,
 				059792042AB47AAF00348AB8 /* CommunicationProtocol.h */,
 				059792012AB47AAF00348AB8 /* ExtensionCommunication.h */,
 				059792032AB47AAF00348AB8 /* ExtensionCommunication.m */,
@@ -154,8 +155,6 @@
 			children = (
 				059791FE2AB47AAF00348AB8 /* ExtensionCommunicationDelegate.h */,
 				059791FF2AB47AAF00348AB8 /* ExtensionCommunicationDelegate.m */,
-				05CBE5692AB6DFBF000F6BC1 /* FlowEntry.h */,
-				05CBE56A2AB6DFCA000F6BC1 /* FlowEntry.m */,
 				0597921A2AB47E6500348AB8 /* FilterDataProvider.h */,
 				0597921B2AB47E6500348AB8 /* FilterDataProvider.m */,
 				0597921D2AB47E6500348AB8 /* main.m */,
@@ -185,6 +184,15 @@
 				05C0D54E2ACADA2F00A0846D /* IndexData.h */,
 			);
 			path = data;
+			sourceTree = "<group>";
+		};
+		05C0D56F2ACD8A9D00A0846D /* holders */ = {
+			isa = PBXGroup;
+			children = (
+				05CBE5692AB6DFBF000F6BC1 /* FlowHolder.h */,
+				05CBE56A2AB6DFCA000F6BC1 /* FlowHolder.m */,
+			);
+			path = holders;
 			sourceTree = "<group>";
 		};
 		1517CA80ACE7A3CDC372A4E4 /* Pods */ = {
@@ -511,7 +519,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05CBE56B2AB6DFCA000F6BC1 /* FlowEntry.m in Sources */,
+				05CBE56B2AB6DFCA000F6BC1 /* FlowHolder.m in Sources */,
 				055CC6772AC6C91E00DBFB48 /* Validator.m in Sources */,
 				059792372AB487F300348AB8 /* ExtensionCommunication.h in Sources */,
 				059792382AB487F300348AB8 /* ExtensionCommunicationDelegate.h in Sources */,
