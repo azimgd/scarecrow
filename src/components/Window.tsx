@@ -1,6 +1,7 @@
 import React, {PropsWithChildren} from 'react';
-import {ListItem, Text, View, XStack, YStack} from 'tamagui';
+import {XStack, YStack} from 'tamagui';
 import Sidebar from '../components/Sidebar';
+import Header from '../components/Header';
 
 type WindowProps = PropsWithChildren<{
   title: string;
@@ -11,17 +12,10 @@ function Window({children, title}: WindowProps): JSX.Element {
     <XStack flex={1}>
       <Sidebar />
 
-      <YStack flex={1}>
-        <ListItem
-          backgroundColor="$colorTransparent"
-          borderBottomColor="$borderColor"
-          borderBottomWidth="$0.25">
-          <Text color="#cccccc">{title}</Text>
-        </ListItem>
+      <YStack flex={1} borderLeftColor="$borderColor" borderLeftWidth="$0.5">
+        <Header title={title} />
 
-        <View borderLeftColor="$borderColor" borderLeftWidth="$0.5" flex={1}>
-          {children}
-        </View>
+        {children}
       </YStack>
     </XStack>
   );

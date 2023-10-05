@@ -26,7 +26,7 @@ function FlowsPerHostnameExpand(): JSX.Element {
   }, []);
 
   return (
-    <Window title="View by Applications">
+    <Window title="Endpoints">
       <ScrollView>
         <FlowsPerHostnameExpandTable data={tableData} />
       </ScrollView>

@@ -27,6 +27,7 @@ function FlowsPerProcessTable({
           onPress={() => handleDataItemPress(flow.bundleIdentifier)}
           key={index}>
           <ListItem
+            backgroundColor="$backgroundTransparent"
             title={flow.localizedName}
             subTitle={<FlowsTableSubTitle flow={flow} />}
             iconAfter={

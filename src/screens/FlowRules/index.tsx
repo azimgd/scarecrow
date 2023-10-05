@@ -23,7 +23,7 @@ function FlowRules(): JSX.Element {
   }, []);
 
   return (
-    <Window title="All Rules">
+    <Window title="Rules">
       <ScrollView>
         <FlowRulesTable
           data={tableData}

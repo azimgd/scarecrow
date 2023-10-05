@@ -26,7 +26,7 @@ function FlowsPerProcessExpand(): JSX.Element {
   }, []);
 
   return (
-    <Window title="View by Applications">
+    <Window title="Applications">
       <ScrollView>
         <FlowsPerProcessExpandTable data={tableData} />
       </ScrollView>

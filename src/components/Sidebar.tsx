@@ -3,15 +3,11 @@ import {NativeModules} from 'react-native';
 import {useNavigation, useRoute, RouteProp} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList} from '../navigation/index';
-import {YStack, ListItem, Text} from 'tamagui';
-import {
-  AppWindow,
-  Globe2,
-  ListFilter,
-  CheckCircle2,
-  AlertCircle,
-} from '@tamagui/lucide-icons';
+import {YStack} from 'tamagui';
+import {AppWindow, Globe2, Ruler} from '@tamagui/lucide-icons';
 import Environment from './Environment';
+import SidebarItem from './SidebarItem';
+import Header from './Header';
 
 type FlowsPerHostnameScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -45,75 +41,32 @@ function Sidebar(): JSX.Element {
   }, []);
 
   return (
-    <YStack width={360} space="$2">
-      <YStack>
-        <ListItem
-          backgroundColor="$colorTransparent"
-          borderBottomColor="$borderColor"
-          borderBottomWidth="$0.25"
-          iconAfter={<ListFilter />}>
-          <Text color="#cccccc">View by</Text>
-        </ListItem>
+    <YStack width={360} backgroundColor="#1A1B1D">
+      <Header title="Scarecrow is Active" color="$green10" />
 
-        <ListItem
+      <YStack paddingHorizontal="$4">
+        <SidebarItem
           onPress={() => navigation.navigate('FlowsPerProcess')}
-          backgroundColor={
-            route.name === 'FlowsPerProcess' ? '$blue8' : '$colorTransparent'
-          }
+          active={route.name === 'FlowsPerProcess'}
           title="Applications"
           icon={<AppWindow />}
-          iconAfter={
-            <Text color="#cccccc" fontSize="$2">
-              {countGrouppedFlowsByBundleIdentifier}
-            </Text>
-          }
+          iconRightText={countGrouppedFlowsByBundleIdentifier}
         />
-        <ListItem
+
+        <SidebarItem
           onPress={() => navigation.navigate('FlowsPerHostname')}
-          backgroundColor={
-            route.name === 'FlowsPerHostname' ? '$blue8' : '$colorTransparent'
-          }
+          active={route.name === 'FlowsPerHostname'}
           title="Hostnames"
           icon={<Globe2 />}
-          iconAfter={
-            <Text color="#cccccc" fontSize="$2">
-              {countGrouppedFlowsByRemoteEndpoint}
-            </Text>
-          }
-        />
-      </YStack>
-
-      <YStack>
-        <ListItem
-          backgroundColor="$colorTransparent"
-          borderBottomColor="$borderColor"
-          borderBottomWidth="$0.25"
-          iconAfter={<ListFilter />}>
-          <Text color="#cccccc">Rules</Text>
-        </ListItem>
-
-        <ListItem
-          onPress={() => navigation.navigate('FlowRules')}
-          backgroundColor="$colorTransparent"
-          title="Global"
-          icon={<CheckCircle2 />}
-          iconAfter={
-            <Text color="#cccccc" fontSize="$2">
-              50
-            </Text>
-          }
+          iconRightText={countGrouppedFlowsByRemoteEndpoint}
         />
 
-        <ListItem
+        <SidebarItem
           onPress={() => navigation.navigate('FlowRules')}
-          backgroundColor="$colorTransparent"
-          title="Temporary"
-          icon={<AlertCircle />}
-          iconAfter={
-            <Text color="#cccccc" fontSize="$2">
-              50
-            </Text>
-          }
+          active={route.name === 'FlowRules'}
+          title="Rules"
+          icon={<Ruler />}
+          iconRightText={countGrouppedFlowsByBundleIdentifier}
         />
       </YStack>
 

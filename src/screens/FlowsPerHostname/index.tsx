@@ -42,10 +42,10 @@ function FlowsPerHostname(): JSX.Element {
   }, []);
 
   return (
-    <Window title="View by Applications">
-      <SearchBar />
-
+    <Window title="Endpoints">
       <ScrollView>
+        <SearchBar />
+
         <FlowsPerHostnameTable
           data={tableData}
           handleDataItemPress={handleDataItemPress}

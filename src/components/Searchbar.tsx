@@ -6,7 +6,7 @@ type SearchBarProps = PropsWithChildren<{}>;
 
 function SearchBar({}: SearchBarProps): JSX.Element {
   return (
-    <YStack padding="$4">
+    <YStack paddingHorizontal="$4">
       <Input placeholder="Search by keyword" style={styles.input} />
     </YStack>
   );

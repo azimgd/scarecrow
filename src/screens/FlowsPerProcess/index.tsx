@@ -42,10 +42,10 @@ function FlowsPerProcess(): JSX.Element {
   }, []);
 
   return (
-    <Window title="View by Processes">
-      <SearchBar />
-
+    <Window title="Applications">
       <ScrollView>
+        <SearchBar />
+
         <FlowsPerProcessTable
           data={tableData}
           handleDataItemPress={handleDataItemPress}
