@@ -1,7 +1,8 @@
 import React, {PropsWithChildren} from 'react';
 import {ListItem, YStack, SizableText} from 'tamagui';
-import {ArrowUp, ArrowDown} from '@tamagui/lucide-icons';
 import * as ScarecrowNetwork from '../../ScarecrowNetwork';
+import FlowsTableSubTitle from '../../components/FlowsTable/FlowsTableSubTitle';
+import FlowsTableIconLeft from '../../components/FlowsTable/FlowsTableIconLeft';
 
 type FlowsPerHostnameExpandTableProps = PropsWithChildren<{
   data: ScarecrowNetwork.handleDataFromFlowEventPayload[];
@@ -12,25 +13,14 @@ function FlowsPerHostnameExpandTable({
 }: FlowsPerHostnameExpandTableProps): JSX.Element {
   return (
     <YStack>
-      {data.map((item, index) => (
+      {data.map((flow, index) => (
         <ListItem
           key={index}
-          title={item.remoteEndpoint}
-          subTitle={
-            <SizableText theme="alt1" size="$3">
-              {item.localizedName || item.bundleIdentifier || 'System'}{' '}
-              {item.size.toFixed(2)} kb {item.date}
-            </SizableText>
-          }
-          icon={
-            item.direction === 'outbound' ? (
-              <ArrowUp color="#0097e6" />
-            ) : (
-              <ArrowDown color="#44bd32" />
-            )
-          }>
+          title={flow.remoteEndpoint}
+          subTitle={<FlowsTableSubTitle flow={flow} />}
+          icon={<FlowsTableIconLeft flow={flow} />}>
           <SizableText theme="alt2" size="$3">
-            {item.remoteUrl}
+            {flow.remoteUrl}
           </SizableText>
         </ListItem>
       ))}

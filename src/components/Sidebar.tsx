@@ -17,10 +17,7 @@ type FlowsPerHostnameScreenNavigationProp = StackNavigationProp<
   'FlowsPerHostname'
 >;
 
-type FlowsPerHostnameScreenRouteProp = RouteProp<
-  RootStackParamList,
-  'FlowsPerHostname'
->;
+type FlowsPerHostnameScreenRouteProp = RouteProp<RootStackParamList>;
 
 const {ScarecrowNetwork} = NativeModules;
 
@@ -58,9 +55,9 @@ function Sidebar(): JSX.Element {
         </ListItem>
 
         <ListItem
-          onPress={() => navigation.navigate('FlowsPerHostname')}
+          onPress={() => navigation.navigate('FlowsPerProcess')}
           backgroundColor={
-            route.name === 'FlowsPerHostname' ? '$blue10' : '$colorTransparent'
+            route.name === 'FlowsPerProcess' ? '$blue10' : '$colorTransparent'
           }
           title="Applications"
           icon={<AppWindow />}
@@ -71,9 +68,9 @@ function Sidebar(): JSX.Element {
           }
         />
         <ListItem
-          onPress={() => navigation.navigate('FlowsPerProcess')}
+          onPress={() => navigation.navigate('FlowsPerHostname')}
           backgroundColor={
-            route.name === 'FlowsPerProcess' ? '$blue10' : '$colorTransparent'
+            route.name === 'FlowsPerHostname' ? '$blue10' : '$colorTransparent'
           }
           title="Hostnames"
           icon={<Globe2 />}

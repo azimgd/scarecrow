@@ -1,8 +1,10 @@
 import React, {PropsWithChildren} from 'react';
 import {TouchableOpacity} from 'react-native';
-import {ListItem, YStack, SizableText, Switch, Image} from 'tamagui';
-import {AppWindow} from '@tamagui/lucide-icons';
+import {ListItem, YStack} from 'tamagui';
 import * as ScarecrowNetwork from '../../ScarecrowNetwork';
+import FlowsTableSubTitle from '../../components/FlowsTable/FlowsTableSubTitle';
+import FlowsTableIconLeft from '../../components/FlowsTable/FlowsTableIconLeft';
+import FlowsTableIconRight from '../../components/FlowsTable/FlowsTableIconRight';
 
 type FlowsPerProcessTableProps = PropsWithChildren<{
   data: ScarecrowNetwork.handleDataFromFlowEventPayload[];
@@ -20,38 +22,20 @@ function FlowsPerProcessTable({
 }: FlowsPerProcessTableProps): JSX.Element {
   return (
     <YStack>
-      {data.map((item, index) => (
+      {data.map((flow, index) => (
         <TouchableOpacity
-          onPress={() => handleDataItemPress(item.bundleIdentifier)}
+          onPress={() => handleDataItemPress(flow.bundleIdentifier)}
           key={index}>
           <ListItem
-            title={item.localizedName}
-            subTitle={
-              <SizableText theme="alt1" size="$3">
-                {item.remoteEndpoint} {(item.totalSize / 1024).toFixed(2)} kb {item.totalCount} items
-              </SizableText>
-            }
+            title={flow.localizedName}
+            subTitle={<FlowsTableSubTitle flow={flow} />}
             iconAfter={
-              <Switch
-                size="$2"
-                defaultChecked={true}
-                onCheckedChange={(checked: boolean) =>
-                  handleDataItemCheckedChange(item.bundleIdentifier, checked)
-                }>
-                <Switch.Thumb animation="quick" />
-              </Switch>
+              <FlowsTableIconRight
+                flow={flow}
+                handleDataItemCheckedChange={handleDataItemCheckedChange}
+              />
             }
-            icon={
-              item.image ? (
-                <Image
-                  source={{uri: `data:image/png;base64,${item.image}`}}
-                  width={20}
-                  height={20}
-                />
-              ) : (
-                <AppWindow width={20} height={20} strokeWidth={1.5} />
-              )
-            }
+            icon={<FlowsTableIconLeft flow={flow} />}
           />
         </TouchableOpacity>
       ))}

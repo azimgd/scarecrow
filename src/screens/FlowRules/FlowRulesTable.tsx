@@ -1,8 +1,9 @@
 import React, {PropsWithChildren} from 'react';
 import {TouchableOpacity} from 'react-native';
-import {ListItem, YStack, Switch} from 'tamagui';
-import {AppWindow} from '@tamagui/lucide-icons';
+import {ListItem, YStack} from 'tamagui';
 import * as ScarecrowNetwork from '../../ScarecrowNetwork';
+import RulesTableIconLeft from '../../components/RulesTable/RulesTableIconLeft';
+import RulesTableIconRight from '../../components/RulesTable/RulesTableIconRight';
 
 type FlowsPerHostnameTableProps = PropsWithChildren<{
   data: ScarecrowNetwork.handleDataFromFlowEventPayload[];
@@ -20,23 +21,19 @@ function FlowsPerHostnameTable({
 }: FlowsPerHostnameTableProps): JSX.Element {
   return (
     <YStack>
-      {data.map((item, index) => (
+      {data.map((rule, index) => (
         <TouchableOpacity
-          onPress={() => handleDataItemPress(item.bundleIdentifier)}
+          onPress={() => handleDataItemPress(rule.bundleIdentifier)}
           key={index}>
           <ListItem
-            title={item.remoteEndpoint || item.bundleIdentifier}
+            title={rule.remoteEndpoint || rule.bundleIdentifier}
             iconAfter={
-              <Switch
-                size="$2"
-                defaultChecked={item.allowed}
-                onCheckedChange={(checked: boolean) =>
-                  handleDataItemCheckedChange(item.bundleIdentifier, checked)
-                }>
-                <Switch.Thumb animation="quick" />
-              </Switch>
+              <RulesTableIconRight
+                rule={rule}
+                handleDataItemCheckedChange={handleDataItemCheckedChange}
+              />
             }
-            icon={<AppWindow color="#0097e6" />}
+            icon={<RulesTableIconLeft rule={rule} />}
           />
         </TouchableOpacity>
       ))}
