@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		055CC6772AC6C91E00DBFB48 /* Validator.m in Sources */ = {isa = PBXBuildFile; fileRef = 055CC6762AC6C91E00DBFB48 /* Validator.m */; };
+		056402E82ACF305900D427EF /* Process.m in Sources */ = {isa = PBXBuildFile; fileRef = 056402E72ACF305900D427EF /* Process.m */; };
 		059792062AB47AAF00348AB8 /* HostCommunication.m in Sources */ = {isa = PBXBuildFile; fileRef = 059792022AB47AAF00348AB8 /* HostCommunication.m */; };
 		059792072AB47AAF00348AB8 /* ExtensionCommunication.m in Sources */ = {isa = PBXBuildFile; fileRef = 059792032AB47AAF00348AB8 /* ExtensionCommunication.m */; };
 		0597920A2AB47AFB00348AB8 /* NetworkExtensionProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 059792092AB47AFB00348AB8 /* NetworkExtensionProvider.m */; };
@@ -66,6 +67,8 @@
 /* Begin PBXFileReference section */
 		055CC6752AC6C91400DBFB48 /* Validator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Validator.h; sourceTree = "<group>"; };
 		055CC6762AC6C91E00DBFB48 /* Validator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Validator.m; sourceTree = "<group>"; };
+		056402E72ACF305900D427EF /* Process.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Process.m; sourceTree = "<group>"; };
+		056402E92ACF306400D427EF /* Process.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Process.h; sourceTree = "<group>"; };
 		059791CE2AB45DED00348AB8 /* scarecrow-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "scarecrow-iOS.entitlements"; sourceTree = "<group>"; };
 		059791CF2AB45F1E00348AB8 /* scarecrow-macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "scarecrow-macOS.entitlements"; sourceTree = "<group>"; };
 		059791FE2AB47AAF00348AB8 /* ExtensionCommunicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtensionCommunicationDelegate.h; sourceTree = "<group>"; };
@@ -176,6 +179,8 @@
 				05B70CE22AC8879300BE9F95 /* Flow.h */,
 				05C0D54F2ACB36BB00A0846D /* Rule.m */,
 				05C0D5512ACB36C200A0846D /* Rule.h */,
+				056402E72ACF305900D427EF /* Process.m */,
+				056402E92ACF306400D427EF /* Process.h */,
 			);
 			path = database;
 			sourceTree = "<group>";
@@ -551,6 +556,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0597922A2AB484FC00348AB8 /* RCTScarecrowNetwork.m in Sources */,
+				056402E82ACF305900D427EF /* Process.m in Sources */,
 				0597920B2AB47B3900348AB8 /* CommunicationProtocol.h in Sources */,
 				0597920C2AB47B3900348AB8 /* ExtensionCommunication.h in Sources */,
 				0597920D2AB47B3900348AB8 /* ExtensionCommunication.m in Sources */,
