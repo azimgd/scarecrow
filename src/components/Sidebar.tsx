@@ -11,6 +11,7 @@ import {
   CheckCircle2,
   AlertCircle,
 } from '@tamagui/lucide-icons';
+import Environment from './Environment';
 
 type FlowsPerHostnameScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -114,6 +115,10 @@ function Sidebar(): JSX.Element {
             </Text>
           }
         />
+      </YStack>
+
+      <YStack flex={1} justifyContent="flex-end">
+        <Environment />
       </YStack>
     </YStack>
   );

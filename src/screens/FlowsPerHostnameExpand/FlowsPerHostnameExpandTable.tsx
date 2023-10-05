@@ -18,7 +18,7 @@ function FlowsPerHostnameExpandTable({
           key={index}
           title={flow.remoteEndpoint}
           subTitle={<FlowsTableSubTitle flow={flow} />}
-          icon={<FlowsTableIconLeft flow={flow} />}>
+          icon={<FlowsTableIconLeft flow={flow} type="default" />}>
           <SizableText theme="alt2" size="$3">
             {flow.remoteUrl}
           </SizableText>

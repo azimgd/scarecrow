@@ -1,5 +1,5 @@
 import React, {PropsWithChildren} from 'react';
-import {SizableText} from 'tamagui';
+import {SizableText, XStack} from 'tamagui';
 import * as ScarecrowNetwork from '../../ScarecrowNetwork';
 
 type FlowsTableSubTitleProps = PropsWithChildren<{
@@ -8,9 +8,15 @@ type FlowsTableSubTitleProps = PropsWithChildren<{
 
 function FlowsTableSubTitle({flow}: FlowsTableSubTitleProps): JSX.Element {
   return (
-    <SizableText theme="alt1" size="$3">
-      {flow.remoteEndpoint} {(flow.totalSize / 1024).toFixed(2)} kb {flow.totalCount} items
-    </SizableText>
+    <XStack space="$2">
+      <SizableText theme="alt1" size="$3">
+        {(flow.totalSize / 1024).toFixed(0)} kb
+      </SizableText>
+
+      <SizableText theme="alt1" size="$3">
+        {flow.totalCount} req
+      </SizableText>
+    </XStack>
   );
 }
 
