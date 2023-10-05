@@ -35,7 +35,7 @@ function FlowsPerProcessTable({
                 handleDataItemCheckedChange={handleDataItemCheckedChange}
               />
             }
-            icon={<FlowsTableIconLeft flow={flow} />}
+            icon={<FlowsTableIconLeft flow={flow} type="process" />}
           />
         </TouchableOpacity>
       ))}

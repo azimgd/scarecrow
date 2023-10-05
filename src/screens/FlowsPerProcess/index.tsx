@@ -6,6 +6,7 @@ import {RootStackParamList} from '../../navigation/index';
 import * as ScarecrowNetwork from '../../ScarecrowNetwork';
 import FlowsPerProcessTable from './FlowsPerProcessTable';
 import Window from '../../components/Window';
+import SearchBar from '../../components/Searchbar';
 
 type FlowsPerProcessScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -42,6 +43,8 @@ function FlowsPerProcess(): JSX.Element {
 
   return (
     <Window title="View by Processes">
+      <SearchBar />
+
       <ScrollView>
         <FlowsPerProcessTable
           data={tableData}

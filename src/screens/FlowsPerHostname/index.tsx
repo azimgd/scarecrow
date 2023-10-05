@@ -6,6 +6,7 @@ import {RootStackParamList} from '../../navigation/index';
 import * as ScarecrowNetwork from '../../ScarecrowNetwork';
 import FlowsPerHostnameTable from './FlowsPerHostnameTable';
 import Window from '../../components/Window';
+import SearchBar from '../../components/Searchbar';
 
 type FlowsPerHostnameScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -42,6 +43,8 @@ function FlowsPerHostname(): JSX.Element {
 
   return (
     <Window title="View by Applications">
+      <SearchBar />
+
       <ScrollView>
         <FlowsPerHostnameTable
           data={tableData}
