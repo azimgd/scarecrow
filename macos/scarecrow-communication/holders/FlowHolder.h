@@ -12,11 +12,12 @@
 
 @interface FlowHolder : NSObject
 
-@property (nonatomic, copy) NEFilterFlow *flow;
-@property (nonatomic, copy) NSNumber *size;
-@property (nonatomic, copy) NSDate *date;
+@property (nonatomic, copy) NSString *identifier;
+@property (nonatomic, copy) NSString *remoteEndpoint;
+@property (nonatomic, copy) NSString *remoteUrl;
+@property (nonatomic, copy) NSString *direction;
 
-- (instancetype)init:(NEFilterFlow *)flow size:(NSNumber *)size;
+- (instancetype)init:(NEFilterFlow *)flow;
 - (NSDictionary *)payload;
 
 @end

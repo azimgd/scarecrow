@@ -23,7 +23,6 @@ static IndexData *sharedInstance = nil;
       @"remoteUrl",
       @"localizedName",
       @"bundleIdentifier",
-      @"size",
       @"date"
     ];
     sharedInstance.ruleKeys = @[
@@ -88,7 +87,6 @@ static IndexData *sharedInstance = nil;
     NSPredicate *predicate = [NSPredicate predicateWithFormat:predicateFormat, valueToMatch];
 
     RLMResults *flows = [Flow objectsInRealm:realm withPredicate:predicate];
-    item[@"totalSize"] = [flows sumOfProperty:@"size"];
     item[@"totalCount"] = @([flows count]);
 
     [response addObject:item];

@@ -8,6 +8,7 @@
 #import "FilterDataProvider.h"
 #import "ExtensionCommunication.h"
 #import "FlowHolder.h"
+#import "ProcessHolder.h"
 #import "Validator.h"
 #import <os/log.h>
 
@@ -16,11 +17,11 @@
 - (void)startFilterWithCompletionHandler:(void (^)(NSError *error))completionHandler {
   os_log(OS_LOG_DEFAULT, "[scarecrow-filter] startFilterWithCompletionHandler");
 
-  NWHostEndpoint *remoteNetwork = [NWHostEndpoint endpointWithHostname:@"0.0.0.0" port:@""];
+//  NWHostEndpoint *remoteNetwork = [NWHostEndpoint endpointWithHostname:@"0.0.0.0" port:@""];
 
   NENetworkRule* networkRule = [
     [NENetworkRule alloc]
-    initWithRemoteNetwork:remoteNetwork
+    initWithRemoteNetwork:nil
     remotePrefix:0
     localNetwork:nil
     localPrefix:0
@@ -60,10 +61,11 @@
 - (NEFilterDataVerdict *)handleInboundDataFromFlow:(NEFilterFlow *)flow readBytesStartOffset:(NSUInteger)offset readBytes:(NSData *)readBytes {
   os_log(OS_LOG_DEFAULT, "[scarecrow-filter] handleInboundDataFromFlow");
 
-  FlowHolder *flowHolder = [[FlowHolder alloc] init:flow size:[NSNumber numberWithUnsignedLong:readBytes.length]];
+  FlowHolder *flowHolder = [[FlowHolder alloc] init:flow];
+  ProcessHolder *processHolder = [[ProcessHolder alloc] init:flow];
 
   NSXPCConnection *connection = [ExtensionCommunication shared].connection;
-  [[connection remoteObjectProxy] handleDataFromFlowEvent:flowHolder.payload];
+  [[connection remoteObjectProxy] handleDataFromFlowEvent:[self payload:flowHolder processHolder:processHolder]];
   
   NEFilterDataVerdict *verdict;
 
@@ -82,10 +84,11 @@
 - (NEFilterDataVerdict *)handleOutboundDataFromFlow:(NEFilterFlow *)flow readBytesStartOffset:(NSUInteger)offset readBytes:(NSData *)readBytes {
   os_log(OS_LOG_DEFAULT, "[scarecrow-filter] handleOutboundDataFromFlow");
   
-  FlowHolder *flowHolder = [[FlowHolder alloc] init:flow size:[NSNumber numberWithUnsignedLong:readBytes.length]];
+  FlowHolder *flowHolder = [[FlowHolder alloc] init:flow];
+  ProcessHolder *processHolder = [[ProcessHolder alloc] init:flow];
 
   NSXPCConnection *connection = [ExtensionCommunication shared].connection;
-  [[connection remoteObjectProxy] handleDataFromFlowEvent:flowHolder.payload];
+  [[connection remoteObjectProxy] handleDataFromFlowEvent:[self payload:flowHolder processHolder:processHolder]];
   
   NEFilterDataVerdict *verdict;
 
@@ -111,6 +114,23 @@
   os_log(OS_LOG_DEFAULT, "[scarecrow-filter] handleOutboundDataCompleteForFlow");
 
   return [NEFilterDataVerdict allowVerdict];
+}
+
+- (NSDictionary *)payload:(FlowHolder *)flowHolder processHolder:(ProcessHolder *)processHolder {
+  return @{
+    @"identifier": flowHolder.identifier ?: @"",
+    @"remoteEndpoint": flowHolder.remoteEndpoint ?: @"",
+    @"remoteUrl": flowHolder.remoteUrl ?: @"",
+    @"direction": flowHolder.direction ?: @"",
+    
+    @"bundleIdentifier": processHolder.bundleIdentifier ?: @"",
+    @"localizedName": processHolder.localizedName ?: @"",
+    @"path": processHolder.path ?: @"",
+    @"name": processHolder.name ?: @"",
+    @"icon": processHolder.icon ?: @"",
+
+    @"date": [NSDate date],
+  };
 }
 
 @end

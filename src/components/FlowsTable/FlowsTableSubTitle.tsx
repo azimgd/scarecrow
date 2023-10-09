@@ -10,10 +10,6 @@ function FlowsTableSubTitle({flow}: FlowsTableSubTitleProps): JSX.Element {
   return (
     <XStack space="$2">
       <SizableText theme="alt1" size="$3">
-        {(flow.totalSize / 1024).toFixed(0)} kb
-      </SizableText>
-
-      <SizableText theme="alt1" size="$3">
         {flow.totalCount} req
       </SizableText>
     </XStack>

@@ -13,7 +13,6 @@ export type handleDataFromFlowEventPayload = {
   date: string;
 
   image: number;
-  totalSize: number;
   totalCount: number;
 };
 

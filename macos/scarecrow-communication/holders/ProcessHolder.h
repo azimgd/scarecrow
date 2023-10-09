@@ -8,18 +8,21 @@
 #ifndef ProcessHolder_h
 #define ProcessHolder_h
 
+#import <NetworkExtension/NetworkExtension.h>
+#import <AppKit/AppKit.h>
 #import <bsm/libbsm.h>
 #import <libproc.h>
 #import <sys/sysctl.h>
-#import <AppKit/AppKit.h>
 
 @interface ProcessHolder : NSObject
 
 @property (nonatomic, copy) NSString *path;
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *icon;
+@property (nonatomic, copy) NSString *localizedName;
+@property (nonatomic, copy) NSString *bundleIdentifier;
 
-- (instancetype)init:(audit_token_t *)auditToken;
+- (instancetype)init:(NEFilterFlow *)flow;
 
 - (NSDictionary *)payload;
 

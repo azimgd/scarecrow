@@ -10,13 +10,19 @@
 
 @implementation ProcessHolder
 
-- (instancetype)init:(audit_token_t *)auditToken {
+- (instancetype)init:(NEFilterFlow *)flow {
   self = [super init];
 
   if (self) {
-    _path = [self getProcessPathForPID:audit_token_to_pid(*auditToken)];
-    _name = [self getProcessNameForPID:audit_token_to_pid(*auditToken) executablePath:_path];
-    _icon = [self getIconForExecutablePath:_path];
+    audit_token_t *auditToken = (audit_token_t*)flow.sourceAppAuditToken.bytes;
+    pid_t auditTokenPID = audit_token_to_pid(*auditToken);
+
+    _path = [self getProcessPathForPID:auditTokenPID];
+    _name = [self getProcessNameForPID:auditTokenPID executablePath:_path];
+//    _icon = [self getIconForExecutablePath:_path];
+
+    _localizedName = _name;
+    _bundleIdentifier = _name;
   }
 
   return self;
@@ -25,8 +31,10 @@
 - (NSDictionary *)payload
 {
   return @{
-    @"bundleIdentifier": _path ?: @"",
-    @"localizedName": _name ?: @"",
+    @"bundleIdentifier": _bundleIdentifier ?: @"",
+    @"localizedName": _localizedName ?: @"",
+    @"path": _path ?: @"",
+    @"name": _name ?: @"",
     @"icon": _icon ?: @"",
   };
 }
