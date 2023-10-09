@@ -65,7 +65,7 @@
   ProcessHolder *processHolder = [[ProcessHolder alloc] init:flow];
 
   NSXPCConnection *connection = [ExtensionCommunication shared].connection;
-  [[connection remoteObjectProxy] handleDataFromFlowEvent:[self payload:flowHolder processHolder:processHolder]];
+  [[connection remoteObjectProxy] handleDataFromFlowEvent:[flowHolder payload] processPayload:[processHolder payload]];
   
   NEFilterDataVerdict *verdict;
 
@@ -88,7 +88,7 @@
   ProcessHolder *processHolder = [[ProcessHolder alloc] init:flow];
 
   NSXPCConnection *connection = [ExtensionCommunication shared].connection;
-  [[connection remoteObjectProxy] handleDataFromFlowEvent:[self payload:flowHolder processHolder:processHolder]];
+  [[connection remoteObjectProxy] handleDataFromFlowEvent:[flowHolder payload] processPayload:[processHolder payload]];
   
   NEFilterDataVerdict *verdict;
 
@@ -114,23 +114,6 @@
   os_log(OS_LOG_DEFAULT, "[scarecrow-filter] handleOutboundDataCompleteForFlow");
 
   return [NEFilterDataVerdict allowVerdict];
-}
-
-- (NSDictionary *)payload:(FlowHolder *)flowHolder processHolder:(ProcessHolder *)processHolder {
-  return @{
-    @"identifier": flowHolder.identifier ?: @"",
-    @"remoteEndpoint": flowHolder.remoteEndpoint ?: @"",
-    @"remoteUrl": flowHolder.remoteUrl ?: @"",
-    @"direction": flowHolder.direction ?: @"",
-    
-    @"bundleIdentifier": processHolder.bundleIdentifier ?: @"",
-    @"localizedName": processHolder.localizedName ?: @"",
-    @"path": processHolder.path ?: @"",
-    @"name": processHolder.name ?: @"",
-    @"icon": processHolder.icon ?: @"",
-
-    @"date": [NSDate date],
-  };
 }
 
 @end

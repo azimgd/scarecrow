@@ -18,18 +18,10 @@
 
 @property (nonatomic, copy) NSString *path;
 @property (nonatomic, copy) NSString *name;
-@property (nonatomic, copy) NSString *icon;
-@property (nonatomic, copy) NSString *localizedName;
 @property (nonatomic, copy) NSString *bundleIdentifier;
 
 - (instancetype)init:(NEFilterFlow *)flow;
-
 - (NSDictionary *)payload;
-
-- (NSString *)getProcessPathForPID:(pid_t)processID;
-- (NSString *)getProcessNameForPID:(pid_t)processID executablePath:(NSString *)executablePath;
-- (NSString *)getIconForExecutablePath:(NSString *)executablePath;
-
 @end
 
 

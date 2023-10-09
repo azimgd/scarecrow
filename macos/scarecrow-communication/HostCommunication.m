@@ -41,9 +41,12 @@ static HostCommunication *sharedInstance = nil;
   [[HostCommunication shared].connection suspend];
 }
 
-- (void)handleDataFromFlowEvent:(NSDictionary *)payload
+- (void)handleDataFromFlowEvent:(NSDictionary *)flowPayload processPayload:(NSDictionary *)processPayload
 {
-  [[NSNotificationCenter defaultCenter] postNotificationName:@"handleDataFromFlowEvent" object:nil userInfo:payload];
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"handleDataFromFlowEvent" object:nil userInfo:@{
+    @"flow": flowPayload,
+    @"process": processPayload,
+  }];
 }
 
 - (void)updateFlowRule:(NSString *)bundleIdentifier payload:(BOOL)payload

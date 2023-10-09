@@ -27,7 +27,7 @@ function FlowsPerHostnameTable({
           onPress={() => handleDataItemPress(flow.bundleIdentifier)}
           key={index}>
           <ListItem
-            title={flow.localizedName}
+            title={flow.name}
             subTitle={<FlowsTableSubTitle flow={flow} />}
             iconAfter={
               <FlowsTableIconRight

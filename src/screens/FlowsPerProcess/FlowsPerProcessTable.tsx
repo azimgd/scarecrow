@@ -28,7 +28,7 @@ function FlowsPerProcessTable({
           key={index}>
           <ListItem
             backgroundColor="$backgroundTransparent"
-            title={flow.localizedName}
+            title={flow.name}
             subTitle={<FlowsTableSubTitle flow={flow} />}
             iconAfter={
               <FlowsTableIconRight

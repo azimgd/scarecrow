@@ -4,15 +4,14 @@ export type handleDataFromFlowEventPayload = {
   remoteEndpoint: string;
   remoteUrl: string;
   direction: string;
-  localizedName: string;
+  name: string;
   bundleIdentifier: string;
   rule: {
     allowed: boolean;
   };
   size: number;
-  date: string;
 
-  image: number;
+  icon: string;
   totalCount: number;
 };
 

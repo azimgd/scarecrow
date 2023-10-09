@@ -12,14 +12,13 @@
 
 @interface Flow : RLMObject
 
-@property NSString *identifier;
 @property NSString *direction;
 @property NSString *remoteEndpoint;
 @property NSString *remoteUrl;
-@property NSString *localizedName;
+@property NSString *identifier;
+@property NSString *name;
 @property NSString *bundleIdentifier;
-@property NSDate *date;
-@property NSNumber<RLMFloat> *size;
+@property NSString *path;
 
 @end
 

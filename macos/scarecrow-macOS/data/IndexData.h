@@ -22,7 +22,7 @@
 - (NSNumber *)countFlowsWithPredicate:(NSPredicate *)predicate;
 - (NSArray *)getFlowsWithGroupKeys:(NSArray<NSString *> *)groupKeys;
 - (NSNumber *)countFlowsWithGroupKeys:(NSArray<NSString *> *)groupKeys;
-- (void)createFlow:(NSDictionary *)payload;
+- (void)createFlow:(NSDictionary *)flowPayload processPayload:(NSDictionary *)processPayload;
 - (void)updateFlowRule:(NSString *)bundleIdentifier payload:(BOOL)payload;
 - (NSArray *)getRules;
 

@@ -19,7 +19,7 @@
 @protocol HostCommunicationProtocol
 - (void)startConnection;
 - (void)stopConnection;
-- (void)handleDataFromFlowEvent:(NSDictionary *)payload;
+- (void)handleDataFromFlowEvent:(NSDictionary *)flowPayload processPayload:(NSDictionary *)payload;
 - (void)updateFlowRule:(NSString *)bundleIdentifier payload:(BOOL)payload;
 @end
 

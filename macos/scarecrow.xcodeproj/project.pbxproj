@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		053805BA2AD4349B00647BF8 /* ProcessHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 0582000B2AD430DD00AD82C0 /* ProcessHelpers.m */; };
 		055CC6772AC6C91E00DBFB48 /* Validator.m in Sources */ = {isa = PBXBuildFile; fileRef = 055CC6762AC6C91E00DBFB48 /* Validator.m */; };
 		056402E82ACF305900D427EF /* Process.m in Sources */ = {isa = PBXBuildFile; fileRef = 056402E72ACF305900D427EF /* Process.m */; };
+		0582000D2AD430FE00AD82C0 /* ProcessHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 0582000B2AD430DD00AD82C0 /* ProcessHelpers.m */; };
 		059792062AB47AAF00348AB8 /* HostCommunication.m in Sources */ = {isa = PBXBuildFile; fileRef = 059792022AB47AAF00348AB8 /* HostCommunication.m */; };
 		059792072AB47AAF00348AB8 /* ExtensionCommunication.m in Sources */ = {isa = PBXBuildFile; fileRef = 059792032AB47AAF00348AB8 /* ExtensionCommunication.m */; };
 		0597920A2AB47AFB00348AB8 /* NetworkExtensionProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 059792092AB47AFB00348AB8 /* NetworkExtensionProvider.m */; };
@@ -69,6 +71,8 @@
 		055CC6762AC6C91E00DBFB48 /* Validator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Validator.m; sourceTree = "<group>"; };
 		056402E72ACF305900D427EF /* Process.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Process.m; sourceTree = "<group>"; };
 		056402E92ACF306400D427EF /* Process.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Process.h; sourceTree = "<group>"; };
+		0582000B2AD430DD00AD82C0 /* ProcessHelpers.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProcessHelpers.m; sourceTree = "<group>"; };
+		0582000E2AD4311900AD82C0 /* ProcessHelpers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProcessHelpers.h; sourceTree = "<group>"; };
 		059791CE2AB45DED00348AB8 /* scarecrow-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "scarecrow-iOS.entitlements"; sourceTree = "<group>"; };
 		059791CF2AB45F1E00348AB8 /* scarecrow-macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "scarecrow-macOS.entitlements"; sourceTree = "<group>"; };
 		059791FE2AB47AAF00348AB8 /* ExtensionCommunicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtensionCommunicationDelegate.h; sourceTree = "<group>"; };
@@ -201,6 +205,8 @@
 				05CBE56A2AB6DFCA000F6BC1 /* FlowHolder.m */,
 				05C0D5722ACD99A300A0846D /* ProcessHolder.h */,
 				05C0D5732ACD99AD00A0846D /* ProcessHolder.m */,
+				0582000E2AD4311900AD82C0 /* ProcessHelpers.h */,
+				0582000B2AD430DD00AD82C0 /* ProcessHelpers.m */,
 			);
 			path = holders;
 			sourceTree = "<group>";
@@ -539,6 +545,7 @@
 				05C0D5742ACD99B400A0846D /* ProcessHolder.m in Sources */,
 				059792392AB4881700348AB8 /* ExtensionCommunication.m in Sources */,
 				0597921C2AB47E6500348AB8 /* FilterDataProvider.m in Sources */,
+				0582000D2AD430FE00AD82C0 /* ProcessHelpers.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -562,6 +569,7 @@
 				0597920D2AB47B3900348AB8 /* ExtensionCommunication.m in Sources */,
 				05B70CE12AC8878C00BE9F95 /* Flow.m in Sources */,
 				05C0D5502ACB36BB00A0846D /* Rule.m in Sources */,
+				053805BA2AD4349B00647BF8 /* ProcessHelpers.m in Sources */,
 				059792102AB47B3900348AB8 /* HostCommunication.h in Sources */,
 				059792112AB47B3900348AB8 /* HostCommunication.m in Sources */,
 				514201582437B4B40078DB4F /* main.m in Sources */,

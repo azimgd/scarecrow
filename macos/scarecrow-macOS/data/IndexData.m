@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "IndexData.h"
+#import "ProcessHelpers.h"
 
 @implementation IndexData
 
@@ -21,9 +22,8 @@ static IndexData *sharedInstance = nil;
       @"direction",
       @"remoteEndpoint",
       @"remoteUrl",
-      @"localizedName",
+      @"name",
       @"bundleIdentifier",
-      @"date"
     ];
     sharedInstance.ruleKeys = @[
       @"remoteEndpoint",
@@ -38,18 +38,15 @@ static IndexData *sharedInstance = nil;
 {
   RLMRealm *realm = [RLMRealm defaultRealm];
   RLMResults *flows = [Flow objectsInRealm:realm withPredicate:predicate];
-  RLMResults *sortedFlows = [flows sortedResultsUsingKeyPath:@"date" ascending:NO];
 
   NSMutableArray *response = [NSMutableArray array];
 
-  for (Flow *flow in sortedFlows) {
+  for (Flow *flow in flows) {
     NSDictionary *flowDictionary = [flow dictionaryWithValuesForKeys:sharedInstance.flowKeys];
     NSMutableDictionary *item = [NSMutableDictionary dictionaryWithDictionary:flowDictionary];
     
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
-    item[@"date"] = [dateFormat stringFromDate:item[@"date"]];
-    
+    item[@"icon"] = getIconForExecutablePath(flow.bundleIdentifier);
+
     [response addObject:item];
     
     if (response.count >= 100) {
@@ -72,8 +69,7 @@ static IndexData *sharedInstance = nil;
 {
   RLMRealm *realm = [RLMRealm defaultRealm];
   RLMResults *flows = [Flow allObjectsInRealm:realm];
-  RLMResults *sortedFlows = [flows sortedResultsUsingKeyPath:@"date" ascending:NO];
-  RLMResults *distinctFlows = [sortedFlows distinctResultsUsingKeyPaths:groupKeys];
+  RLMResults *distinctFlows = [flows distinctResultsUsingKeyPaths:groupKeys];
 
   NSMutableArray *response = [NSMutableArray array];
 
@@ -88,6 +84,7 @@ static IndexData *sharedInstance = nil;
 
     RLMResults *flows = [Flow objectsInRealm:realm withPredicate:predicate];
     item[@"totalCount"] = @([flows count]);
+    item[@"icon"] = getIconForExecutablePath(flow.bundleIdentifier);
 
     [response addObject:item];
     
@@ -108,10 +105,18 @@ static IndexData *sharedInstance = nil;
   return @(distinctFlows.count);
 }
 
-- (void)createFlow:(NSDictionary *)payload
+- (void)createFlow:(NSDictionary *)flowPayload processPayload:(NSDictionary *)processPayload
 {
   RLMRealm *realm = [RLMRealm defaultRealm];
-  Flow *flow = [[Flow alloc] initWithValue:payload];
+  Flow *flow = [[Flow alloc] initWithValue:@{
+    @"identifier": flowPayload[@"identifier"] ?: @"",
+    @"direction": flowPayload[@"direction"] ?: @"",
+    @"remoteEndpoint": flowPayload[@"remoteEndpoint"] ?: @"",
+    @"remoteUrl": flowPayload[@"remoteUrl"] ?: @"",
+    @"path": processPayload[@"path"] ?: @"",
+    @"name": processPayload[@"name"] ?: @"",
+    @"bundleIdentifier": processPayload[@"bundleIdentifier"] ?: @"",
+  }];
 
   [realm transactionWithBlock:^() {
     [realm addOrUpdateObject:flow];

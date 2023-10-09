@@ -131,7 +131,7 @@ RCT_EXPORT_METHOD(getRules:(RCTPromiseResolveBlock)resolve
 }
 
 - (void)handleDataFromFlowEvent:(NSNotification*)sender{
-  [IndexData.shared createFlow:sender.userInfo];
+  [IndexData.shared createFlow:sender.userInfo[@"flow"] processPayload:sender.userInfo[@"process"]];
   [self sendEventWithName:@"handleDataFromFlowEvent" body:@{}];
 }
 

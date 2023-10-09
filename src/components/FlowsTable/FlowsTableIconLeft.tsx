@@ -12,12 +12,8 @@ type FlowsTableIconLeftProps = PropsWithChildren<{
 function FlowsTableIconLeftHostname({
   flow,
 }: FlowsTableIconLeftProps): JSX.Element {
-  return flow.image ? (
-    <Image
-      source={{uri: `data:image/png;base64,${flow.image}`}}
-      width={20}
-      height={20}
-    />
+  return flow.icon ? (
+    <Image source={{uri: flow.icon}} width={20} height={20} />
   ) : (
     <AppWindow width={20} height={20} strokeWidth={1.5} />
   );
