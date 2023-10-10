@@ -15,8 +15,8 @@
 @property (class, nonatomic, readonly) HostCommunication *shared;
 @property (weak) NSXPCConnection *connection;
 
-- (void)startConnection;
-- (void)stopConnection;
+- (void)handleConnectionStart;
+- (void)handleConnectionStop;
 
 @end
 

@@ -3,7 +3,7 @@ import * as ScarecrowNetwork from '../../ScarecrowNetwork';
 import {Switch} from 'tamagui';
 
 type FlowsTableIconRightProps = PropsWithChildren<{
-  flow: ScarecrowNetwork.handleDataFromFlowEventPayload;
+  flow: ScarecrowNetwork.handleFlowRequestPayload;
   handleDataItemCheckedChange: (
     bundleIdentifier: string,
     checked: boolean,

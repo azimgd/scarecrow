@@ -123,7 +123,7 @@ static IndexData *sharedInstance = nil;
   }];
 }
 
-- (void)updateFlowRule:(NSString *)bundleIdentifier payload:(BOOL)payload
+- (void)handleFlowRuleUpdate:(NSString *)bundleIdentifier payload:(BOOL)payload
 {
   RLMRealm *realm = [RLMRealm defaultRealm];
   NSPredicate *predicate = [NSPredicate predicateWithFormat:@"bundleIdentifier = %@", bundleIdentifier];

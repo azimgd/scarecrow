@@ -265,11 +265,11 @@
 				059791FD2AB47A8F00348AB8 /* scarecrow-communication */,
 				059791CE2AB45DED00348AB8 /* scarecrow-iOS.entitlements */,
 				5142014A2437B4B30078DB4F /* scarecrow-macOS */,
-				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				059792192AB47E6500348AB8 /* scarecrow-network */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				1517CA80ACE7A3CDC372A4E4 /* Pods */,
+				832341AE1AAA6A7D00B99B32 /* Libraries */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";

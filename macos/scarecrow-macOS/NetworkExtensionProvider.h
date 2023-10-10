@@ -15,9 +15,9 @@
   @property (class, nonatomic, readonly) NetworkExtensionProvider *shared;
   @property (nonatomic, assign) BOOL active;
 
-  - (void)activate;
-  - (void)deactivate;
-  - (void)status:(void(^)(BOOL status))callback;
+  - (void)handleExtensionStart;
+  - (void)handleExtensionStop;
+  - (void)handleExtensionStatusRequest:(void(^)(BOOL status))callback;
 @end
 
 #endif /* FilterDataExtensionProvider_h */

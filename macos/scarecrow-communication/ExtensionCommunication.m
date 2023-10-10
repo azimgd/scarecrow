@@ -20,15 +20,15 @@ static ExtensionCommunication *sharedInstance = nil;
   return sharedInstance;
 }
 
-- (void)startConnection {
+- (void)handleConnectionStart {
 }
 
-- (void)stopConnection {
+- (void)handleConnectionStop {
 }
 
-- (void)updateFlowRule:(NSString *)bundleIdentifier payload:(BOOL)payload
+- (void)handleFlowRuleUpdate:(NSString *)bundleIdentifier payload:(BOOL)payload
 {
-  [[NSNotificationCenter defaultCenter] postNotificationName:@"updateFlowRule" object:nil userInfo:@{
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"handleFlowRuleUpdate" object:nil userInfo:@{
     @"bundleIdentifier": bundleIdentifier,
     @"payload": @(payload),
   }];

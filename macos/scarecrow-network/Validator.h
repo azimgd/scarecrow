@@ -13,7 +13,7 @@
 @property (class, nonatomic, readonly) Validator *shared;
 @property (nonatomic, readwrite) NSMutableDictionary *rules;
 
-- (void)updateFlowRule:(NSNotification *)sender;
+- (void)handleFlowRuleUpdate:(NSNotification *)sender;
 
 @end
 

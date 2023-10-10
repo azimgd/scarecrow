@@ -17,7 +17,7 @@ function FlowsPerProcess(): JSX.Element {
   const navigation = useNavigation<FlowsPerProcessScreenNavigationProp>();
 
   const [tableData, setTableData] = React.useState<
-    ScarecrowNetwork.handleDataFromFlowEventPayload[]
+    ScarecrowNetwork.handleFlowRequestPayload[]
   >([]);
 
   const handleDataItemPress = React.useCallback((bundleIdentifier: string) => {
@@ -27,14 +27,14 @@ function FlowsPerProcess(): JSX.Element {
 
   const handleDataItemCheckedChange = React.useCallback(
     (bundleIdentifier: string, checked: boolean) => {
-      ScarecrowNetwork.updateFlowRule(bundleIdentifier, checked);
+      ScarecrowNetwork.handleFlowRuleUpdate(bundleIdentifier, checked);
     },
     [],
   );
 
   React.useEffect(() => {
     ScarecrowNetwork.getGrouppedFlowsByBundleIdentifier().then(setTableData);
-    const listener = ScarecrowNetwork.handleDataFromFlowEvent(() =>
+    const listener = ScarecrowNetwork.handleFlowRequest(() =>
       ScarecrowNetwork.getGrouppedFlowsByBundleIdentifier().then(setTableData),
     );
 

@@ -18,17 +18,17 @@ RCT_EXPORT_MODULE();
 {
   self = [super init];
   NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
-  [defaultCenter addObserver:self selector:@selector(handleDataFromFlowEvent:) name:@"handleDataFromFlowEvent" object:nil];
-  [defaultCenter addObserver:self selector:@selector(startConnection:) name:@"startConnection" object:nil];
-  [defaultCenter addObserver:self selector:@selector(stopConnection:) name:@"stopConnection" object:nil];
+  [defaultCenter addObserver:self selector:@selector(handleFlowRequest:) name:@"handleFlowRequest" object:nil];
+  [defaultCenter addObserver:self selector:@selector(handleConnectionStart:) name:@"handleConnectionStart" object:nil];
+  [defaultCenter addObserver:self selector:@selector(handleConnectionStop:) name:@"handleConnectionStop" object:nil];
   return self;
 }
 
 - (NSArray<NSString *> *)supportedEvents {
   return @[
-    @"startConnection",
-    @"stopConnection",
-    @"handleDataFromFlowEvent",
+    @"handleConnectionStart",
+    @"handleConnectionStop",
+    @"handleFlowRequest",
   ];
 }
 
@@ -37,26 +37,26 @@ RCT_EXPORT_MODULE();
   return YES;
 }
 
-RCT_EXPORT_METHOD(activate:(RCTPromiseResolveBlock)resolve
+RCT_EXPORT_METHOD(handleExtensionStart:(RCTPromiseResolveBlock)resolve
 error:(__unused RCTResponseSenderBlock)reject)
 {
-  [[NetworkExtensionProvider shared] activate];
+  [NetworkExtensionProvider.shared handleExtensionStart];
   resolve(@YES);
 }
 
-RCT_EXPORT_METHOD(deactivate:(RCTPromiseResolveBlock)resolve
+RCT_EXPORT_METHOD(handleExtensionStop:(RCTPromiseResolveBlock)resolve
 error:(__unused RCTResponseSenderBlock)reject)
 {
-  [[NetworkExtensionProvider shared] deactivate];
+  [NetworkExtensionProvider.shared handleExtensionStop];
   resolve(@NO);
 }
 
-RCT_EXPORT_METHOD(getStatus:(RCTPromiseResolveBlock)resolve
+RCT_EXPORT_METHOD(handleExtensionStatusRequest:(RCTPromiseResolveBlock)resolve
 error:(__unused RCTResponseSenderBlock)reject)
 {
-  [[NetworkExtensionProvider shared] status:^(BOOL status) {
-    if (status && ![HostCommunication shared].connection) {
-      [[HostCommunication shared] startConnection];
+  [NetworkExtensionProvider.shared handleExtensionStatusRequest:^(BOOL status) {
+    if (status && !HostCommunication.shared.connection) {
+      [HostCommunication.shared handleConnectionStart];
     }
   
     resolve(@(status));
@@ -113,13 +113,13 @@ RCT_EXPORT_METHOD(getFlowsByRemoteEndpoint:(NSString *)remoteEndpoint
   resolve(response);
 }
 
-RCT_EXPORT_METHOD(updateFlowRule:(NSString *)bundleIdentifier
+RCT_EXPORT_METHOD(handleFlowRuleUpdate:(NSString *)bundleIdentifier
   payload:(BOOL)payload
   resolve:(RCTPromiseResolveBlock)resolve
   error:(__unused RCTResponseSenderBlock)reject)
 {
-  [IndexData.shared updateFlowRule:bundleIdentifier payload:payload];
-  [[HostCommunication shared] updateFlowRule:bundleIdentifier payload:payload];
+  [IndexData.shared handleFlowRuleUpdate:bundleIdentifier payload:payload];
+  [HostCommunication.shared handleFlowRuleUpdate:bundleIdentifier payload:payload];
   resolve(@{});
 }
 
@@ -130,19 +130,19 @@ RCT_EXPORT_METHOD(getRules:(RCTPromiseResolveBlock)resolve
   resolve(response);
 }
 
-- (void)handleDataFromFlowEvent:(NSNotification*)sender{
+- (void)handleFlowRequest:(NSNotification*)sender{
   [IndexData.shared createFlow:sender.userInfo[@"flow"] processPayload:sender.userInfo[@"process"]];
-  [self sendEventWithName:@"handleDataFromFlowEvent" body:@{}];
+  [self sendEventWithName:@"handleFlowRequest" body:@{}];
 }
 
-- (void)startConnection:(NSNotification*)sender{
-  [[HostCommunication shared] startConnection];
-  [self sendEventWithName:@"startConnection" body:@{}];
+- (void)handleConnectionStart:(NSNotification*)sender{
+  [HostCommunication.shared handleConnectionStart];
+  [self sendEventWithName:@"handleConnectionStart" body:@{}];
 }
 
-- (void)stopConnection:(NSNotification*)sender{
-  [[HostCommunication shared] stopConnection];
-  [self sendEventWithName:@"stopConnection" body:@{}];
+- (void)handleConnectionStop:(NSNotification*)sender{
+  [HostCommunication.shared handleConnectionStop];
+  [self sendEventWithName:@"handleConnectionStop" body:@{}];
 }
 
 @end

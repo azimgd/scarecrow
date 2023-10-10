@@ -6,14 +6,14 @@ import Window from '../../components/Window';
 
 function FlowRules(): JSX.Element {
   const [tableData, setTableData] = React.useState<
-    ScarecrowNetwork.handleDataFromFlowEventPayload[]
+    ScarecrowNetwork.handleFlowRequestPayload[]
   >([]);
 
   const handleDataItemPress = React.useCallback(() => {}, []);
 
   const handleDataItemCheckedChange = React.useCallback(
     (bundleIdentifier: string, checked: boolean) => {
-      ScarecrowNetwork.updateFlowRule(bundleIdentifier, checked);
+      ScarecrowNetwork.handleFlowRuleUpdate(bundleIdentifier, checked);
     },
     [],
   );

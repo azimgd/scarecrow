@@ -21,37 +21,37 @@ static HostCommunication *sharedInstance = nil;
   return sharedInstance;
 }
 
-- (void)startConnection
+- (void)handleConnectionStart
 {
   NSXPCConnection *newConnection = [[NSXPCConnection alloc] initWithMachServiceName:@"B6BB88CAP5.com.azimgd.scarecrow.scarecrow-network" options:0];
  
   newConnection.remoteObjectInterface = [NSXPCInterface interfaceWithProtocol:@protocol(ExtensionCommunicationProtocol)];
   newConnection.exportedInterface = [NSXPCInterface interfaceWithProtocol:@protocol(HostCommunicationProtocol)];
-  newConnection.exportedObject = [HostCommunication shared];
+  newConnection.exportedObject = sharedInstance;
   
   [newConnection resume];
-  [HostCommunication shared].connection = newConnection;
+  sharedInstance.connection = newConnection;
   
-  [[[HostCommunication shared].connection remoteObjectProxy] startConnection];
+  [sharedInstance.connection.remoteObjectProxy handleConnectionStart];
 }
 
-- (void)stopConnection
+- (void)handleConnectionStop
 {
-  [[[HostCommunication shared].connection remoteObjectProxy] stopConnection];
-  [[HostCommunication shared].connection suspend];
+  [sharedInstance.connection.remoteObjectProxy handleConnectionStop];
+  [sharedInstance.connection suspend];
 }
 
-- (void)handleDataFromFlowEvent:(NSDictionary *)flowPayload processPayload:(NSDictionary *)processPayload
+- (void)handleFlowRequest:(NSDictionary *)flowPayload processPayload:(NSDictionary *)processPayload
 {
-  [[NSNotificationCenter defaultCenter] postNotificationName:@"handleDataFromFlowEvent" object:nil userInfo:@{
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"handleFlowRequest" object:nil userInfo:@{
     @"flow": flowPayload,
     @"process": processPayload,
   }];
 }
 
-- (void)updateFlowRule:(NSString *)bundleIdentifier payload:(BOOL)payload
+- (void)handleFlowRuleUpdate:(NSString *)bundleIdentifier payload:(BOOL)payload
 {
-  [[[HostCommunication shared].connection remoteObjectProxy] updateFlowRule:bundleIdentifier payload:payload];
+  [sharedInstance.connection.remoteObjectProxy handleFlowRuleUpdate:bundleIdentifier payload:payload];
 }
 
 @end

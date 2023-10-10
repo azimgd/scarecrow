@@ -19,12 +19,12 @@ static Validator *sharedInstance = nil;
     sharedInstance = [[Validator alloc] init];
     
     sharedInstance.rules = [[NSMutableDictionary alloc] initWithDictionary:@{}];
-    [[NSNotificationCenter defaultCenter]addObserver:sharedInstance selector:@selector(updateFlowRule:) name:@"updateFlowRule" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:sharedInstance selector:@selector(handleFlowRuleUpdate:) name:@"handleFlowRuleUpdate" object:nil];
   });
   return sharedInstance;
 }
 
-- (void)updateFlowRule:(NSNotification*)sender {
+- (void)handleFlowRuleUpdate:(NSNotification*)sender {
   NSString *bundleIdentifier = sender.userInfo[@"bundleIdentifier"];
   BOOL payload = [sender.userInfo[@"payload"] boolValue];
   sharedInstance.rules[bundleIdentifier] = @(payload);

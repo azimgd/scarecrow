@@ -5,7 +5,7 @@ import FlowsTableSubTitle from '../../components/FlowsTable/FlowsTableSubTitle';
 import FlowsTableIconLeft from '../../components/FlowsTable/FlowsTableIconLeft';
 
 type FlowsPerProcessExpandTableProps = PropsWithChildren<{
-  data: ScarecrowNetwork.handleDataFromFlowEventPayload[];
+  data: ScarecrowNetwork.handleFlowRequestPayload[];
 }>;
 
 function FlowsPerProcessExpandTable({

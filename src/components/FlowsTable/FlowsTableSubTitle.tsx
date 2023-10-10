@@ -3,7 +3,7 @@ import {SizableText, XStack} from 'tamagui';
 import * as ScarecrowNetwork from '../../ScarecrowNetwork';
 
 type FlowsTableSubTitleProps = PropsWithChildren<{
-  flow: ScarecrowNetwork.handleDataFromFlowEventPayload;
+  flow: ScarecrowNetwork.handleFlowRequestPayload;
 }>;
 
 function FlowsTableSubTitle({flow}: FlowsTableSubTitleProps): JSX.Element {

@@ -1,6 +1,6 @@
 import {NativeEventEmitter, NativeModules} from 'react-native';
 
-export type handleDataFromFlowEventPayload = {
+export type handleFlowRequestPayload = {
   remoteEndpoint: string;
   remoteUrl: string;
   direction: string;
@@ -28,9 +28,9 @@ export const countGrouppedFlowsByRemoteEndpoint =
   ScarecrowNetwork.countGrouppedFlowsByRemoteEndpoint;
 export const getFlowsByBundleIdentifier =
   ScarecrowNetwork.getFlowsByBundleIdentifier;
-export const updateFlowRule = ScarecrowNetwork.updateFlowRule;
+export const handleFlowRuleUpdate = ScarecrowNetwork.handleFlowRuleUpdate;
 export const getRules = ScarecrowNetwork.getRules;
 
-export const handleDataFromFlowEvent = (
-  listener: (event: handleDataFromFlowEventPayload) => void,
-) => eventEmitter.addListener('handleDataFromFlowEvent', listener);
+export const handleFlowRequest = (
+  listener: (event: handleFlowRequestPayload) => void,
+) => eventEmitter.addListener('handleFlowRequest', listener);

@@ -6,7 +6,7 @@ import RulesTableIconLeft from '../../components/RulesTable/RulesTableIconLeft';
 import RulesTableIconRight from '../../components/RulesTable/RulesTableIconRight';
 
 type FlowsPerHostnameTableProps = PropsWithChildren<{
-  data: ScarecrowNetwork.handleDataFromFlowEventPayload[];
+  data: ScarecrowNetwork.handleFlowRequestPayload[];
   handleDataItemPress: (bundleIdentifier: string) => void;
   handleDataItemCheckedChange: (
     bundleIdentifier: string,

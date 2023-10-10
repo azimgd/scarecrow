@@ -10,17 +10,17 @@
 
 // Host -> Extension
 @protocol ExtensionCommunicationProtocol
-- (void)startConnection;
-- (void)stopConnection;
-- (void)updateFlowRule:(NSString *)bundleIdentifier payload:(BOOL)payload;
+- (void)handleConnectionStart;
+- (void)handleConnectionStop;
+- (void)handleFlowRuleUpdate:(NSString *)bundleIdentifier payload:(BOOL)payload;
 @end
 
 // Extension -> Host
 @protocol HostCommunicationProtocol
-- (void)startConnection;
-- (void)stopConnection;
-- (void)handleDataFromFlowEvent:(NSDictionary *)flowPayload processPayload:(NSDictionary *)payload;
-- (void)updateFlowRule:(NSString *)bundleIdentifier payload:(BOOL)payload;
+- (void)handleConnectionStart;
+- (void)handleConnectionStop;
+- (void)handleFlowRequest:(NSDictionary *)flowPayload processPayload:(NSDictionary *)payload;
+- (void)handleFlowRuleUpdate:(NSString *)bundleIdentifier payload:(BOOL)payload;
 @end
 
 #endif /* CommunicationProtocol_h */

@@ -15,7 +15,7 @@ function FlowsPerProcessExpand(): JSX.Element {
   const route = useRoute<FlowsPerProcessExpandScreenRouteProp>();
 
   const [tableData, setTableData] = React.useState<
-    ScarecrowNetwork.handleDataFromFlowEventPayload[]
+    ScarecrowNetwork.handleFlowRequestPayload[]
   >([]);
 
   React.useEffect(() => {

@@ -5,7 +5,7 @@ import {ArrowUp, ArrowDown} from '@tamagui/lucide-icons';
 import {AppWindow} from '@tamagui/lucide-icons';
 
 type FlowsTableIconLeftProps = PropsWithChildren<{
-  flow: ScarecrowNetwork.handleDataFromFlowEventPayload;
+  flow: ScarecrowNetwork.handleFlowRequestPayload;
   type?: 'process' | 'hostname' | 'default';
 }>;
 

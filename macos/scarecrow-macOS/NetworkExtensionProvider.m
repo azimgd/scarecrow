@@ -22,7 +22,7 @@ static NetworkExtensionProvider *sharedInstance = nil;
   return sharedInstance;
 }
 
-- (void)activate
+- (void)handleExtensionStart
 {
   OSSystemExtensionRequest *activateSystemRequest = [OSSystemExtensionRequest
     activationRequestForExtension:networkExtensionBundleId
@@ -34,7 +34,7 @@ static NetworkExtensionProvider *sharedInstance = nil;
   self.active = true;
 }
 
-- (void)deactivate
+- (void)handleExtensionStop
 {
   OSSystemExtensionRequest *deactivateSystemRequest = [OSSystemExtensionRequest
     deactivationRequestForExtension:networkExtensionBundleId
@@ -46,7 +46,7 @@ static NetworkExtensionProvider *sharedInstance = nil;
   self.active = false;
 }
 
-- (void)status:(void (^)(BOOL))callback
+- (void)handleExtensionStatusRequest:(void (^)(BOOL))callback
 {
   [NEFilterManager.sharedManager loadFromPreferencesWithCompletionHandler:^(NSError * _Nullable error) {
     callback(NEFilterManager.sharedManager.isEnabled);
@@ -85,7 +85,7 @@ static NetworkExtensionProvider *sharedInstance = nil;
 
       [NEFilterManager.sharedManager saveToPreferencesWithCompletionHandler:^(NSError * _Nullable error) {}];
 
-      [[NSNotificationCenter defaultCenter] postNotificationName:@"startConnection" object:nil userInfo:@{}];
+      [[NSNotificationCenter defaultCenter] postNotificationName:@"handleConnectionStart" object:nil userInfo:@{}];
     }];
   } else {
     [NEFilterManager.sharedManager loadFromPreferencesWithCompletionHandler:^(NSError * _Nullable error) {
@@ -93,7 +93,7 @@ static NetworkExtensionProvider *sharedInstance = nil;
 
       [NEFilterManager.sharedManager removeFromPreferencesWithCompletionHandler:^(NSError * _Nullable error) {}];
 
-      [[NSNotificationCenter defaultCenter] postNotificationName:@"stopConnection" object:nil userInfo:@{}];
+      [[NSNotificationCenter defaultCenter] postNotificationName:@"handleConnectionStop" object:nil userInfo:@{}];
     }];
   }
 }

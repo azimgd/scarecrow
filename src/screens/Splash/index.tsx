@@ -24,7 +24,7 @@ function Splash(): JSX.Element {
   const [status, setStatus] = React.useState<boolean | undefined>(false);
 
   React.useEffect(() => {
-    ScarecrowNetwork.getStatus().then(setStatus);
+    ScarecrowNetwork.handleExtensionStatusRequest().then(setStatus);
   }, []);
 
   React.useEffect(() => {
@@ -36,11 +36,11 @@ function Splash(): JSX.Element {
   const handlePress = React.useCallback(() => {
     setStatus(undefined);
 
-    ScarecrowNetwork.getStatus().then((status: boolean) => {
+    ScarecrowNetwork.handleExtensionStatusRequest().then((status: boolean) => {
       if (status) {
-        ScarecrowNetwork.deactivate().then(setStatus);
+        ScarecrowNetwork.handleExtensionStop().then(setStatus);
       } else {
-        ScarecrowNetwork.activate().then(setStatus);
+        ScarecrowNetwork.handleExtensionStart().then(setStatus);
       }
     });
   }, []);

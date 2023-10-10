@@ -3,7 +3,7 @@ import * as ScarecrowNetwork from '../../ScarecrowNetwork';
 import {StopCircle} from '@tamagui/lucide-icons';
 
 type RulesTableIconLeftProps = PropsWithChildren<{
-  rule: ScarecrowNetwork.handleDataFromFlowEventPayload;
+  rule: ScarecrowNetwork.handleFlowRequestPayload;
 }>;
 
 function RulesTableIconLeft({rule}: RulesTableIconLeftProps): JSX.Element {

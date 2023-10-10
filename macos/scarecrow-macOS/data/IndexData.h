@@ -23,7 +23,7 @@
 - (NSArray *)getFlowsWithGroupKeys:(NSArray<NSString *> *)groupKeys;
 - (NSNumber *)countFlowsWithGroupKeys:(NSArray<NSString *> *)groupKeys;
 - (void)createFlow:(NSDictionary *)flowPayload processPayload:(NSDictionary *)processPayload;
-- (void)updateFlowRule:(NSString *)bundleIdentifier payload:(BOOL)payload;
+- (void)handleFlowRuleUpdate:(NSString *)bundleIdentifier payload:(BOOL)payload;
 - (NSArray *)getRules;
 
 @end

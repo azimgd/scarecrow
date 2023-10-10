@@ -65,7 +65,7 @@
   ProcessHolder *processHolder = [[ProcessHolder alloc] init:flow];
 
   NSXPCConnection *connection = [ExtensionCommunication shared].connection;
-  [[connection remoteObjectProxy] handleDataFromFlowEvent:[flowHolder payload] processPayload:[processHolder payload]];
+  [[connection remoteObjectProxy] handleFlowRequest:[flowHolder payload] processPayload:[processHolder payload]];
   
   NEFilterDataVerdict *verdict;
 
@@ -88,7 +88,7 @@
   ProcessHolder *processHolder = [[ProcessHolder alloc] init:flow];
 
   NSXPCConnection *connection = [ExtensionCommunication shared].connection;
-  [[connection remoteObjectProxy] handleDataFromFlowEvent:[flowHolder payload] processPayload:[processHolder payload]];
+  [[connection remoteObjectProxy] handleFlowRequest:[flowHolder payload] processPayload:[processHolder payload]];
   
   NEFilterDataVerdict *verdict;
 
