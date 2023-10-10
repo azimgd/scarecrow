@@ -9,8 +9,8 @@
 #define IndexData_h
 
 #import "IndexData.h"
-#import "Flow.h"
-#import "Rule.h"
+#import "FlowModel.h"
+#import "RuleModel.h"
 
 @interface IndexData : NSObject
 

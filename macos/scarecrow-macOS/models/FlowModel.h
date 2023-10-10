@@ -1,16 +1,16 @@
 //
-//  Flow.h
+//  FlowModel.h
 //  scarecrow
 //
 //  Created by azim on 30.09.2023.
 //
 
-#ifndef Flow_h
-#define Flow_h
+#ifndef FlowModel_h
+#define FlowModel_h
 
 #import <Realm/Realm.h>
 
-@interface Flow : RLMObject
+@interface FlowModel : RLMObject
 
 @property NSString *direction;
 @property NSString *remoteEndpoint;
@@ -22,4 +22,4 @@
 
 @end
 
-#endif /* Flow_h */
+#endif /* FlowModel_h */

@@ -1,14 +1,14 @@
 //
-//  Process.m
+//  RuleModel.m
 //  scarecrow-macOS
 //
-//  Created by azim on 05.10.2023.
+//  Created by azim on 02.10.2023.
 //
 
 #import <Foundation/Foundation.h>
-#import "Process.h"
+#import "RuleModel.h"
 
-@implementation Process
+@implementation RuleModel
 
 + (NSString *)primaryKey {
   return @"identifier";

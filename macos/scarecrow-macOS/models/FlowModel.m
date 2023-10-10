@@ -1,14 +1,14 @@
 //
-//  Flow.m
+//  FlowModel.m
 //  scarecrow-macOS
 //
 //  Created by azim on 30.09.2023.
 //
 
 #import <Foundation/Foundation.h>
-#import "Flow.h"
+#import "FlowModel.h"
 
-@implementation Flow
+@implementation FlowModel
 
 + (NSString *)primaryKey {
   return @"identifier";

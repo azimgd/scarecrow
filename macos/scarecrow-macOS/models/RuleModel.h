@@ -1,16 +1,16 @@
 //
-//  Process.h
+//  RuleModel.h
 //  scarecrow
 //
-//  Created by azim on 05.10.2023.
+//  Created by azim on 02.10.2023.
 //
 
-#ifndef Process_h
-#define Process_h
+#ifndef RuleModel_h
+#define RuleModel_h
 
 #import <Realm/Realm.h>
 
-@interface Process : RLMObject
+@interface RuleModel : RLMObject
 
 @property NSString *identifier;
 @property NSString *remoteEndpoint;
@@ -19,4 +19,4 @@
 
 @end
 
-#endif /* Process_h */
+#endif /* RuleModel_h */

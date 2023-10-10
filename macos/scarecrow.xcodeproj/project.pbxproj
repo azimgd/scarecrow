@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		053805BA2AD4349B00647BF8 /* ProcessHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 0582000B2AD430DD00AD82C0 /* ProcessHelpers.m */; };
 		055CC6772AC6C91E00DBFB48 /* Validator.m in Sources */ = {isa = PBXBuildFile; fileRef = 055CC6762AC6C91E00DBFB48 /* Validator.m */; };
-		056402E82ACF305900D427EF /* Process.m in Sources */ = {isa = PBXBuildFile; fileRef = 056402E72ACF305900D427EF /* Process.m */; };
+		056402E82ACF305900D427EF /* ProcessModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 056402E72ACF305900D427EF /* ProcessModel.m */; };
 		0582000D2AD430FE00AD82C0 /* ProcessHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 0582000B2AD430DD00AD82C0 /* ProcessHelpers.m */; };
 		059792062AB47AAF00348AB8 /* HostCommunication.m in Sources */ = {isa = PBXBuildFile; fileRef = 059792022AB47AAF00348AB8 /* HostCommunication.m */; };
 		059792072AB47AAF00348AB8 /* ExtensionCommunication.m in Sources */ = {isa = PBXBuildFile; fileRef = 059792032AB47AAF00348AB8 /* ExtensionCommunication.m */; };
@@ -29,9 +29,9 @@
 		059792392AB4881700348AB8 /* ExtensionCommunication.m in Sources */ = {isa = PBXBuildFile; fileRef = 059792032AB47AAF00348AB8 /* ExtensionCommunication.m */; };
 		0597923A2AB4881D00348AB8 /* ExtensionCommunicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 059791FF2AB47AAF00348AB8 /* ExtensionCommunicationDelegate.m */; };
 		0597923B2AB4882400348AB8 /* HostCommunication.m in Sources */ = {isa = PBXBuildFile; fileRef = 059792022AB47AAF00348AB8 /* HostCommunication.m */; };
-		05B70CE12AC8878C00BE9F95 /* Flow.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B70CE02AC8878C00BE9F95 /* Flow.m */; };
+		05B70CE12AC8878C00BE9F95 /* FlowModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B70CE02AC8878C00BE9F95 /* FlowModel.m */; };
 		05C0D54D2ACADA2500A0846D /* IndexData.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C0D54C2ACADA2500A0846D /* IndexData.m */; };
-		05C0D5502ACB36BB00A0846D /* Rule.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C0D54F2ACB36BB00A0846D /* Rule.m */; };
+		05C0D5502ACB36BB00A0846D /* RuleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C0D54F2ACB36BB00A0846D /* RuleModel.m */; };
 		05C0D5742ACD99B400A0846D /* ProcessHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C0D5732ACD99AD00A0846D /* ProcessHolder.m */; };
 		05CBE56B2AB6DFCA000F6BC1 /* FlowHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 05CBE56A2AB6DFCA000F6BC1 /* FlowHolder.m */; };
 		05EE329F2AB5CAC000410158 /* libbsm.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 05EE329E2AB5CAB800410158 /* libbsm.tbd */; };
@@ -69,8 +69,8 @@
 /* Begin PBXFileReference section */
 		055CC6752AC6C91400DBFB48 /* Validator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Validator.h; sourceTree = "<group>"; };
 		055CC6762AC6C91E00DBFB48 /* Validator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Validator.m; sourceTree = "<group>"; };
-		056402E72ACF305900D427EF /* Process.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Process.m; sourceTree = "<group>"; };
-		056402E92ACF306400D427EF /* Process.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Process.h; sourceTree = "<group>"; };
+		056402E72ACF305900D427EF /* ProcessModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProcessModel.m; sourceTree = "<group>"; };
+		056402E92ACF306400D427EF /* ProcessModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProcessModel.h; sourceTree = "<group>"; };
 		0582000B2AD430DD00AD82C0 /* ProcessHelpers.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProcessHelpers.m; sourceTree = "<group>"; };
 		0582000E2AD4311900AD82C0 /* ProcessHelpers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProcessHelpers.h; sourceTree = "<group>"; };
 		059791CE2AB45DED00348AB8 /* scarecrow-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "scarecrow-iOS.entitlements"; sourceTree = "<group>"; };
@@ -93,12 +93,12 @@
 		059792202AB47E6500348AB8 /* scarecrow_network.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = scarecrow_network.entitlements; sourceTree = "<group>"; };
 		059792282AB484DB00348AB8 /* RCTScarecrowNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCTScarecrowNetwork.h; sourceTree = "<group>"; };
 		059792292AB484FC00348AB8 /* RCTScarecrowNetwork.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCTScarecrowNetwork.m; sourceTree = "<group>"; };
-		05B70CE02AC8878C00BE9F95 /* Flow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Flow.m; sourceTree = "<group>"; };
-		05B70CE22AC8879300BE9F95 /* Flow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Flow.h; sourceTree = "<group>"; };
+		05B70CE02AC8878C00BE9F95 /* FlowModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlowModel.m; sourceTree = "<group>"; };
+		05B70CE22AC8879300BE9F95 /* FlowModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlowModel.h; sourceTree = "<group>"; };
 		05C0D54C2ACADA2500A0846D /* IndexData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IndexData.m; sourceTree = "<group>"; };
 		05C0D54E2ACADA2F00A0846D /* IndexData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IndexData.h; sourceTree = "<group>"; };
-		05C0D54F2ACB36BB00A0846D /* Rule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Rule.m; sourceTree = "<group>"; };
-		05C0D5512ACB36C200A0846D /* Rule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Rule.h; sourceTree = "<group>"; };
+		05C0D54F2ACB36BB00A0846D /* RuleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RuleModel.m; sourceTree = "<group>"; };
+		05C0D5512ACB36C200A0846D /* RuleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RuleModel.h; sourceTree = "<group>"; };
 		05C0D5722ACD99A300A0846D /* ProcessHolder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProcessHolder.h; sourceTree = "<group>"; };
 		05C0D5732ACD99AD00A0846D /* ProcessHolder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProcessHolder.m; sourceTree = "<group>"; };
 		05CBE5692AB6DFBF000F6BC1 /* FlowHolder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlowHolder.h; sourceTree = "<group>"; };
@@ -176,17 +176,17 @@
 			path = "scarecrow-network";
 			sourceTree = "<group>";
 		};
-		05B70CDF2AC8877E00BE9F95 /* database */ = {
+		05B70CDF2AC8877E00BE9F95 /* models */ = {
 			isa = PBXGroup;
 			children = (
-				05B70CE02AC8878C00BE9F95 /* Flow.m */,
-				05B70CE22AC8879300BE9F95 /* Flow.h */,
-				05C0D54F2ACB36BB00A0846D /* Rule.m */,
-				05C0D5512ACB36C200A0846D /* Rule.h */,
-				056402E72ACF305900D427EF /* Process.m */,
-				056402E92ACF306400D427EF /* Process.h */,
+				05B70CE02AC8878C00BE9F95 /* FlowModel.m */,
+				05B70CE22AC8879300BE9F95 /* FlowModel.h */,
+				05C0D54F2ACB36BB00A0846D /* RuleModel.m */,
+				05C0D5512ACB36C200A0846D /* RuleModel.h */,
+				056402E72ACF305900D427EF /* ProcessModel.m */,
+				056402E92ACF306400D427EF /* ProcessModel.h */,
 			);
-			path = database;
+			path = models;
 			sourceTree = "<group>";
 		};
 		05C0D54B2ACADA1600A0846D /* data */ = {
@@ -235,7 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				05C0D54B2ACADA1600A0846D /* data */,
-				05B70CDF2AC8877E00BE9F95 /* database */,
+				05B70CDF2AC8877E00BE9F95 /* models */,
 				059792082AB47AFB00348AB8 /* NetworkExtensionProvider.h */,
 				059792092AB47AFB00348AB8 /* NetworkExtensionProvider.m */,
 				059792282AB484DB00348AB8 /* RCTScarecrowNetwork.h */,
@@ -563,12 +563,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0597922A2AB484FC00348AB8 /* RCTScarecrowNetwork.m in Sources */,
-				056402E82ACF305900D427EF /* Process.m in Sources */,
+				056402E82ACF305900D427EF /* ProcessModel.m in Sources */,
 				0597920B2AB47B3900348AB8 /* CommunicationProtocol.h in Sources */,
 				0597920C2AB47B3900348AB8 /* ExtensionCommunication.h in Sources */,
 				0597920D2AB47B3900348AB8 /* ExtensionCommunication.m in Sources */,
-				05B70CE12AC8878C00BE9F95 /* Flow.m in Sources */,
-				05C0D5502ACB36BB00A0846D /* Rule.m in Sources */,
+				05B70CE12AC8878C00BE9F95 /* FlowModel.m in Sources */,
+				05C0D5502ACB36BB00A0846D /* RuleModel.m in Sources */,
 				053805BA2AD4349B00647BF8 /* ProcessHelpers.m in Sources */,
 				059792102AB47B3900348AB8 /* HostCommunication.h in Sources */,
 				059792112AB47B3900348AB8 /* HostCommunication.m in Sources */,

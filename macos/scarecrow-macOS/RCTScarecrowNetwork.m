@@ -130,17 +130,20 @@ RCT_EXPORT_METHOD(getRules:(RCTPromiseResolveBlock)resolve
   resolve(response);
 }
 
-- (void)handleFlowRequest:(NSNotification*)sender{
+- (void)handleFlowRequest:(NSNotification*)sender
+{
   [IndexData.shared createFlow:sender.userInfo[@"flow"] processPayload:sender.userInfo[@"process"]];
   [self sendEventWithName:@"handleFlowRequest" body:@{}];
 }
 
-- (void)handleConnectionStart:(NSNotification*)sender{
+- (void)handleConnectionStart:(NSNotification*)sender
+{
   [HostCommunication.shared handleConnectionStart];
   [self sendEventWithName:@"handleConnectionStart" body:@{}];
 }
 
-- (void)handleConnectionStop:(NSNotification*)sender{
+- (void)handleConnectionStop:(NSNotification*)sender
+{
   [HostCommunication.shared handleConnectionStop];
   [self sendEventWithName:@"handleConnectionStop" body:@{}];
 }

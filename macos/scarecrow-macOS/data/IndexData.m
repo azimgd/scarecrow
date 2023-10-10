@@ -37,11 +37,11 @@ static IndexData *sharedInstance = nil;
 - (NSArray *)getFlowsWithPredicate:(NSPredicate *)predicate
 {
   RLMRealm *realm = [RLMRealm defaultRealm];
-  RLMResults *flows = [Flow objectsInRealm:realm withPredicate:predicate];
+  RLMResults *flows = [FlowModel objectsInRealm:realm withPredicate:predicate];
 
   NSMutableArray *response = [NSMutableArray array];
 
-  for (Flow *flow in flows) {
+  for (FlowModel *flow in flows) {
     NSDictionary *flowDictionary = [flow dictionaryWithValuesForKeys:sharedInstance.flowKeys];
     NSMutableDictionary *item = [NSMutableDictionary dictionaryWithDictionary:flowDictionary];
     
@@ -60,7 +60,7 @@ static IndexData *sharedInstance = nil;
 - (NSNumber *)countFlowsWithPredicate:(NSPredicate *)predicate
 {
   RLMRealm *realm = [RLMRealm defaultRealm];
-  RLMResults *flows = [Flow objectsInRealm:realm withPredicate:predicate];
+  RLMResults *flows = [FlowModel objectsInRealm:realm withPredicate:predicate];
 
   return @(flows.count);
 }
@@ -68,12 +68,12 @@ static IndexData *sharedInstance = nil;
 - (NSArray *)getFlowsWithGroupKeys:(NSArray<NSString *> *)groupKeys
 {
   RLMRealm *realm = [RLMRealm defaultRealm];
-  RLMResults *flows = [Flow allObjectsInRealm:realm];
+  RLMResults *flows = [FlowModel allObjectsInRealm:realm];
   RLMResults *distinctFlows = [flows distinctResultsUsingKeyPaths:groupKeys];
 
   NSMutableArray *response = [NSMutableArray array];
 
-  for (Flow *flow in distinctFlows) {
+  for (FlowModel *flow in distinctFlows) {
     NSDictionary *flowDictionary = [flow dictionaryWithValuesForKeys:sharedInstance.flowKeys];
     NSMutableDictionary *item = [NSMutableDictionary dictionaryWithDictionary:flowDictionary];
 
@@ -82,7 +82,7 @@ static IndexData *sharedInstance = nil;
     NSString *predicateFormat = [NSString stringWithFormat:@"%@ = %%@", propertyName];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:predicateFormat, valueToMatch];
 
-    RLMResults *flows = [Flow objectsInRealm:realm withPredicate:predicate];
+    RLMResults *flows = [FlowModel objectsInRealm:realm withPredicate:predicate];
     item[@"totalCount"] = @([flows count]);
     item[@"icon"] = getIconForExecutablePath(flow.bundleIdentifier);
 
@@ -99,7 +99,7 @@ static IndexData *sharedInstance = nil;
 - (NSNumber *)countFlowsWithGroupKeys:(NSArray<NSString *> *)groupKeys
 {
   RLMRealm *realm = [RLMRealm defaultRealm];
-  RLMResults *flows = [Flow allObjectsInRealm:realm];
+  RLMResults *flows = [FlowModel allObjectsInRealm:realm];
   RLMResults *distinctFlows = [flows distinctResultsUsingKeyPaths:groupKeys];
 
   return @(distinctFlows.count);
@@ -108,7 +108,7 @@ static IndexData *sharedInstance = nil;
 - (void)createFlow:(NSDictionary *)flowPayload processPayload:(NSDictionary *)processPayload
 {
   RLMRealm *realm = [RLMRealm defaultRealm];
-  Flow *flow = [[Flow alloc] initWithValue:@{
+  FlowModel *flow = [[FlowModel alloc] initWithValue:@{
     @"identifier": flowPayload[@"identifier"] ?: @"",
     @"direction": flowPayload[@"direction"] ?: @"",
     @"remoteEndpoint": flowPayload[@"remoteEndpoint"] ?: @"",
@@ -127,14 +127,14 @@ static IndexData *sharedInstance = nil;
 {
   RLMRealm *realm = [RLMRealm defaultRealm];
   NSPredicate *predicate = [NSPredicate predicateWithFormat:@"bundleIdentifier = %@", bundleIdentifier];
-  RLMResults *rules = [Rule objectsWithPredicate:predicate];
+  RLMResults *rules = [RuleModel objectsWithPredicate:predicate];
 
   [realm transactionWithBlock:^() {
     if (rules.count) {
-      Rule *rule = rules.firstObject;
+      RuleModel *rule = rules.firstObject;
       rule.allowed = payload;
     } else {
-      Rule *rule = [[Rule alloc] initWithValue:@{
+      RuleModel *rule = [[RuleModel alloc] initWithValue:@{
         @"identifier": [[NSUUID UUID] UUIDString],
         @"bundleIdentifier": bundleIdentifier,
         @"remoteEndpoint": @"",
@@ -148,11 +148,11 @@ static IndexData *sharedInstance = nil;
 - (NSArray *)getRules
 {
   RLMRealm *realm = [RLMRealm defaultRealm];
-  RLMResults *rules = [Rule allObjectsInRealm:realm];
+  RLMResults *rules = [RuleModel allObjectsInRealm:realm];
 
   NSMutableArray *response = [NSMutableArray array];
 
-  for (Rule *rule in rules) {
+  for (RuleModel *rule in rules) {
     NSDictionary *ruleDictionary = [rule dictionaryWithValuesForKeys:sharedInstance.ruleKeys];
     NSMutableDictionary *item = [NSMutableDictionary dictionaryWithDictionary:ruleDictionary];
 
