@@ -18,16 +18,10 @@ export type handleFlowRequestPayload = {
 const {ScarecrowNetwork} = NativeModules;
 const eventEmitter = new NativeEventEmitter(ScarecrowNetwork);
 
-export const getGrouppedFlowsByBundleIdentifier =
-  ScarecrowNetwork.getGrouppedFlowsByBundleIdentifier;
-export const countGrouppedFlowsByBundleIdentifier =
-  ScarecrowNetwork.countGrouppedFlowsByBundleIdentifier;
-export const getGrouppedFlowsByRemoteEndpoint =
-  ScarecrowNetwork.getGrouppedFlowsByRemoteEndpoint;
-export const countGrouppedFlowsByRemoteEndpoint =
-  ScarecrowNetwork.countGrouppedFlowsByRemoteEndpoint;
-export const getFlowsByBundleIdentifier =
-  ScarecrowNetwork.getFlowsByBundleIdentifier;
+export const getProcesses = ScarecrowNetwork.getProcesses;
+export const countProcesses = ScarecrowNetwork.countProcesses;
+export const getFlows = ScarecrowNetwork.getFlows;
+export const countFlows = ScarecrowNetwork.countFlows;
 export const handleFlowRuleUpdate = ScarecrowNetwork.handleFlowRuleUpdate;
 export const getRules = ScarecrowNetwork.getRules;
 

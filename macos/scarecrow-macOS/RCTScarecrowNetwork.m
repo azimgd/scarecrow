@@ -10,6 +10,8 @@
 #import "HostCommunication.h"
 #import "IndexData.h"
 #import "Migrations.h"
+#import "FlowController.h"
+#import "ProcessController.h"
 
 @implementation RCTScarecrowNetwork
 
@@ -67,54 +69,38 @@ error:(__unused RCTResponseSenderBlock)reject)
   }];
 }
 
-RCT_EXPORT_METHOD(getGrouppedFlowsByBundleIdentifier:(RCTPromiseResolveBlock)resolve
-  error:(__unused RCTResponseSenderBlock)reject)
-{
-  NSArray *groupKeys = @[@"bundleIdentifier"];
-  NSArray *response = [IndexData.shared getFlowsWithGroupKeys:groupKeys];
-  resolve(response);
-}
-
-RCT_EXPORT_METHOD(countGrouppedFlowsByBundleIdentifier:(RCTPromiseResolveBlock)resolve
-  error:(__unused RCTResponseSenderBlock)reject)
-{
-  NSArray *groupKeys = @[@"bundleIdentifier"];
-  NSNumber *response = [IndexData.shared countFlowsWithGroupKeys:groupKeys];
-  resolve(response);
-}
-
-RCT_EXPORT_METHOD(getGrouppedFlowsByRemoteEndpoint:(RCTPromiseResolveBlock)resolve
-  error:(__unused RCTResponseSenderBlock)reject)
-{
-  NSArray *groupKeys = @[@"remoteEndpoint"];
-  NSArray *response = [IndexData.shared getFlowsWithGroupKeys:groupKeys];
-  resolve(response);
-}
-
-RCT_EXPORT_METHOD(countGrouppedFlowsByRemoteEndpoint:(RCTPromiseResolveBlock)resolve
-  error:(__unused RCTResponseSenderBlock)reject)
-{
-  NSArray *groupKeys = @[@"remoteEndpoint"];
-  NSNumber *response = [IndexData.shared countFlowsWithGroupKeys:groupKeys];
-  resolve(response);
-}
-
-RCT_EXPORT_METHOD(getFlowsByBundleIdentifier:(NSString *)bundleIdentifier
+RCT_EXPORT_METHOD(getProcesses:(NSString *)filter
   resolve:(RCTPromiseResolveBlock)resolve
   error:(__unused RCTResponseSenderBlock)reject)
 {
-  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"bundleIdentifier = %@", bundleIdentifier];
-  NSArray *response = [IndexData.shared getFlowsWithPredicate:predicate];
+  ProcessController *processController = [ProcessController new];
+  NSArray *response = [processController get];
   resolve(response);
 }
 
-RCT_EXPORT_METHOD(getFlowsByRemoteEndpoint:(NSString *)remoteEndpoint
+RCT_EXPORT_METHOD(countProcesses:(RCTPromiseResolveBlock)resolve
+  error:(__unused RCTResponseSenderBlock)reject)
+{
+  ProcessController *processController = [ProcessController new];
+  NSUInteger response = [processController count];
+  resolve(@(response));
+}
+
+RCT_EXPORT_METHOD(getFlows:(NSString *)filter
   resolve:(RCTPromiseResolveBlock)resolve
   error:(__unused RCTResponseSenderBlock)reject)
 {
-  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"remoteEndpoint = %@", remoteEndpoint];
-  NSArray *response = [IndexData.shared getFlowsWithPredicate:predicate];
+  FlowController *flowController = [FlowController new];
+  NSArray *response = [flowController get];
   resolve(response);
+}
+
+RCT_EXPORT_METHOD(countFlows:(RCTPromiseResolveBlock)resolve
+  error:(__unused RCTResponseSenderBlock)reject)
+{
+  FlowController *flowController = [FlowController new];
+  NSUInteger response = [flowController count];
+  resolve(@(response));
 }
 
 RCT_EXPORT_METHOD(handleFlowRuleUpdate:(NSString *)bundleIdentifier
@@ -136,6 +122,13 @@ RCT_EXPORT_METHOD(getRules:(RCTPromiseResolveBlock)resolve
 
 - (void)handleFlowRequest:(NSNotification*)sender
 {
+  ProcessController *processController = [ProcessController new];
+  [processController create:@{
+    @"bundle": @"bundle3",
+    @"path": @"path3",
+    @"name": @"name3",
+    @"icon": @"icon",
+  }];
   [IndexData.shared createFlow:sender.userInfo[@"flow"] processPayload:sender.userInfo[@"process"]];
   [self sendEventWithName:@"handleFlowRequest" body:@{}];
 }

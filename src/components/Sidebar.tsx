@@ -23,20 +23,20 @@ function Sidebar(): JSX.Element {
   const route = useRoute<FlowsPerHostnameScreenRouteProp>();
 
   const [
-    countGrouppedFlowsByBundleIdentifier,
-    setCountGrouppedFlowsByBundleIdentifier,
+    countProcesses,
+    setcountProcesses,
   ] = React.useState<number>(0);
   const [
-    countGrouppedFlowsByRemoteEndpoint,
-    setCountGrouppedFlowsByRemoteEndpoint,
+    countFlows,
+    setcountFlows,
   ] = React.useState<number>(0);
 
   React.useEffect(() => {
-    ScarecrowNetwork.countGrouppedFlowsByBundleIdentifier().then(
-      setCountGrouppedFlowsByBundleIdentifier,
+    ScarecrowNetwork.countProcesses().then(
+      setcountProcesses,
     );
-    ScarecrowNetwork.countGrouppedFlowsByRemoteEndpoint().then(
-      setCountGrouppedFlowsByRemoteEndpoint,
+    ScarecrowNetwork.countFlows().then(
+      setcountFlows,
     );
   }, []);
 
@@ -50,7 +50,7 @@ function Sidebar(): JSX.Element {
           active={route.name === 'FlowsPerProcess'}
           title="Applications"
           icon={<AppWindow />}
-          iconRightText={countGrouppedFlowsByBundleIdentifier}
+          iconRightText={countProcesses}
         />
 
         <SidebarItem
@@ -58,7 +58,7 @@ function Sidebar(): JSX.Element {
           active={route.name === 'FlowsPerHostname'}
           title="Hostnames"
           icon={<Globe2 />}
-          iconRightText={countGrouppedFlowsByRemoteEndpoint}
+          iconRightText={countFlows}
         />
 
         <SidebarItem
@@ -66,7 +66,7 @@ function Sidebar(): JSX.Element {
           active={route.name === 'FlowRules'}
           title="Rules"
           icon={<Ruler />}
-          iconRightText={countGrouppedFlowsByBundleIdentifier}
+          iconRightText={countProcesses}
         />
       </YStack>
 

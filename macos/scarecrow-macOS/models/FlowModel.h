@@ -12,6 +12,8 @@
 
 @interface FlowModel : FCModel
 
+@property (nonatomic) NSArray *keys;
+
 @property (nonatomic) int64_t id;
 @property (nonatomic, copy) NSString *direction;
 @property (nonatomic, copy) NSString *remoteEndpoint;

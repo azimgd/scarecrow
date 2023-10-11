@@ -12,11 +12,13 @@
 
 @interface ProcessModel : FCModel
 
+@property (nonatomic) NSArray *keys;
+
 @property (nonatomic) int64_t id;
-@property (nonatomic, assign) NSString *bundleIdentifier;
+@property (nonatomic, assign) NSString *bundle;
 @property (nonatomic, assign) NSString *path;
 @property (nonatomic, assign) NSString *name;
-@property (nonatomic) NSDate *createdAt;
+@property (nonatomic, assign) NSString *icon;
 
 @end
 

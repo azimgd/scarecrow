@@ -19,9 +19,9 @@ function FlowsPerProcessExpand(): JSX.Element {
   >([]);
 
   React.useEffect(() => {
-    ScarecrowNetwork.getFlowsByBundleIdentifier(
-      route.params.bundleIdentifier,
-    ).then(setTableData);
+    ScarecrowNetwork.getProcesses(route.params.bundleIdentifier).then(
+      setTableData,
+    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

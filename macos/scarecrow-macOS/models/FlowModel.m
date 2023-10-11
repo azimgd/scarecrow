@@ -10,4 +10,15 @@
 
 @implementation FlowModel
 
+- (void)didInit
+{
+  _keys = @[
+    @"id",
+    @"direction",
+    @"remoteEndpoint",
+    @"remoteUrl",
+    @"createdAt",
+  ];
+}
+
 @end

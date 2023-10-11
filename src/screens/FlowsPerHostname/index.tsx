@@ -33,9 +33,9 @@ function FlowsPerHostname(): JSX.Element {
   );
 
   React.useEffect(() => {
-    ScarecrowNetwork.getGrouppedFlowsByRemoteEndpoint().then(setTableData);
+    ScarecrowNetwork.getFlows(null).then(setTableData);
     const listener = ScarecrowNetwork.handleFlowRequest(() =>
-      ScarecrowNetwork.getGrouppedFlowsByRemoteEndpoint().then(setTableData),
+      ScarecrowNetwork.getFlows(null).then(setTableData),
     );
 
     return () => listener.remove();

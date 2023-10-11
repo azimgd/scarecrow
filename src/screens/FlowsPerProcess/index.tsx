@@ -33,9 +33,9 @@ function FlowsPerProcess(): JSX.Element {
   );
 
   React.useEffect(() => {
-    ScarecrowNetwork.getGrouppedFlowsByBundleIdentifier().then(setTableData);
+    ScarecrowNetwork.getProcesses(null).then(setTableData);
     const listener = ScarecrowNetwork.handleFlowRequest(() =>
-      ScarecrowNetwork.getGrouppedFlowsByBundleIdentifier().then(setTableData),
+      ScarecrowNetwork.getProcesses(null).then(setTableData),
     );
 
     return () => listener.remove();

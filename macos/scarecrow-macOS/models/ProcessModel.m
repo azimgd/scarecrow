@@ -10,4 +10,15 @@
 
 @implementation ProcessModel
 
+- (void)didInit
+{
+  _keys = @[
+    @"id",
+    @"bundle",
+    @"path",
+    @"name",
+    @"icon",
+  ];
+}
+
 @end
