@@ -29,6 +29,7 @@
 
   [flow save:^{
     flow.processId = [payload[@"processId"] unsignedIntValue];
+    flow.identifier = payload[@"identifier"];
     flow.direction = payload[@"direction"];
     flow.remoteEndpoint = payload[@"remoteEndpoint"];
     flow.remoteUrl = payload[@"remoteUrl"];
@@ -43,6 +44,7 @@
 
   [flow save:^{
     flow.processId = [payload[@"processId"] unsignedIntValue];
+    flow.identifier = payload[@"identifier"];
     flow.direction = payload[@"direction"];
     flow.remoteEndpoint = payload[@"remoteEndpoint"];
     flow.remoteUrl = payload[@"remoteUrl"];

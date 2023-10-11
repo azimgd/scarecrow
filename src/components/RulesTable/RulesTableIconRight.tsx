@@ -3,7 +3,7 @@ import * as ScarecrowNetwork from '../../ScarecrowNetwork';
 import {Switch} from 'tamagui';
 
 type RulesTableIconRightProps = PropsWithChildren<{
-  rule: ScarecrowNetwork.handleFlowRequestPayload;
+  rule: ScarecrowNetwork.RuleModel;
   handleDataItemCheckedChange: (
     bundleIdentifier: string,
     checked: boolean,
@@ -19,7 +19,7 @@ function RulesTableIconRight({
       size="$2"
       defaultChecked={rule.allowed}
       onCheckedChange={(checked: boolean) =>
-        handleDataItemCheckedChange(rule.bundleIdentifier, checked)
+        handleDataItemCheckedChange(rule.process.bundle, checked)
       }>
       <Switch.Thumb animation="quick" />
     </Switch>

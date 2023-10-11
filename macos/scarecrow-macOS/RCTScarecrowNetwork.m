@@ -139,6 +139,12 @@ RCT_EXPORT_METHOD(countRules:(RCTPromiseResolveBlock)resolve
     @"icon": sender.userInfo[@"process"][@"icon"],
   }];
   
+  RuleController *ruleController = [RuleController new];
+  RuleModel *rule = [ruleController create:@{
+    @"processId": @(process.id),
+    @"allowed": @YES,
+  }];
+  
   FlowController *flowController = [FlowController new];
   FlowModel* flow = [flowController create:@{
     @"processId": @(process.id),
@@ -148,12 +154,6 @@ RCT_EXPORT_METHOD(countRules:(RCTPromiseResolveBlock)resolve
     @"remoteUrl": sender.userInfo[@"flow"][@"remoteUrl"],
   }];
   
-  RuleController *ruleController = [RuleController new];
-  RuleModel *rule = [ruleController create:@{
-    @"flowId": @(flow.id),
-    @"allowed": @YES,
-  }];
-
   [self sendEventWithName:@"handleFlowRequest" body:@{}];
 }
 

@@ -14,9 +14,9 @@
 {
   _keys = @[
     @"id",
-    @"flowId",
+    @"processId",
     @"allowed",
-    @"flow",
+    @"process",
     @"createdAt",
   ];
 }
@@ -29,10 +29,10 @@
   }];
 }
 
-- (FlowModel *)flow
+- (ProcessModel *)process
 {
-  FlowModel *flow = [FlowModel instanceWithPrimaryKey:@(self.flowId)];
-  return [flow dictionaryWithValuesForKeys:flow.keys];
+  ProcessModel *process = [ProcessModel instanceWithPrimaryKey:@(self.processId)];
+  return [process dictionaryWithValuesForKeys:process.keys];
 }
 
 @end

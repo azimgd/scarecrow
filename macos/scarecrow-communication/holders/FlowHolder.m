@@ -27,7 +27,6 @@
 
 - (NSDictionary *)payload
 {
-
   return @{
     @"identifier": _identifier,
     @"direction": _direction,

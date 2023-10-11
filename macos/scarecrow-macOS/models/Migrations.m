@@ -58,7 +58,7 @@
       if (![db executeUpdate:
         @"CREATE TABLE RuleModel ("
         @"id INTEGER PRIMARY KEY,"
-        @"flowId INTEGER,"
+        @"processId INTEGER,"
         @"allowed INTEGER,"
         @"createdAt REAL NOT NULL,"
         @"FOREIGN KEY (id) REFERENCES ProcessModel(id)"

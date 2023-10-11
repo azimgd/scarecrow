@@ -9,18 +9,18 @@
 #define RuleModel_h
 
 #import "FCModel.h"
-#import "FlowModel.h"
+#import "ProcessModel.h"
 
 @interface RuleModel : FCModel
 
 @property (nonatomic) NSArray *keys;
 
 @property (nonatomic) int64_t id;
-@property (nonatomic) int64_t flowId;
+@property (nonatomic) int64_t processId;
 @property (nonatomic) BOOL allowed;
 @property (nonatomic) NSDate *createdAt;
 
-@property (nonatomic) FlowModel *flow;
+@property (nonatomic) ProcessModel *process;
 
 @end
 

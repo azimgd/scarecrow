@@ -21,7 +21,7 @@ export type RuleModel = {
   id: number;
   allowed: boolean;
   createdAt: string;
-  flow: FlowModel;
+  process: ProcessModel;
 };
 
 export type handleFlowRequestPayload = {

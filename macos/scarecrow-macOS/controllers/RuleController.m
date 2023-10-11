@@ -24,7 +24,9 @@
 
 - (RuleModel *)create:(NSDictionary *)payload
 {
-  RuleModel *matchedRule = [RuleModel firstInstanceWhere:@"flowId = ?", payload[@"flowId"]];
+  NSLog(@"wiwi %@", payload);
+
+  RuleModel *matchedRule = [RuleModel firstInstanceWhere:@"processId = ?", payload[@"processId"]];
   if (matchedRule.id) {
     return matchedRule;
   }
@@ -33,7 +35,7 @@
   RuleModel *rule = [RuleModel instanceWithPrimaryKey:@(lastRule.id + 1)];
 
   [rule save:^{
-    rule.flowId = [payload[@"flowId"] unsignedIntValue];
+    rule.processId = [payload[@"processId"] unsignedIntValue];
     rule.allowed = payload[@"allowed"];
   }];
   
@@ -45,7 +47,7 @@
   RuleModel *rule = [RuleModel instanceWithPrimaryKey:@(pk)];
 
   [rule save:^{
-    rule.flowId = [payload[@"flowId"] unsignedIntValue];
+    rule.processId = [payload[@"processId"] unsignedIntValue];
     rule.allowed = payload[@"allowed"];
   }];
   
