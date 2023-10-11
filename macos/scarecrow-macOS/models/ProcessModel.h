@@ -8,14 +8,15 @@
 #ifndef ProcessModel_h
 #define ProcessModel_h
 
-#import <Realm/Realm.h>
+#import "FCModel.h"
 
-@interface ProcessModel : RLMObject
+@interface ProcessModel : FCModel
 
-@property NSString *identifier;
-@property NSString *remoteEndpoint;
-@property NSString *bundleIdentifier;
-@property BOOL allowed;
+@property (nonatomic) int64_t id;
+@property (nonatomic, assign) NSString *bundleIdentifier;
+@property (nonatomic, assign) NSString *path;
+@property (nonatomic, assign) NSString *name;
+@property (nonatomic) NSDate *createdAt;
 
 @end
 

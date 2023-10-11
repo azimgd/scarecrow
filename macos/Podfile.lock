@@ -9,6 +9,11 @@ PODS:
     - React-Core (= 0.72.0)
     - React-jsi (= 0.72.0)
     - ReactCommon/turbomodule/core (= 0.72.0)
+  - FCModel (0.9.0):
+    - FMDB (~> 2.1)
+  - FMDB (2.7.5):
+    - FMDB/standard (= 2.7.5)
+  - FMDB/standard (2.7.5)
   - fmt (6.2.1)
   - glog (0.3.5)
   - RCT-Folly (2021.07.22.00):
@@ -387,9 +392,6 @@ PODS:
     - React-jsi (= 0.72.0)
     - React-logger (= 0.72.0)
     - React-perflogger (= 0.72.0)
-  - Realm (10.42.2):
-    - Realm/Headers (= 10.42.2)
-  - Realm/Headers (10.42.2)
   - RNSVG (13.13.0):
     - React-Core
   - SocketRocket (0.7.0)
@@ -400,6 +402,8 @@ DEPENDENCIES:
   - DoubleConversion (from `../node_modules/react-native-macos/third-party-podspecs/DoubleConversion.podspec`)
   - FBLazyVector (from `../node_modules/react-native-macos/Libraries/FBLazyVector`)
   - FBReactNativeSpec (from `../node_modules/react-native-macos/React/FBReactNativeSpec`)
+  - FCModel (from `https://github.com/marcoarment/FCModel.git`)
+  - FMDB
   - glog (from `../node_modules/react-native-macos/third-party-podspecs/glog.podspec`)
   - RCT-Folly (from `../node_modules/react-native-macos/third-party-podspecs/RCT-Folly.podspec`)
   - RCTRequired (from `../node_modules/react-native-macos/Libraries/RCTRequired`)
@@ -434,14 +438,13 @@ DEPENDENCIES:
   - React-runtimescheduler (from `../node_modules/react-native-macos/ReactCommon/react/renderer/runtimescheduler`)
   - React-utils (from `../node_modules/react-native-macos/ReactCommon/react/utils`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native-macos/ReactCommon`)
-  - Realm (~> 10)
   - RNSVG (from `../node_modules/react-native-svg`)
   - Yoga (from `../node_modules/react-native-macos/ReactCommon/yoga`)
 
 SPEC REPOS:
   trunk:
+    - FMDB
     - fmt
-    - Realm
     - SocketRocket
 
 EXTERNAL SOURCES:
@@ -453,6 +456,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-macos/Libraries/FBLazyVector"
   FBReactNativeSpec:
     :path: "../node_modules/react-native-macos/React/FBReactNativeSpec"
+  FCModel:
+    :git: https://github.com/marcoarment/FCModel.git
   glog:
     :podspec: "../node_modules/react-native-macos/third-party-podspecs/glog.podspec"
   RCT-Folly:
@@ -524,11 +529,18 @@ EXTERNAL SOURCES:
   Yoga:
     :path: "../node_modules/react-native-macos/ReactCommon/yoga"
 
+CHECKOUT OPTIONS:
+  FCModel:
+    :commit: 81399b73a34a2d819496dd5f608bebb31f0bb55b
+    :git: https://github.com/marcoarment/FCModel.git
+
 SPEC CHECKSUMS:
   boost: 8fa3cd00fa17ef6c3221e5fd283fa93e81d23017
   DoubleConversion: acaf5db79676d2e9119015819153f0f99191de12
   FBLazyVector: 459e20c0cb110e93182928cea84f20e5ace0c7ec
   FBReactNativeSpec: 8265f0e64aaa1aabe1d75a3d2f3dbd4810455e5a
+  FCModel: 04bb289914e67f2275cb17fda869131a3529c1a5
+  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   glog: 6df0a3d6e2750a50609471fd1a01fd2948d405b5
   RCT-Folly: bf7b4921a91932051ebf1c5c2d297154b1fa3c8c
@@ -563,11 +575,10 @@ SPEC CHECKSUMS:
   React-runtimescheduler: 7ef3da59bf7944f849ec6fd847aef68e27c0d584
   React-utils: 1190a06879c06a3fb5b132823c6e7ecebbae1409
   ReactCommon: 91b407ef7fc6498bf7c82aa9450c8f13d6b532d7
-  Realm: 2d2980fd7a562fa3d7ee21bb7d6cebac64393886
   RNSVG: ed492aaf3af9ca01bc945f7a149d76d62e73ec82
   SocketRocket: abac6f5de4d4d62d24e11868d7a2f427e0ef940d
   Yoga: 29d7e1aad4c25def4778ec71c5dab1936fb4190d
 
-PODFILE CHECKSUM: 4f11fd0e6c9c022c2512e097a34713e744a1d373
+PODFILE CHECKSUM: a570c00e6752856624a7eff2963bd26b9575be23
 
 COCOAPODS: 1.12.1

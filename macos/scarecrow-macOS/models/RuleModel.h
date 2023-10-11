@@ -8,14 +8,13 @@
 #ifndef RuleModel_h
 #define RuleModel_h
 
-#import <Realm/Realm.h>
+#import "FCModel.h"
 
-@interface RuleModel : RLMObject
+@interface RuleModel : FCModel
 
-@property NSString *identifier;
-@property NSString *remoteEndpoint;
-@property NSString *bundleIdentifier;
-@property BOOL allowed;
+@property (nonatomic) int64_t id;
+@property (nonatomic) BOOL allowed;
+@property (nonatomic) NSDate *createdAt;
 
 @end
 

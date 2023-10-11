@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		053805BA2AD4349B00647BF8 /* ProcessHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 0582000B2AD430DD00AD82C0 /* ProcessHelpers.m */; };
+		0539C9A52AD61FCC00B7E6A2 /* Migrations.m in Sources */ = {isa = PBXBuildFile; fileRef = 0539C9A42AD61FCC00B7E6A2 /* Migrations.m */; };
 		055CC6772AC6C91E00DBFB48 /* Validator.m in Sources */ = {isa = PBXBuildFile; fileRef = 055CC6762AC6C91E00DBFB48 /* Validator.m */; };
 		056402E82ACF305900D427EF /* ProcessModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 056402E72ACF305900D427EF /* ProcessModel.m */; };
 		0582000D2AD430FE00AD82C0 /* ProcessHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 0582000B2AD430DD00AD82C0 /* ProcessHelpers.m */; };
@@ -67,6 +68,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0539C9A32AD61FC000B7E6A2 /* Migrations.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Migrations.h; sourceTree = "<group>"; };
+		0539C9A42AD61FCC00B7E6A2 /* Migrations.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Migrations.m; sourceTree = "<group>"; };
 		055CC6752AC6C91400DBFB48 /* Validator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Validator.h; sourceTree = "<group>"; };
 		055CC6762AC6C91E00DBFB48 /* Validator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Validator.m; sourceTree = "<group>"; };
 		056402E72ACF305900D427EF /* ProcessModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProcessModel.m; sourceTree = "<group>"; };
@@ -179,6 +182,8 @@
 		05B70CDF2AC8877E00BE9F95 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				0539C9A32AD61FC000B7E6A2 /* Migrations.h */,
+				0539C9A42AD61FCC00B7E6A2 /* Migrations.m */,
 				05B70CE02AC8878C00BE9F95 /* FlowModel.m */,
 				05B70CE22AC8879300BE9F95 /* FlowModel.h */,
 				05C0D54F2ACB36BB00A0846D /* RuleModel.m */,
@@ -573,6 +578,7 @@
 				059792102AB47B3900348AB8 /* HostCommunication.h in Sources */,
 				059792112AB47B3900348AB8 /* HostCommunication.m in Sources */,
 				514201582437B4B40078DB4F /* main.m in Sources */,
+				0539C9A52AD61FCC00B7E6A2 /* Migrations.m in Sources */,
 				05C0D54D2ACADA2500A0846D /* IndexData.m in Sources */,
 				0597920A2AB47AFB00348AB8 /* NetworkExtensionProvider.m in Sources */,
 				5142014D2437B4B30078DB4F /* AppDelegate.mm in Sources */,

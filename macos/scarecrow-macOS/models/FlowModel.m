@@ -10,14 +10,4 @@
 
 @implementation FlowModel
 
-+ (NSString *)primaryKey {
-  return @"identifier";
-}
-
-+ (NSArray<NSString *> *)requiredProperties {
-  return @[
-    @"identifier"
-  ];
-}
-
 @end

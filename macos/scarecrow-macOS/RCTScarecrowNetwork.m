@@ -9,6 +9,7 @@
 #import "RCTScarecrowNetwork.h"
 #import "HostCommunication.h"
 #import "IndexData.h"
+#import "Migrations.h"
 
 @implementation RCTScarecrowNetwork
 
@@ -17,6 +18,9 @@ RCT_EXPORT_MODULE();
 - (instancetype)init
 {
   self = [super init];
+  
+  [Migrations new];
+  
   NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
   [defaultCenter addObserver:self selector:@selector(handleFlowRequest:) name:@"handleFlowRequest" object:nil];
   [defaultCenter addObserver:self selector:@selector(handleConnectionStart:) name:@"handleConnectionStart" object:nil];

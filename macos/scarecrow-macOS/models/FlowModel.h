@@ -8,17 +8,15 @@
 #ifndef FlowModel_h
 #define FlowModel_h
 
-#import <Realm/Realm.h>
+#import "FCModel.h"
 
-@interface FlowModel : RLMObject
+@interface FlowModel : FCModel
 
-@property NSString *direction;
-@property NSString *remoteEndpoint;
-@property NSString *remoteUrl;
-@property NSString *identifier;
-@property NSString *name;
-@property NSString *bundleIdentifier;
-@property NSString *path;
+@property (nonatomic) int64_t id;
+@property (nonatomic, copy) NSString *direction;
+@property (nonatomic, copy) NSString *remoteEndpoint;
+@property (nonatomic, copy) NSString *remoteUrl;
+@property (nonatomic) NSDate *createdAt;
 
 @end
 
