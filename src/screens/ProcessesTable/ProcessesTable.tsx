@@ -2,11 +2,11 @@ import React, {PropsWithChildren} from 'react';
 import {TouchableOpacity} from 'react-native';
 import {ListItem, YStack} from 'tamagui';
 import * as ScarecrowNetwork from '../../ScarecrowNetwork';
-import FlowsTableSubTitle from '../../components/FlowsTable/FlowsTableSubTitle';
-import FlowsTableIconLeft from '../../components/FlowsTable/FlowsTableIconLeft';
-import FlowsTableIconRight from '../../components/FlowsTable/FlowsTableIconRight';
+import FlowsTableSubTitle from './Table/FlowsTableSubTitle';
+import FlowsTableIconLeft from './Table/FlowsTableIconLeft';
+import FlowsTableIconRight from './Table/FlowsTableIconRight';
 
-type FlowsPerProcessTableProps = PropsWithChildren<{
+type ProcessesTableProps = PropsWithChildren<{
   data: ScarecrowNetwork.ProcessModel[];
   handleDataItemPress: (bundleIdentifier: string) => void;
   handleDataItemCheckedChange: (
@@ -15,28 +15,28 @@ type FlowsPerProcessTableProps = PropsWithChildren<{
   ) => void;
 }>;
 
-function FlowsPerProcessTable({
+function ProcessesTable({
   data,
   handleDataItemPress,
   handleDataItemCheckedChange,
-}: FlowsPerProcessTableProps): JSX.Element {
+}: ProcessesTableProps): JSX.Element {
   return (
     <YStack>
-      {data.map((flow, index) => (
+      {data.map((process, index) => (
         <TouchableOpacity
-          onPress={() => handleDataItemPress(flow.bundle)}
+          onPress={() => handleDataItemPress(process.bundle)}
           key={index}>
           <ListItem
             backgroundColor="$backgroundTransparent"
-            title={flow.name}
-            subTitle={<FlowsTableSubTitle flow={flow} />}
+            title={process.name}
+            subTitle={<FlowsTableSubTitle process={process} />}
             iconAfter={
               <FlowsTableIconRight
-                flow={flow}
+                process={process}
                 handleDataItemCheckedChange={handleDataItemCheckedChange}
               />
             }
-            icon={<FlowsTableIconLeft flow={flow} type="process" />}
+            icon={<FlowsTableIconLeft process={process} />}
           />
         </TouchableOpacity>
       ))}
@@ -44,4 +44,4 @@ function FlowsPerProcessTable({
   );
 }
 
-export default FlowsPerProcessTable;
+export default ProcessesTable;

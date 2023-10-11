@@ -2,10 +2,10 @@ import React, {PropsWithChildren} from 'react';
 import {TouchableOpacity} from 'react-native';
 import {ListItem, YStack} from 'tamagui';
 import * as ScarecrowNetwork from '../../ScarecrowNetwork';
-import RulesTableIconLeft from '../../components/RulesTable/RulesTableIconLeft';
-import RulesTableIconRight from '../../components/RulesTable/RulesTableIconRight';
+import RulesTableIconLeft from './Table/RulesTableIconLeft';
+import RulesTableIconRight from './Table/RulesTableIconRight';
 
-type FlowsPerHostnameTableProps = PropsWithChildren<{
+type FlowsTableProps = PropsWithChildren<{
   data: ScarecrowNetwork.RuleModel[];
   handleDataItemPress: (bundleIdentifier: string) => void;
   handleDataItemCheckedChange: (
@@ -14,11 +14,11 @@ type FlowsPerHostnameTableProps = PropsWithChildren<{
   ) => void;
 }>;
 
-function FlowsPerHostnameTable({
+function FlowsTable({
   data,
   handleDataItemPress,
   handleDataItemCheckedChange,
-}: FlowsPerHostnameTableProps): JSX.Element {
+}: FlowsTableProps): JSX.Element {
   return (
     <YStack>
       {data.map((rule, index) => (
@@ -41,4 +41,4 @@ function FlowsPerHostnameTable({
   );
 }
 
-export default FlowsPerHostnameTable;
+export default FlowsTable;

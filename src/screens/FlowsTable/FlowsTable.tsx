@@ -2,11 +2,11 @@ import React, {PropsWithChildren} from 'react';
 import {TouchableOpacity} from 'react-native';
 import {ListItem, YStack} from 'tamagui';
 import * as ScarecrowNetwork from '../../ScarecrowNetwork';
-import FlowsTableSubTitle from '../../components/FlowsTable/FlowsTableSubTitle';
-import FlowsTableIconLeft from '../../components/FlowsTable/FlowsTableIconLeft';
-import FlowsTableIconRight from '../../components/FlowsTable/FlowsTableIconRight';
+import FlowsTableSubTitle from './Table/FlowsTableSubTitle';
+import FlowsTableIconLeft from './Table/FlowsTableIconLeft';
+import FlowsTableIconRight from './Table/FlowsTableIconRight';
 
-type FlowsPerHostnameTableProps = PropsWithChildren<{
+type FlowsTableProps = PropsWithChildren<{
   data: ScarecrowNetwork.FlowModel[];
   handleDataItemPress: (bundleIdentifier: string) => void;
   handleDataItemCheckedChange: (
@@ -15,11 +15,11 @@ type FlowsPerHostnameTableProps = PropsWithChildren<{
   ) => void;
 }>;
 
-function FlowsPerHostnameTable({
+function FlowsTable({
   data,
   handleDataItemPress,
   handleDataItemCheckedChange,
-}: FlowsPerHostnameTableProps): JSX.Element {
+}: FlowsTableProps): JSX.Element {
   return (
     <YStack>
       {data.map((flow, index) => (
@@ -29,13 +29,8 @@ function FlowsPerHostnameTable({
           <ListItem
             title={flow.remoteEndpoint}
             subTitle={<FlowsTableSubTitle flow={flow} />}
-            iconAfter={
-              <FlowsTableIconRight
-                flow={flow}
-                handleDataItemCheckedChange={handleDataItemCheckedChange}
-              />
-            }
-            icon={<FlowsTableIconLeft flow={flow} type="hostname" />}
+            iconAfter={<FlowsTableIconRight flow={flow} />}
+            icon={<FlowsTableIconLeft flow={flow} />}
           />
         </TouchableOpacity>
       ))}
@@ -43,4 +38,4 @@ function FlowsPerHostnameTable({
   );
 }
 
-export default FlowsPerHostnameTable;
+export default FlowsTable;

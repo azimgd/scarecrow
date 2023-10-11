@@ -131,8 +131,6 @@ RCT_EXPORT_METHOD(countRules:(RCTPromiseResolveBlock)resolve
 
 - (void)handleFlowRequest:(NSNotification*)sender
 {
-  NSLog(@"wiwi %@", sender.userInfo[@"flow"]);
-
   ProcessController *processController = [ProcessController new];
   ProcessModel *process = [processController create:@{
     @"bundle": sender.userInfo[@"process"][@"bundle"],
@@ -142,13 +140,13 @@ RCT_EXPORT_METHOD(countRules:(RCTPromiseResolveBlock)resolve
   }];
   
   RuleController *ruleController = [RuleController new];
-  RuleModel *rule = [ruleController create:@{
+  [ruleController create:@{
     @"processId": @(process.id),
     @"allowed": @YES,
   }];
   
   FlowController *flowController = [FlowController new];
-  FlowModel* flow = [flowController create:@{
+  [flowController create:@{
     @"processId": @(process.id),
     @"identifier": sender.userInfo[@"flow"][@"identifier"],
     @"direction": sender.userInfo[@"flow"][@"direction"],

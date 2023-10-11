@@ -3,16 +3,16 @@ import {ScrollView} from 'react-native';
 import {useRoute, RouteProp} from '@react-navigation/native';
 import {RootStackParamList} from '../../navigation/index';
 import * as ScarecrowNetwork from '../../ScarecrowNetwork';
-import FlowsPerProcessExpandTable from './FlowsPerProcessExpandTable';
+import ProcessesTableExpand from './ProcessesTableExpand';
 import Window from '../../components/Window';
 
-type FlowsPerProcessExpandScreenRouteProp = RouteProp<
+type ProcessesTableExpandScreenRouteProp = RouteProp<
   RootStackParamList,
-  'FlowsPerProcessExpand'
+  'ProcessesTableExpand'
 >;
 
-function FlowsPerProcessExpand(): JSX.Element {
-  const route = useRoute<FlowsPerProcessExpandScreenRouteProp>();
+function ProcessesTableExpandScreen(): JSX.Element {
+  const route = useRoute<ProcessesTableExpandScreenRouteProp>();
 
   const [tableData, setTableData] = React.useState<
     ScarecrowNetwork.ProcessModel[]
@@ -28,10 +28,10 @@ function FlowsPerProcessExpand(): JSX.Element {
   return (
     <Window title="Applications">
       <ScrollView>
-        <FlowsPerProcessExpandTable data={tableData} />
+        <ProcessesTableExpand data={tableData} />
       </ScrollView>
     </Window>
   );
 }
 
-export default FlowsPerProcessExpand;
+export default ProcessesTableExpandScreen;

@@ -1,5 +1,5 @@
 import React, {PropsWithChildren} from 'react';
-import * as ScarecrowNetwork from '../../ScarecrowNetwork';
+import * as ScarecrowNetwork from '../../../ScarecrowNetwork';
 import {Switch} from 'tamagui';
 
 type RulesTableIconRightProps = PropsWithChildren<{

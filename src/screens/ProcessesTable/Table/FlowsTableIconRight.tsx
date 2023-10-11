@@ -1,9 +1,9 @@
 import React, {PropsWithChildren} from 'react';
-import * as ScarecrowNetwork from '../../ScarecrowNetwork';
+import * as ScarecrowNetwork from '../../../ScarecrowNetwork';
 import {Switch} from 'tamagui';
 
 type FlowsTableIconRightProps = PropsWithChildren<{
-  flow: ScarecrowNetwork.handleFlowRequestPayload;
+  process: ScarecrowNetwork.ProcessModel;
   handleDataItemCheckedChange: (
     bundleIdentifier: string,
     checked: boolean,
@@ -11,15 +11,15 @@ type FlowsTableIconRightProps = PropsWithChildren<{
 }>;
 
 function FlowsTableIconRight({
-  flow,
+  process,
   handleDataItemCheckedChange,
 }: FlowsTableIconRightProps): JSX.Element {
   return (
     <Switch
       size="$2"
-      defaultChecked={flow.allowed}
+      defaultChecked={process.allowed}
       onCheckedChange={(checked: boolean) =>
-        handleDataItemCheckedChange(flow.bundle, checked)
+        handleDataItemCheckedChange(process.bundle, checked)
       }>
       <Switch.Thumb animation="quick" />
     </Switch>

@@ -5,21 +5,21 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList} from '../../navigation/index';
 import {YStack, Button, Text} from 'tamagui';
 
-type FlowsPerHostnameScreenNavigationProp = StackNavigationProp<
+type FlowsTableScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
-  'FlowsPerHostname'
+  'FlowsTable'
 >;
 
-type FlowsPerHostnameScreenRouteProp = RouteProp<
+type FlowsTableScreenRouteProp = RouteProp<
   RootStackParamList,
-  'FlowsPerHostname'
+  'FlowsTable'
 >;
 
 const {ScarecrowNetwork} = NativeModules;
 
-function Splash(): JSX.Element {
-  const navigation = useNavigation<FlowsPerHostnameScreenNavigationProp>();
-  const route = useRoute<FlowsPerHostnameScreenRouteProp>();
+function SplashScreen(): JSX.Element {
+  const navigation = useNavigation<FlowsTableScreenNavigationProp>();
+  const route = useRoute<FlowsTableScreenRouteProp>();
 
   const [status, setStatus] = React.useState<boolean | undefined>(false);
 
@@ -29,7 +29,7 @@ function Splash(): JSX.Element {
 
   React.useEffect(() => {
     if (status) {
-      navigation.navigate('FlowsPerProcess');
+      navigation.navigate('ProcessesTable');
     }
   }, [navigation, status]);
 
@@ -66,4 +66,4 @@ function Splash(): JSX.Element {
   );
 }
 
-export default Splash;
+export default SplashScreen;

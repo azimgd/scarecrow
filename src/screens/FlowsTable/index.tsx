@@ -4,24 +4,24 @@ import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList} from '../../navigation/index';
 import * as ScarecrowNetwork from '../../ScarecrowNetwork';
-import FlowsPerProcessTable from './FlowsPerProcessTable';
+import FlowsTable from './FlowsTable';
 import Window from '../../components/Window';
 import SearchBar from '../../components/Searchbar';
 
-type FlowsPerProcessScreenNavigationProp = StackNavigationProp<
+type FlowsTableScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
-  'FlowsPerProcess'
+  'FlowsTable'
 >;
 
-function FlowsPerProcess(): JSX.Element {
-  const navigation = useNavigation<FlowsPerProcessScreenNavigationProp>();
+function FlowsTableScreen(): JSX.Element {
+  const navigation = useNavigation<FlowsTableScreenNavigationProp>();
 
   const [tableData, setTableData] = React.useState<
-    ScarecrowNetwork.ProcessModel[]
+    ScarecrowNetwork.FlowModel[]
   >([]);
 
   const handleDataItemPress = React.useCallback((bundleIdentifier: string) => {
-    navigation.navigate('FlowsPerProcessExpand', {bundleIdentifier});
+    navigation.navigate('FlowsTableExpand', {bundleIdentifier});
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -33,20 +33,20 @@ function FlowsPerProcess(): JSX.Element {
   );
 
   React.useEffect(() => {
-    ScarecrowNetwork.getProcesses(null).then(setTableData);
+    ScarecrowNetwork.getFlows(null).then(setTableData);
     const listener = ScarecrowNetwork.handleFlowRequest(() =>
-      ScarecrowNetwork.getProcesses(null).then(setTableData),
+      ScarecrowNetwork.getFlows(null).then(setTableData),
     );
 
     return () => listener.remove();
   }, []);
 
   return (
-    <Window title="Applications">
+    <Window title="Endpoints">
       <ScrollView>
         <SearchBar />
 
-        <FlowsPerProcessTable
+        <FlowsTable
           data={tableData}
           handleDataItemPress={handleDataItemPress}
           handleDataItemCheckedChange={handleDataItemCheckedChange}
@@ -56,4 +56,4 @@ function FlowsPerProcess(): JSX.Element {
   );
 }
 
-export default FlowsPerProcess;
+export default FlowsTableScreen;

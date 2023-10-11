@@ -9,18 +9,18 @@ import Environment from './Environment';
 import SidebarItem from './SidebarItem';
 import Header from './Header';
 
-type FlowsPerHostnameScreenNavigationProp = StackNavigationProp<
+type FlowsTableScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
-  'FlowsPerHostname'
+  'FlowsTable'
 >;
 
-type FlowsPerHostnameScreenRouteProp = RouteProp<RootStackParamList>;
+type FlowsTableScreenRouteProp = RouteProp<RootStackParamList>;
 
 const {ScarecrowNetwork} = NativeModules;
 
 function Sidebar(): JSX.Element {
-  const navigation = useNavigation<FlowsPerHostnameScreenNavigationProp>();
-  const route = useRoute<FlowsPerHostnameScreenRouteProp>();
+  const navigation = useNavigation<FlowsTableScreenNavigationProp>();
+  const route = useRoute<FlowsTableScreenRouteProp>();
 
   const [countProcesses, setcountProcesses] = React.useState<number>(0);
   const [countFlows, setcountFlows] = React.useState<number>(0);
@@ -38,24 +38,24 @@ function Sidebar(): JSX.Element {
 
       <YStack paddingHorizontal="$4">
         <SidebarItem
-          onPress={() => navigation.navigate('FlowsPerProcess')}
-          active={route.name === 'FlowsPerProcess'}
+          onPress={() => navigation.navigate('ProcessesTable')}
+          active={route.name === 'ProcessesTable'}
           title="Applications"
           icon={<AppWindow />}
           iconRightText={countProcesses}
         />
 
         <SidebarItem
-          onPress={() => navigation.navigate('FlowsPerHostname')}
-          active={route.name === 'FlowsPerHostname'}
+          onPress={() => navigation.navigate('FlowsTable')}
+          active={route.name === 'FlowsTable'}
           title="Hostnames"
           icon={<Globe2 />}
           iconRightText={countFlows}
         />
 
         <SidebarItem
-          onPress={() => navigation.navigate('FlowRules')}
-          active={route.name === 'FlowRules'}
+          onPress={() => navigation.navigate('RulesTable')}
+          active={route.name === 'RulesTable'}
           title="Rules"
           icon={<Ruler />}
           iconRightText={countRules}

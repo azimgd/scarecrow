@@ -19,6 +19,8 @@
 @property (nonatomic, assign) NSString *path;
 @property (nonatomic, assign) NSString *name;
 @property (nonatomic, assign) NSString *icon;
+@property (nonatomic) int sumFlowSize;
+@property (nonatomic) int countFlows;
 
 @end
 

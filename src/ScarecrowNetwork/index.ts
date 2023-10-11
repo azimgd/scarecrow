@@ -15,6 +15,8 @@ export type ProcessModel = {
   path: string;
   name: string;
   icon: string;
+  sumFlowSize: number;
+  countFlows: number;
 };
 
 export type RuleModel = {
@@ -22,21 +24,6 @@ export type RuleModel = {
   allowed: boolean;
   createdAt: string;
   process: ProcessModel;
-};
-
-export type handleFlowRequestPayload = {
-  remoteEndpoint: string;
-  remoteUrl: string;
-  direction: string;
-  name: string;
-  bundleIdentifier: string;
-  rule: {
-    allowed: boolean;
-  };
-  size: number;
-
-  icon: string;
-  totalCount: number;
 };
 
 const {ScarecrowNetwork} = NativeModules;
@@ -53,6 +40,5 @@ export const countRules = ScarecrowNetwork.countRules;
 
 export const handleFlowRuleUpdate = ScarecrowNetwork.handleFlowRuleUpdate;
 
-export const handleFlowRequest = (
-  listener: (event: handleFlowRequestPayload) => void,
-) => eventEmitter.addListener('handleFlowRequest', listener);
+export const handleFlowRequest = (listener: (event: any) => void) =>
+  eventEmitter.addListener('handleFlowRequest', listener);

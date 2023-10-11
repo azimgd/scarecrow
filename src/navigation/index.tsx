@@ -5,19 +5,19 @@ import {
 } from '@react-navigation/stack';
 import {NavigationContainer, DarkTheme} from '@react-navigation/native';
 import Splash from '../screens/Splash';
-import FlowsPerHostname from '../screens/FlowsPerHostname';
-import FlowsPerHostnameExpand from '../screens/FlowsPerHostnameExpand';
-import FlowsPerProcess from '../screens/FlowsPerProcess';
-import FlowsPerProcessExpand from '../screens/FlowsPerProcessExpand';
-import FlowRules from '../screens/FlowRules';
+import FlowsTable from '../screens/FlowsTable';
+import FlowsTableExpand from '../screens/FlowsTableExpand';
+import ProcessesTable from '../screens/ProcessesTable';
+import ProcessesTableExpand from '../screens/ProcessesTableExpand';
+import RulesTable from '../screens/RulesTable';
 import {useTheme} from 'tamagui';
 
 export type RootStackParamList = {
-  FlowsPerHostname: undefined;
-  FlowsPerHostnameExpand: {bundleIdentifier: string};
-  FlowsPerProcess: undefined;
-  FlowsPerProcessExpand: {bundleIdentifier: string};
-  FlowRules: undefined;
+  FlowsTable: undefined;
+  FlowsTableExpand: {bundleIdentifier: string};
+  ProcessesTable: undefined;
+  ProcessesTableExpand: {bundleIdentifier: string};
+  RulesTable: undefined;
   Splash: undefined;
 };
 
@@ -49,17 +49,17 @@ function RootStack() {
     <NavigationContainer theme={navigationTheme}>
       <Stack.Navigator screenOptions={screenOptions}>
         <Stack.Screen name="Splash" component={Splash} />
-        <Stack.Screen name="FlowsPerHostname" component={FlowsPerHostname} />
-        <Stack.Screen name="FlowsPerProcess" component={FlowsPerProcess} />
+        <Stack.Screen name="FlowsTable" component={FlowsTable} />
+        <Stack.Screen name="ProcessesTable" component={ProcessesTable} />
         <Stack.Screen
-          name="FlowsPerHostnameExpand"
-          component={FlowsPerHostnameExpand}
+          name="FlowsTableExpand"
+          component={FlowsTableExpand}
         />
         <Stack.Screen
-          name="FlowsPerProcessExpand"
-          component={FlowsPerProcessExpand}
+          name="ProcessesTableExpand"
+          component={ProcessesTableExpand}
         />
-        <Stack.Screen name="FlowRules" component={FlowRules} />
+        <Stack.Screen name="RulesTable" component={RulesTable} />
       </Stack.Navigator>
     </NavigationContainer>
   );

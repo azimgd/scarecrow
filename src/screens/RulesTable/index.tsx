@@ -1,10 +1,10 @@
 import React from 'react';
 import {ScrollView} from 'react-native';
 import * as ScarecrowNetwork from '../../ScarecrowNetwork';
-import FlowRulesTable from './FlowRulesTable';
+import RulesTable from './RulesTable';
 import Window from '../../components/Window';
 
-function FlowRules(): JSX.Element {
+function RulesTableScreen(): JSX.Element {
   const [tableData, setTableData] = React.useState<
     ScarecrowNetwork.RuleModel[]
   >([]);
@@ -25,7 +25,7 @@ function FlowRules(): JSX.Element {
   return (
     <Window title="Rules">
       <ScrollView>
-        <FlowRulesTable
+        <RulesTable
           data={tableData}
           handleDataItemPress={handleDataItemPress}
           handleDataItemCheckedChange={handleDataItemCheckedChange}
@@ -35,4 +35,4 @@ function FlowRules(): JSX.Element {
   );
 }
 
-export default FlowRules;
+export default RulesTableScreen;

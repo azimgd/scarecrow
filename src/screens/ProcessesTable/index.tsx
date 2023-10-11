@@ -4,24 +4,24 @@ import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList} from '../../navigation/index';
 import * as ScarecrowNetwork from '../../ScarecrowNetwork';
-import FlowsPerHostnameTable from './FlowsPerHostnameTable';
+import ProcessesTable from './ProcessesTable';
 import Window from '../../components/Window';
 import SearchBar from '../../components/Searchbar';
 
-type FlowsPerHostnameScreenNavigationProp = StackNavigationProp<
+type ProcessesTableScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
-  'FlowsPerHostname'
+  'ProcessesTable'
 >;
 
-function FlowsPerHostname(): JSX.Element {
-  const navigation = useNavigation<FlowsPerHostnameScreenNavigationProp>();
+function ProcessesTableScreen(): JSX.Element {
+  const navigation = useNavigation<ProcessesTableScreenNavigationProp>();
 
   const [tableData, setTableData] = React.useState<
-    ScarecrowNetwork.FlowModel[]
+    ScarecrowNetwork.ProcessModel[]
   >([]);
 
   const handleDataItemPress = React.useCallback((bundleIdentifier: string) => {
-    navigation.navigate('FlowsPerHostnameExpand', {bundleIdentifier});
+    navigation.navigate('ProcessesTableExpand', {bundleIdentifier});
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -33,20 +33,20 @@ function FlowsPerHostname(): JSX.Element {
   );
 
   React.useEffect(() => {
-    ScarecrowNetwork.getFlows(null).then(setTableData);
+    ScarecrowNetwork.getProcesses(null).then(setTableData);
     const listener = ScarecrowNetwork.handleFlowRequest(() =>
-      ScarecrowNetwork.getFlows(null).then(setTableData),
+      ScarecrowNetwork.getProcesses(null).then(setTableData),
     );
 
     return () => listener.remove();
   }, []);
 
   return (
-    <Window title="Endpoints">
+    <Window title="Applications">
       <ScrollView>
         <SearchBar />
 
-        <FlowsPerHostnameTable
+        <ProcessesTable
           data={tableData}
           handleDataItemPress={handleDataItemPress}
           handleDataItemCheckedChange={handleDataItemCheckedChange}
@@ -56,4 +56,4 @@ function FlowsPerHostname(): JSX.Element {
   );
 }
 
-export default FlowsPerHostname;
+export default ProcessesTableScreen;
