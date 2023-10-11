@@ -61,7 +61,7 @@
 - (NEFilterDataVerdict *)handleInboundDataFromFlow:(NEFilterFlow *)flow readBytesStartOffset:(NSUInteger)offset readBytes:(NSData *)readBytes {
   os_log(OS_LOG_DEFAULT, "[scarecrow-filter] handleInboundDataFromFlow");
 
-  FlowHolder *flowHolder = [[FlowHolder alloc] init:flow];
+  FlowHolder *flowHolder = [[FlowHolder alloc] init:flow size:(int)readBytes.length];
   ProcessHolder *processHolder = [[ProcessHolder alloc] init:flow];
 
   NSXPCConnection *connection = [ExtensionCommunication shared].connection;
@@ -84,7 +84,7 @@
 - (NEFilterDataVerdict *)handleOutboundDataFromFlow:(NEFilterFlow *)flow readBytesStartOffset:(NSUInteger)offset readBytes:(NSData *)readBytes {
   os_log(OS_LOG_DEFAULT, "[scarecrow-filter] handleOutboundDataFromFlow");
   
-  FlowHolder *flowHolder = [[FlowHolder alloc] init:flow];
+  FlowHolder *flowHolder = [[FlowHolder alloc] init:flow size:(int)readBytes.length];
   ProcessHolder *processHolder = [[ProcessHolder alloc] init:flow];
 
   NSXPCConnection *connection = [ExtensionCommunication shared].connection;

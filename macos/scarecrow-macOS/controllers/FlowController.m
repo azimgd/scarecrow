@@ -33,6 +33,7 @@
     flow.direction = payload[@"direction"];
     flow.remoteEndpoint = payload[@"remoteEndpoint"];
     flow.remoteUrl = payload[@"remoteUrl"];
+    flow.size = [payload[@"size"] intValue];
   }];
   
   return flow;
@@ -48,6 +49,7 @@
     flow.direction = payload[@"direction"];
     flow.remoteEndpoint = payload[@"remoteEndpoint"];
     flow.remoteUrl = payload[@"remoteUrl"];
+    flow.size = [payload[@"size"] intValue];
   }];
   
   return flow;

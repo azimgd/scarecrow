@@ -21,6 +21,7 @@
 @property (nonatomic, copy) NSString *direction;
 @property (nonatomic, copy) NSString *remoteEndpoint;
 @property (nonatomic, copy) NSString *remoteUrl;
+@property (nonatomic, assign) int size;
 @property (nonatomic) NSDate *createdAt;
 
 @property (nonatomic) ProcessModel *process;

@@ -19,6 +19,7 @@
     @"direction",
     @"remoteEndpoint",
     @"remoteUrl",
+    @"size",
     @"process",
     @"createdAt",
   ];

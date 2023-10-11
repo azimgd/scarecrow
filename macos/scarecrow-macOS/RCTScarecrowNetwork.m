@@ -131,6 +131,8 @@ RCT_EXPORT_METHOD(countRules:(RCTPromiseResolveBlock)resolve
 
 - (void)handleFlowRequest:(NSNotification*)sender
 {
+  NSLog(@"wiwi %@", sender.userInfo[@"flow"]);
+
   ProcessController *processController = [ProcessController new];
   ProcessModel *process = [processController create:@{
     @"bundle": sender.userInfo[@"process"][@"bundle"],
@@ -152,6 +154,7 @@ RCT_EXPORT_METHOD(countRules:(RCTPromiseResolveBlock)resolve
     @"direction": sender.userInfo[@"flow"][@"direction"],
     @"remoteEndpoint": sender.userInfo[@"flow"][@"remoteEndpoint"],
     @"remoteUrl": sender.userInfo[@"flow"][@"remoteUrl"],
+    @"size": sender.userInfo[@"flow"][@"size"],
   }];
   
   [self sendEventWithName:@"handleFlowRequest" body:@{}];

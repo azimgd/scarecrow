@@ -39,6 +39,7 @@
         @"direction TEXT NOT NULL DEFAULT '',"
         @"remoteUrl TEXT NOT NULL DEFAULT '',"
         @"remoteEndpoint TEXT NOT NULL DEFAULT '',"
+        @"size INTEGER DEFAULT 0,"
         @"createdAt REAL NOT NULL"
         @");"
       ]) failedAt(1);

@@ -11,7 +11,7 @@
 
 @implementation FlowHolder
 
-- (instancetype)init:(NEFilterFlow *)flow {
+- (instancetype)init:(NEFilterFlow *)flow size:(int)size {
   self = [super init];
 
   if (self) {
@@ -20,6 +20,7 @@
     _remoteEndpoint = (socketFlow.remoteEndpoint) ? socketFlow.remoteEndpoint.description : @"";
     _remoteUrl = (socketFlow.URL) ? socketFlow.URL.description : @"";
     _direction = socketFlow.direction == 1 ? @"inbound" : @"outbound";
+    _size = size ?: 0;
   }
 
   return self;
@@ -32,6 +33,7 @@
     @"direction": _direction,
     @"remoteEndpoint": _remoteEndpoint,
     @"remoteUrl": _remoteUrl,
+    @"size": @(_size),
   };
 }
 

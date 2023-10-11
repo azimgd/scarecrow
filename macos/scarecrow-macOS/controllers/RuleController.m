@@ -24,8 +24,6 @@
 
 - (RuleModel *)create:(NSDictionary *)payload
 {
-  NSLog(@"wiwi %@", payload);
-
   RuleModel *matchedRule = [RuleModel firstInstanceWhere:@"processId = ?", payload[@"processId"]];
   if (matchedRule.id) {
     return matchedRule;
