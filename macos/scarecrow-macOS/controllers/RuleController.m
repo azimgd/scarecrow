@@ -13,7 +13,7 @@
 - (NSArray *)get
 {
   NSMutableArray *response = [NSMutableArray new];
-  for (RuleModel *rule in [RuleModel allInstances]) {
+  for (RuleModel *rule in [RuleModel instancesOrderedBy:@"`createdAt` DESC"]) {
     [response addObject:[rule dictionaryWithValuesForKeys:rule.keys]];
     
     if (response.count >= 100) break;

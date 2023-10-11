@@ -13,7 +13,7 @@
 - (NSArray *)get
 {
   NSMutableArray *response = [NSMutableArray new];
-  for (FlowModel *flow in [FlowModel allInstances]) {
+  for (FlowModel *flow in [FlowModel instancesOrderedBy:@"`createdAt` DESC"]) {
     [response addObject:[flow dictionaryWithValuesForKeys:flow.keys]];
     
     if (response.count >= 100) break;

@@ -5,7 +5,7 @@ export type FlowModel = {
   direction: string;
   remoteEndpoint: string;
   remoteUrl: string;
-  createdAt: string;
+  createdAt: number;
   process: ProcessModel;
 };
 
@@ -22,7 +22,7 @@ export type ProcessModel = {
 export type RuleModel = {
   id: number;
   allowed: boolean;
-  createdAt: string;
+  createdAt: number;
   process: ProcessModel;
 };
 
