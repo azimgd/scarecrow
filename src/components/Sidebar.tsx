@@ -22,22 +22,14 @@ function Sidebar(): JSX.Element {
   const navigation = useNavigation<FlowsPerHostnameScreenNavigationProp>();
   const route = useRoute<FlowsPerHostnameScreenRouteProp>();
 
-  const [
-    countProcesses,
-    setcountProcesses,
-  ] = React.useState<number>(0);
-  const [
-    countFlows,
-    setcountFlows,
-  ] = React.useState<number>(0);
+  const [countProcesses, setcountProcesses] = React.useState<number>(0);
+  const [countFlows, setcountFlows] = React.useState<number>(0);
+  const [countRules, setcountRules] = React.useState<number>(0);
 
   React.useEffect(() => {
-    ScarecrowNetwork.countProcesses().then(
-      setcountProcesses,
-    );
-    ScarecrowNetwork.countFlows().then(
-      setcountFlows,
-    );
+    ScarecrowNetwork.countProcesses().then(setcountProcesses);
+    ScarecrowNetwork.countFlows().then(setcountFlows);
+    ScarecrowNetwork.countRules().then(setcountRules);
   }, []);
 
   return (
@@ -66,7 +58,7 @@ function Sidebar(): JSX.Element {
           active={route.name === 'FlowRules'}
           title="Rules"
           icon={<Ruler />}
-          iconRightText={countProcesses}
+          iconRightText={countRules}
         />
       </YStack>
 

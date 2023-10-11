@@ -14,6 +14,7 @@
 
 - (NSArray *)get;
 - (void)create:(NSDictionary *)payload;
+- (void)update:(NSDictionary *)payload pk:(NSUInteger)pk;
 - (NSUInteger)count;
 @end
 

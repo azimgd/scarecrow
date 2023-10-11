@@ -8,10 +8,10 @@
 #import <Foundation/Foundation.h>
 #import "RCTScarecrowNetwork.h"
 #import "HostCommunication.h"
-#import "IndexData.h"
 #import "Migrations.h"
 #import "FlowController.h"
 #import "ProcessController.h"
+#import "RuleController.h"
 
 @implementation RCTScarecrowNetwork
 
@@ -108,7 +108,7 @@ RCT_EXPORT_METHOD(handleFlowRuleUpdate:(NSString *)bundleIdentifier
   resolve:(RCTPromiseResolveBlock)resolve
   error:(__unused RCTResponseSenderBlock)reject)
 {
-  [IndexData.shared handleFlowRuleUpdate:bundleIdentifier payload:payload];
+  // [IndexData.shared handleFlowRuleUpdate:bundleIdentifier payload:payload];
   [HostCommunication.shared handleFlowRuleUpdate:bundleIdentifier payload:payload];
   resolve(@{});
 }
@@ -116,8 +116,17 @@ RCT_EXPORT_METHOD(handleFlowRuleUpdate:(NSString *)bundleIdentifier
 RCT_EXPORT_METHOD(getRules:(RCTPromiseResolveBlock)resolve
   error:(__unused RCTResponseSenderBlock)reject)
 {
-  NSArray *response = [IndexData.shared getRules];
+  RuleController *ruleController = [RuleController new];
+  NSArray *response = [ruleController get];
   resolve(response);
+}
+
+RCT_EXPORT_METHOD(countRules:(RCTPromiseResolveBlock)resolve
+  error:(__unused RCTResponseSenderBlock)reject)
+{
+  RuleController *ruleController = [RuleController new];
+  NSUInteger response = [ruleController count];
+  resolve(@(response));
 }
 
 - (void)handleFlowRequest:(NSNotification*)sender
@@ -129,7 +138,7 @@ RCT_EXPORT_METHOD(getRules:(RCTPromiseResolveBlock)resolve
     @"name": @"name3",
     @"icon": @"icon",
   }];
-  [IndexData.shared createFlow:sender.userInfo[@"flow"] processPayload:sender.userInfo[@"process"]];
+  // [IndexData.shared createFlow:sender.userInfo[@"flow"] processPayload:sender.userInfo[@"process"]];
   [self sendEventWithName:@"handleFlowRequest" body:@{}];
 }
 

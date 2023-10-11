@@ -15,7 +15,7 @@ function FlowsPerHostnameExpand(): JSX.Element {
   const route = useRoute<FlowsPerHostnameExpandScreenRouteProp>();
 
   const [tableData, setTableData] = React.useState<
-    ScarecrowNetwork.handleFlowRequestPayload[]
+    ScarecrowNetwork.ProcessModel[]
   >([]);
 
   React.useEffect(() => {

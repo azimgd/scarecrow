@@ -1,22 +1,21 @@
 //
-//  FlowController.h
+//  RuleController.h
 //  scarecrow
 //
 //  Created by azim on 11.10.2023.
 //
 
-#ifndef FlowController_h
-#define FlowController_h
+#ifndef RuleController_h
+#define RuleController_h
 
-#import "FlowModel.h"
+#import "RuleModel.h"
 
-@interface FlowController : NSObject
+@interface RuleController : NSObject
 
 - (NSArray *)get;
 - (void)create:(NSDictionary *)payload;
 - (void)update:(NSDictionary *)payload pk:(NSUInteger)pk;
 - (NSUInteger)count;
-
 @end
 
-#endif /* FlowController_h */
+#endif /* RuleController_h */

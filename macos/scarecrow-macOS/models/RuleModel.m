@@ -10,4 +10,15 @@
 
 @implementation RuleModel
 
+- (void)didInit
+{
+  _keys = @[
+    @"id",
+    @"direction",
+    @"remoteEndpoint",
+    @"remoteUrl",
+    @"createdAt",
+  ];
+}
+
 @end

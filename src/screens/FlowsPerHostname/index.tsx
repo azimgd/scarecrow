@@ -17,7 +17,7 @@ function FlowsPerHostname(): JSX.Element {
   const navigation = useNavigation<FlowsPerHostnameScreenNavigationProp>();
 
   const [tableData, setTableData] = React.useState<
-    ScarecrowNetwork.handleFlowRequestPayload[]
+    ScarecrowNetwork.FlowModel[]
   >([]);
 
   const handleDataItemPress = React.useCallback((bundleIdentifier: string) => {

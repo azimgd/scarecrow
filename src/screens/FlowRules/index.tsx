@@ -6,7 +6,7 @@ import Window from '../../components/Window';
 
 function FlowRules(): JSX.Element {
   const [tableData, setTableData] = React.useState<
-    ScarecrowNetwork.handleFlowRequestPayload[]
+    ScarecrowNetwork.RuleModel[]
   >([]);
 
   const handleDataItemPress = React.useCallback(() => {}, []);

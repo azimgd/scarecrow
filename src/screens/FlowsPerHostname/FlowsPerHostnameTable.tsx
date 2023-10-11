@@ -7,7 +7,7 @@ import FlowsTableIconLeft from '../../components/FlowsTable/FlowsTableIconLeft';
 import FlowsTableIconRight from '../../components/FlowsTable/FlowsTableIconRight';
 
 type FlowsPerHostnameTableProps = PropsWithChildren<{
-  data: ScarecrowNetwork.handleFlowRequestPayload[];
+  data: ScarecrowNetwork.FlowModel[];
   handleDataItemPress: (bundleIdentifier: string) => void;
   handleDataItemCheckedChange: (
     bundleIdentifier: string,

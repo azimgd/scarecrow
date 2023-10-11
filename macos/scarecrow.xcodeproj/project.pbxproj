@@ -11,6 +11,7 @@
 		0539C9A52AD61FCC00B7E6A2 /* Migrations.m in Sources */ = {isa = PBXBuildFile; fileRef = 0539C9A42AD61FCC00B7E6A2 /* Migrations.m */; };
 		0539C9A82AD6BAD400B7E6A2 /* FlowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0539C9A72AD6BAD400B7E6A2 /* FlowController.m */; };
 		0539C9AC2AD6BB6400B7E6A2 /* ProcessController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0539C9AB2AD6BB6400B7E6A2 /* ProcessController.m */; };
+		0539C9AE2AD6DCE100B7E6A2 /* RuleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0539C9AD2AD6DCE100B7E6A2 /* RuleController.m */; };
 		055CC6772AC6C91E00DBFB48 /* Validator.m in Sources */ = {isa = PBXBuildFile; fileRef = 055CC6762AC6C91E00DBFB48 /* Validator.m */; };
 		056402E82ACF305900D427EF /* ProcessModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 056402E72ACF305900D427EF /* ProcessModel.m */; };
 		0582000D2AD430FE00AD82C0 /* ProcessHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 0582000B2AD430DD00AD82C0 /* ProcessHelpers.m */; };
@@ -75,6 +76,8 @@
 		0539C9A92AD6BADB00B7E6A2 /* FlowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlowController.h; sourceTree = "<group>"; };
 		0539C9AA2AD6BB5A00B7E6A2 /* ProcessController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProcessController.h; sourceTree = "<group>"; };
 		0539C9AB2AD6BB6400B7E6A2 /* ProcessController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProcessController.m; sourceTree = "<group>"; };
+		0539C9AD2AD6DCE100B7E6A2 /* RuleController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RuleController.m; sourceTree = "<group>"; };
+		0539C9AF2AD6DCEC00B7E6A2 /* RuleController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RuleController.h; sourceTree = "<group>"; };
 		055CC6752AC6C91400DBFB48 /* Validator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Validator.h; sourceTree = "<group>"; };
 		055CC6762AC6C91E00DBFB48 /* Validator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Validator.m; sourceTree = "<group>"; };
 		056402E72ACF305900D427EF /* ProcessModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProcessModel.m; sourceTree = "<group>"; };
@@ -160,6 +163,8 @@
 				0539C9A72AD6BAD400B7E6A2 /* FlowController.m */,
 				0539C9AA2AD6BB5A00B7E6A2 /* ProcessController.h */,
 				0539C9AB2AD6BB6400B7E6A2 /* ProcessController.m */,
+				0539C9AF2AD6DCEC00B7E6A2 /* RuleController.h */,
+				0539C9AD2AD6DCE100B7E6A2 /* RuleController.m */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -196,8 +201,8 @@
 		05B70CDF2AC8877E00BE9F95 /* models */ = {
 			isa = PBXGroup;
 			children = (
-				0539C9A32AD61FC000B7E6A2 /* Migrations.h */,
 				0539C9A42AD61FCC00B7E6A2 /* Migrations.m */,
+				0539C9A32AD61FC000B7E6A2 /* Migrations.h */,
 				05B70CE02AC8878C00BE9F95 /* FlowModel.m */,
 				05B70CE22AC8879300BE9F95 /* FlowModel.h */,
 				05C0D54F2ACB36BB00A0846D /* RuleModel.m */,
@@ -583,6 +588,7 @@
 				0539C9A82AD6BAD400B7E6A2 /* FlowController.m in Sources */,
 				053805BA2AD4349B00647BF8 /* ProcessHelpers.m in Sources */,
 				059792102AB47B3900348AB8 /* HostCommunication.h in Sources */,
+				0539C9AE2AD6DCE100B7E6A2 /* RuleController.m in Sources */,
 				059792112AB47B3900348AB8 /* HostCommunication.m in Sources */,
 				514201582437B4B40078DB4F /* main.m in Sources */,
 				0539C9A52AD61FCC00B7E6A2 /* Migrations.m in Sources */,

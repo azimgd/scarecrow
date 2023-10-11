@@ -17,7 +17,7 @@ function FlowsPerProcess(): JSX.Element {
   const navigation = useNavigation<FlowsPerProcessScreenNavigationProp>();
 
   const [tableData, setTableData] = React.useState<
-    ScarecrowNetwork.handleFlowRequestPayload[]
+    ScarecrowNetwork.ProcessModel[]
   >([]);
 
   const handleDataItemPress = React.useCallback((bundleIdentifier: string) => {

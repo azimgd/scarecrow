@@ -15,6 +15,8 @@
   NSMutableArray *response = [NSMutableArray new];
   for (ProcessModel *process in [ProcessModel allInstances]) {
     [response addObject:[process dictionaryWithValuesForKeys:process.keys]];
+    
+    if (response.count >= 100) break;
   }
 
   return response;
@@ -24,6 +26,18 @@
 {
   ProcessModel *lastProcess = [ProcessModel firstInstanceOrderedBy:@"`id` DESC"];
   ProcessModel *process = [ProcessModel instanceWithPrimaryKey:@(lastProcess.id + 1)];
+
+  [process save:^{
+    process.name = payload[@"name"];
+    process.path = payload[@"path"];
+    process.bundle = payload[@"bundle"];
+    process.icon = payload[@"icon"];
+  }];
+}
+
+- (void)update:(NSDictionary *)payload pk:(NSUInteger)pk
+{
+  ProcessModel *process = [ProcessModel instanceWithPrimaryKey:@(pk)];
 
   [process save:^{
     process.name = payload[@"name"];

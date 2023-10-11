@@ -15,6 +15,8 @@
   NSMutableArray *response = [NSMutableArray new];
   for (FlowModel *flow in [FlowModel allInstances]) {
     [response addObject:[flow dictionaryWithValuesForKeys:flow.keys]];
+    
+    if (response.count >= 100) break;
   }
 
   return response;
@@ -24,6 +26,18 @@
 {
   FlowModel *lastFlow = [FlowModel firstInstanceOrderedBy:@"`id` DESC"];
   FlowModel *flow = [FlowModel instanceWithPrimaryKey:@(lastFlow.id + 1)];
+
+  [flow save:^{
+    flow.direction = payload[@"direction"];
+    flow.remoteEndpoint = payload[@"remoteEndpoint"];
+    flow.remoteUrl = payload[@"remoteUrl"];
+    flow.createdAt = payload[@"createdAt"];
+  }];
+}
+
+- (void)update:(NSDictionary *)payload pk:(NSUInteger)pk
+{
+  FlowModel *flow = [FlowModel instanceWithPrimaryKey:@(pk)];
 
   [flow save:^{
     flow.direction = payload[@"direction"];
