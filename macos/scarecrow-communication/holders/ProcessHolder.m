@@ -20,7 +20,7 @@
 
     _path = getProcessPathForPID(auditTokenPID);
     _name = getProcessNameForPID(auditTokenPID, _path);
-    _bundleIdentifier = _path;
+    _bundle = _path;
   }
 
   return self;
@@ -29,9 +29,10 @@
 - (NSDictionary *)payload
 {
   return @{
-    @"bundleIdentifier": _bundleIdentifier ?: @"",
+    @"bundle": _bundle ?: @"",
     @"path": _path ?: @"",
     @"name": _name ?: @"",
+    @"icon": _icon ?: @"",
   };
 }
 

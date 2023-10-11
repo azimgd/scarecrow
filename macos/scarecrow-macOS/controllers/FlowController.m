@@ -22,29 +22,33 @@
   return response;
 }
 
-- (void)create:(NSDictionary *)payload
+- (FlowModel *)create:(NSDictionary *)payload
 {
   FlowModel *lastFlow = [FlowModel firstInstanceOrderedBy:@"`id` DESC"];
   FlowModel *flow = [FlowModel instanceWithPrimaryKey:@(lastFlow.id + 1)];
 
   [flow save:^{
+    flow.processId = [payload[@"processId"] unsignedIntValue];
     flow.direction = payload[@"direction"];
     flow.remoteEndpoint = payload[@"remoteEndpoint"];
     flow.remoteUrl = payload[@"remoteUrl"];
-    flow.createdAt = payload[@"createdAt"];
   }];
+  
+  return flow;
 }
 
-- (void)update:(NSDictionary *)payload pk:(NSUInteger)pk
+- (FlowModel *)update:(NSDictionary *)payload pk:(NSUInteger)pk
 {
   FlowModel *flow = [FlowModel instanceWithPrimaryKey:@(pk)];
 
   [flow save:^{
+    flow.processId = [payload[@"processId"] unsignedIntValue];
     flow.direction = payload[@"direction"];
     flow.remoteEndpoint = payload[@"remoteEndpoint"];
     flow.remoteUrl = payload[@"remoteUrl"];
-    flow.createdAt = payload[@"createdAt"];
   }];
+  
+  return flow;
 }
 
 - (NSUInteger)count

@@ -24,7 +24,7 @@ function FlowsPerProcessTable({
     <YStack>
       {data.map((flow, index) => (
         <TouchableOpacity
-          onPress={() => handleDataItemPress(flow.bundleIdentifier)}
+          onPress={() => handleDataItemPress(flow.bundle)}
           key={index}>
           <ListItem
             backgroundColor="$backgroundTransparent"

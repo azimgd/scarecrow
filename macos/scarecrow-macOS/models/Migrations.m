@@ -34,6 +34,8 @@
       if (![db executeUpdate:
         @"CREATE TABLE FlowModel ("
         @"id INTEGER PRIMARY KEY,"
+        @"processId INTEGER,"
+        @"identifier TEXT NOT NULL DEFAULT '',"
         @"direction TEXT NOT NULL DEFAULT '',"
         @"remoteUrl TEXT NOT NULL DEFAULT '',"
         @"remoteEndpoint TEXT NOT NULL DEFAULT '',"
@@ -50,11 +52,13 @@
         @"icon TEXT NOT NULL DEFAULT '',"
         @"FOREIGN KEY (id) REFERENCES FlowModel(id)"
         @");"
+        @"ALTER TABLE FlowModel ADD FOREIGN KEY (processId) REFERENCES ProcessModel(id);"
       ]) failedAt(2);
 
       if (![db executeUpdate:
         @"CREATE TABLE RuleModel ("
         @"id INTEGER PRIMARY KEY,"
+        @"flowId INTEGER,"
         @"allowed INTEGER,"
         @"createdAt REAL NOT NULL,"
         @"FOREIGN KEY (id) REFERENCES ProcessModel(id)"

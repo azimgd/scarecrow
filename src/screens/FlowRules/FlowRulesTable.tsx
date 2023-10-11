@@ -23,10 +23,10 @@ function FlowsPerHostnameTable({
     <YStack>
       {data.map((rule, index) => (
         <TouchableOpacity
-          onPress={() => handleDataItemPress(rule.bundleIdentifier)}
+          onPress={() => handleDataItemPress(rule.flow.process.bundle)}
           key={index}>
           <ListItem
-            title={rule.remoteEndpoint || rule.bundleIdentifier}
+            title={rule.flow.remoteEndpoint}
             iconAfter={
               <RulesTableIconRight
                 rule={rule}

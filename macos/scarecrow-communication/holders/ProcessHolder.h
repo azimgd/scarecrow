@@ -18,7 +18,8 @@
 
 @property (nonatomic, copy) NSString *path;
 @property (nonatomic, copy) NSString *name;
-@property (nonatomic, copy) NSString *bundleIdentifier;
+@property (nonatomic, copy) NSString *bundle;
+@property (nonatomic, copy) NSString *icon;
 
 - (instancetype)init:(NEFilterFlow *)flow;
 - (NSDictionary *)payload;

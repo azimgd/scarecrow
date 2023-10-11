@@ -16,11 +16,11 @@ function FlowsPerProcessExpandTable({
       {data.map((flow, index) => (
         <ListItem
           key={index}
-          title={flow.remoteEndpoint}
+          title={flow.name}
           subTitle={<FlowsTableSubTitle flow={flow} />}
           icon={<FlowsTableIconLeft flow={flow} type="default" />}>
           <SizableText theme="alt2" size="$3">
-            {flow.remoteUrl}
+            {flow.path}
           </SizableText>
         </ListItem>
       ))}

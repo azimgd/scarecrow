@@ -22,8 +22,13 @@
   return response;
 }
 
-- (void)create:(NSDictionary *)payload
+- (ProcessModel *)create:(NSDictionary *)payload
 {
+  ProcessModel *matchedProcess = [ProcessModel firstInstanceWhere:@"path = ?", payload[@"path"]];
+  if (matchedProcess.id) {
+    return matchedProcess;
+  }
+
   ProcessModel *lastProcess = [ProcessModel firstInstanceOrderedBy:@"`id` DESC"];
   ProcessModel *process = [ProcessModel instanceWithPrimaryKey:@(lastProcess.id + 1)];
 
@@ -33,9 +38,11 @@
     process.bundle = payload[@"bundle"];
     process.icon = payload[@"icon"];
   }];
+  
+  return process;
 }
 
-- (void)update:(NSDictionary *)payload pk:(NSUInteger)pk
+- (ProcessModel *)update:(NSDictionary *)payload pk:(NSUInteger)pk
 {
   ProcessModel *process = [ProcessModel instanceWithPrimaryKey:@(pk)];
 
@@ -45,6 +52,8 @@
     process.bundle = payload[@"bundle"];
     process.icon = payload[@"icon"];
   }];
+  
+  return process;
 }
 
 - (NSUInteger)count

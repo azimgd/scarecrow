@@ -6,6 +6,7 @@ export type FlowModel = {
   remoteEndpoint: string;
   remoteUrl: string;
   createdAt: string;
+  process: ProcessModel;
 };
 
 export type ProcessModel = {
@@ -20,6 +21,7 @@ export type RuleModel = {
   id: number;
   allowed: boolean;
   createdAt: string;
+  flow: FlowModel;
 };
 
 export type handleFlowRequestPayload = {

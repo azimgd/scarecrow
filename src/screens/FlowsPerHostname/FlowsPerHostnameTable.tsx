@@ -24,10 +24,10 @@ function FlowsPerHostnameTable({
     <YStack>
       {data.map((flow, index) => (
         <TouchableOpacity
-          onPress={() => handleDataItemPress(flow.bundleIdentifier)}
+          onPress={() => handleDataItemPress(flow.bundle)}
           key={index}>
           <ListItem
-            title={flow.name}
+            title={flow.remoteEndpoint}
             subTitle={<FlowsTableSubTitle flow={flow} />}
             iconAfter={
               <FlowsTableIconRight

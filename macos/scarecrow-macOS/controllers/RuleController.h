@@ -13,8 +13,8 @@
 @interface RuleController : NSObject
 
 - (NSArray *)get;
-- (void)create:(NSDictionary *)payload;
-- (void)update:(NSDictionary *)payload pk:(NSUInteger)pk;
+- (RuleModel *)create:(NSDictionary *)payload;
+- (RuleModel *)update:(NSDictionary *)payload pk:(NSUInteger)pk;
 - (NSUInteger)count;
 @end
 

@@ -19,7 +19,7 @@ function FlowsTableIconRight({
       size="$2"
       defaultChecked={flow.allowed}
       onCheckedChange={(checked: boolean) =>
-        handleDataItemCheckedChange(flow.bundleIdentifier, checked)
+        handleDataItemCheckedChange(flow.bundle, checked)
       }>
       <Switch.Thumb animation="quick" />
     </Switch>

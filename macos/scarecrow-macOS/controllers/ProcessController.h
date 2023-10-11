@@ -13,8 +13,8 @@
 @interface ProcessController : NSObject
 
 - (NSArray *)get;
-- (void)create:(NSDictionary *)payload;
-- (void)update:(NSDictionary *)payload pk:(NSUInteger)pk;
+- (ProcessModel *)create:(NSDictionary *)payload;
+- (ProcessModel *)update:(NSDictionary *)payload pk:(NSUInteger)pk;
 - (NSUInteger)count;
 @end
 

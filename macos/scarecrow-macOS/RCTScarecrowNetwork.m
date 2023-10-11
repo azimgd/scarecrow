@@ -132,13 +132,28 @@ RCT_EXPORT_METHOD(countRules:(RCTPromiseResolveBlock)resolve
 - (void)handleFlowRequest:(NSNotification*)sender
 {
   ProcessController *processController = [ProcessController new];
-  [processController create:@{
-    @"bundle": @"bundle3",
-    @"path": @"path3",
-    @"name": @"name3",
-    @"icon": @"icon",
+  ProcessModel *process = [processController create:@{
+    @"bundle": sender.userInfo[@"process"][@"bundle"],
+    @"path": sender.userInfo[@"process"][@"path"],
+    @"name": sender.userInfo[@"process"][@"name"],
+    @"icon": sender.userInfo[@"process"][@"icon"],
   }];
-  // [IndexData.shared createFlow:sender.userInfo[@"flow"] processPayload:sender.userInfo[@"process"]];
+  
+  FlowController *flowController = [FlowController new];
+  FlowModel* flow = [flowController create:@{
+    @"processId": @(process.id),
+    @"identifier": sender.userInfo[@"flow"][@"identifier"],
+    @"direction": sender.userInfo[@"flow"][@"direction"],
+    @"remoteEndpoint": sender.userInfo[@"flow"][@"remoteEndpoint"],
+    @"remoteUrl": sender.userInfo[@"flow"][@"remoteUrl"],
+  }];
+  
+  RuleController *ruleController = [RuleController new];
+  RuleModel *rule = [ruleController create:@{
+    @"flowId": @(flow.id),
+    @"allowed": @YES,
+  }];
+
   [self sendEventWithName:@"handleFlowRequest" body:@{}];
 }
 
