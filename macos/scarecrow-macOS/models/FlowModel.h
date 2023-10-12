@@ -13,6 +13,8 @@
 
 @interface FlowModel : FCModel
 
+@property (nonatomic) NSArray *safeKeys;
+@property (nonatomic) NSArray *unsafeKeys;
 @property (nonatomic) NSArray *keys;
 
 @property (nonatomic) int64_t id;
@@ -24,7 +26,8 @@
 @property (nonatomic, assign) int size;
 @property (nonatomic) NSDate *createdAt;
 
-@property (nonatomic) ProcessModel *process;
+@property (nonatomic, assign) NSDictionary *process;
+@property (nonatomic, assign) NSArray *distinctRemoteEndpoints;
 
 @end
 

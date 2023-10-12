@@ -20,6 +20,10 @@ function ProcessesTable({
   handleDataItemPress,
   handleDataItemCheckedChange,
 }: ProcessesTableProps): JSX.Element {
+  if (data.length) {
+    console.log(data[0]);
+  }
+
   return (
     <YStack>
       {data.map((process, index) => (

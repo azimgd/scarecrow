@@ -12,7 +12,7 @@
 
 - (void)didInit
 {
-  _keys = @[
+  _safeKeys = @[
     @"id",
     @"processId",
     @"identifier",
@@ -20,9 +20,14 @@
     @"remoteEndpoint",
     @"remoteUrl",
     @"size",
-    @"process",
     @"createdAt",
   ];
+  _unsafeKeys = @[
+    @"process",
+    @"distinctRemoteEndpoints",
+  ];
+
+  _keys = [_safeKeys arrayByAddingObjectsFromArray:_unsafeKeys];
 }
 
 - (BOOL)save:(void (^)(void))modificiationsBlock
@@ -33,10 +38,20 @@
   }];
 }
 
-- (ProcessModel *)process
+- (NSDictionary *)process
 {
   ProcessModel *process = [ProcessModel instanceWithPrimaryKey:@(self.processId)];
   return [process dictionaryWithValuesForKeys:process.keys];
+}
+
+- (NSArray *)distinctRemoteEndpoints
+{
+  NSMutableArray *response = [NSMutableArray new];
+  for (FlowModel *flow in [FlowModel resultDictionariesFromQuery:@"SELECT DISTINCT remoteEndpoint FROM FlowModel ORDER BY createdAt"]) {
+    [response addObject:[flow dictionaryWithValuesForKeys:flow.safeKeys]];
+  }
+
+  return response;
 }
 
 @end

@@ -6,7 +6,9 @@ export type FlowModel = {
   remoteEndpoint: string;
   remoteUrl: string;
   createdAt: number;
+
   process: ProcessModel;
+  distinctRemoteEndpoints: FlowModel[];
 };
 
 export type ProcessModel = {
@@ -15,14 +17,17 @@ export type ProcessModel = {
   path: string;
   name: string;
   icon: string;
+
   sumFlowSize: number;
   countFlows: number;
+  flows: FlowModel[];
 };
 
 export type RuleModel = {
   id: number;
   allowed: boolean;
   createdAt: number;
+
   process: ProcessModel;
 };
 

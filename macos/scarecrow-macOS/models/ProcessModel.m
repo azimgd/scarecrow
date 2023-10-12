@@ -7,21 +7,26 @@
 
 #import <Foundation/Foundation.h>
 #import "ProcessModel.h"
-#import "FlowModel.h"
 
 @implementation ProcessModel
 
 - (void)didInit
 {
-  _keys = @[
+  _safeKeys = @[
     @"id",
     @"bundle",
     @"path",
     @"name",
     @"icon",
+  ];
+  
+  _unsafeKeys = @[
     @"sumFlowSize",
     @"countFlows",
+    @"flows",
   ];
+  
+  _keys = [_safeKeys arrayByAddingObjectsFromArray:_unsafeKeys];
 }
 
 - (int)sumFlowSize
@@ -32,6 +37,16 @@
 - (int)countFlows
 {
   return [[FlowModel firstValueFromQuery:@"SELECT COUNT(*) FROM FlowModel where processId = ?", @(self.id)] intValue];
+}
+
+- (NSArray *)flows
+{
+  NSMutableArray *response = [NSMutableArray new];
+  for (FlowModel *flow in [FlowModel instancesWhere:@"processId = ? LIMIT 10", @(self.id)]) {
+    [response addObject:[flow dictionaryWithValuesForKeys:flow.safeKeys]];
+  }
+
+  return response;
 }
 
 @end

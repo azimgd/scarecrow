@@ -12,13 +12,18 @@
 
 - (void)didInit
 {
-  _keys = @[
+  _safeKeys = @[
     @"id",
     @"processId",
     @"allowed",
-    @"process",
     @"createdAt",
   ];
+  
+  _unsafeKeys = @[
+    @"process",
+  ];
+  
+  _keys = [_safeKeys arrayByAddingObjectsFromArray:_unsafeKeys];
 }
 
 - (BOOL)save:(void (^)(void))modificiationsBlock
@@ -29,10 +34,10 @@
   }];
 }
 
-- (ProcessModel *)process
+- (NSDictionary *)process
 {
   ProcessModel *process = [ProcessModel instanceWithPrimaryKey:@(self.processId)];
-  return [process dictionaryWithValuesForKeys:process.keys];
+  return [process dictionaryWithValuesForKeys:process.safeKeys];
 }
 
 @end

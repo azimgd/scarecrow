@@ -13,10 +13,8 @@
 - (NSArray *)get
 {
   NSMutableArray *response = [NSMutableArray new];
-  for (ProcessModel *process in [ProcessModel allInstances]) {
+  for (ProcessModel *process in [ProcessModel instancesOrderedBy:@"id"]) {
     [response addObject:[process dictionaryWithValuesForKeys:process.keys]];
-    
-    if (response.count >= 100) break;
   }
 
   return response;

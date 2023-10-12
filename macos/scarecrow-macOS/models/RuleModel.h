@@ -13,6 +13,8 @@
 
 @interface RuleModel : FCModel
 
+@property (nonatomic) NSArray *safeKeys;
+@property (nonatomic) NSArray *unsafeKeys;
 @property (nonatomic) NSArray *keys;
 
 @property (nonatomic) int64_t id;
@@ -20,7 +22,7 @@
 @property (nonatomic) BOOL allowed;
 @property (nonatomic) NSDate *createdAt;
 
-@property (nonatomic) ProcessModel *process;
+@property (nonatomic) NSDictionary *process;
 
 @end
 
