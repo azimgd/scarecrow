@@ -19,7 +19,7 @@ function RulesTableScreen(): JSX.Element {
   );
 
   React.useEffect(() => {
-    ScarecrowNetwork.getRules().then(setTableData);
+    ScarecrowNetwork.getRules(null).then(setTableData);
   }, []);
 
   return (

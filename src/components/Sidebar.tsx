@@ -27,9 +27,9 @@ function Sidebar(): JSX.Element {
   const [countRules, setcountRules] = React.useState<number>(0);
 
   React.useEffect(() => {
-    ScarecrowNetwork.countProcesses().then(setcountProcesses);
-    ScarecrowNetwork.countFlows().then(setcountFlows);
-    ScarecrowNetwork.countRules().then(setcountRules);
+    ScarecrowNetwork.countProcesses(null).then(setcountProcesses);
+    ScarecrowNetwork.countFlows(null).then(setcountFlows);
+    ScarecrowNetwork.countRules(null).then(setcountRules);
   }, []);
 
   return (

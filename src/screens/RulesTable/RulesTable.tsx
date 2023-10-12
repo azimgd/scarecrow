@@ -2,8 +2,8 @@ import React, {PropsWithChildren} from 'react';
 import {TouchableOpacity} from 'react-native';
 import {ListItem, YStack} from 'tamagui';
 import * as ScarecrowNetwork from '../../ScarecrowNetwork';
-import RulesTableIconLeft from './Table/RulesTableIconLeft';
-import RulesTableIconRight from './Table/RulesTableIconRight';
+import RulesTableIconLeft from './Table/TableIconLeft';
+import RulesTableIconRight from './Table/TableIconRight';
 
 type FlowsTableProps = PropsWithChildren<{
   data: ScarecrowNetwork.RuleModel[];

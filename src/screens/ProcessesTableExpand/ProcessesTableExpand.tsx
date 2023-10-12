@@ -1,8 +1,8 @@
 import React, {PropsWithChildren} from 'react';
 import {ListItem, YStack, SizableText} from 'tamagui';
 import * as ScarecrowNetwork from '../../ScarecrowNetwork';
-import FlowsTableSubTitle from './Table/FlowsTableSubTitle';
-import FlowsTableIconLeft from './Table/FlowsTableIconLeft';
+import FlowsTableSubTitle from './Table/TableSubTitle';
+import FlowsTableIconLeft from './Table/TableIconLeft';
 
 type ProcessesTableProps = PropsWithChildren<{
   data: ScarecrowNetwork.ProcessModel[];

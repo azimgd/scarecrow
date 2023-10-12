@@ -78,7 +78,8 @@ RCT_EXPORT_METHOD(getProcesses:(NSString *)filter
   resolve(response);
 }
 
-RCT_EXPORT_METHOD(countProcesses:(RCTPromiseResolveBlock)resolve
+RCT_EXPORT_METHOD(countProcesses:(NSString *)filter
+  resolve:(RCTPromiseResolveBlock)resolve
   error:(__unused RCTResponseSenderBlock)reject)
 {
   ProcessController *processController = [ProcessController new];
@@ -95,7 +96,8 @@ RCT_EXPORT_METHOD(getFlows:(NSString *)filter
   resolve(response);
 }
 
-RCT_EXPORT_METHOD(countFlows:(RCTPromiseResolveBlock)resolve
+RCT_EXPORT_METHOD(countFlows:(NSString *)filter
+  resolve:(RCTPromiseResolveBlock)resolve
   error:(__unused RCTResponseSenderBlock)reject)
 {
   FlowController *flowController = [FlowController new];
@@ -113,7 +115,8 @@ RCT_EXPORT_METHOD(handleFlowRuleUpdate:(NSString *)bundleIdentifier
   resolve(@{});
 }
 
-RCT_EXPORT_METHOD(getRules:(RCTPromiseResolveBlock)resolve
+RCT_EXPORT_METHOD(getRules:(NSString *)filter
+  resolve:(RCTPromiseResolveBlock)resolve
   error:(__unused RCTResponseSenderBlock)reject)
 {
   RuleController *ruleController = [RuleController new];
@@ -121,7 +124,8 @@ RCT_EXPORT_METHOD(getRules:(RCTPromiseResolveBlock)resolve
   resolve(response);
 }
 
-RCT_EXPORT_METHOD(countRules:(RCTPromiseResolveBlock)resolve
+RCT_EXPORT_METHOD(countRules:(NSString *)filter
+  resolve:(RCTPromiseResolveBlock)resolve
   error:(__unused RCTResponseSenderBlock)reject)
 {
   RuleController *ruleController = [RuleController new];
