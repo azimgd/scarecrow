@@ -15,6 +15,12 @@
   return [RuleModel getAll];
 }
 
++ (NSDictionary *)getByPk:(int)pk
+{
+  RuleModel *rule = [RuleModel instanceWithPrimaryKey:@(pk)];
+  return [rule dictionaryWithValuesForKeys:rule.keys];
+}
+
 - (RuleModel *)create:(NSDictionary *)payload
 {
   RuleModel *matchedRule = [RuleModel firstInstanceWhere:@"processId = ?", payload[@"processId"]];

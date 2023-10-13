@@ -43,6 +43,12 @@
   return response;
 }
 
++ (NSDictionary *)getByPk:(int)pk
+{
+  FlowModel *flow = [FlowModel instanceWithPrimaryKey:@(pk)];
+  return [flow dictionaryWithValuesForKeys:flow.keys];
+}
+
 - (BOOL)save:(void (^)(void))modificiationsBlock
 {
   return [super save:^{

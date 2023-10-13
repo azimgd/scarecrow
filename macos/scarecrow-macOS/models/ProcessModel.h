@@ -28,6 +28,7 @@
 @property (nonatomic, assign) NSDictionary *flows;
 
 + (NSArray *)getAll;
++ (NSDictionary *)getByPk:(int)pk;
 
 @end
 

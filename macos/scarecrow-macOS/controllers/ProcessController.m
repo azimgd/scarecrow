@@ -15,6 +15,12 @@
   return [ProcessModel getAll];
 }
 
+- (NSDictionary *)getByPk:(int)pk
+{
+  ProcessModel *process = [ProcessModel instanceWithPrimaryKey:@(pk)];
+  return [process dictionaryWithValuesForKeys:process.keys];
+}
+
 - (ProcessModel *)create:(NSDictionary *)payload
 {
   ProcessModel *matchedProcess = [ProcessModel firstInstanceWhere:@"path = ?", payload[@"path"]];

@@ -25,6 +25,7 @@
 @property (nonatomic) NSDictionary *process;
 
 + (NSArray *)getAll;
++ (NSDictionary *)getByPk:(int)pk;
 
 @end
 

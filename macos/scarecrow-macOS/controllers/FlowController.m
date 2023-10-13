@@ -15,6 +15,12 @@
   return [FlowModel getAll];
 }
 
+- (NSDictionary *)getByPk:(int)pk
+{
+  FlowModel *flow = [FlowModel instanceWithPrimaryKey:@(pk)];
+  return [flow dictionaryWithValuesForKeys:flow.keys];
+}
+
 - (FlowModel *)create:(NSDictionary *)payload
 {
   FlowModel *lastFlow = [FlowModel firstInstanceOrderedBy:@"`id` DESC"];

@@ -33,6 +33,7 @@
 @property (nonatomic, assign) NSArray *distinctRemoteEndpoints;
 
 + (NSArray *)getAll;
++ (NSDictionary *)getByPk:(int)pk;
 
 @end
 
