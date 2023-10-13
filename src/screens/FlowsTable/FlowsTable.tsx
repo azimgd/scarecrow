@@ -2,9 +2,9 @@ import React, {PropsWithChildren} from 'react';
 import {TouchableOpacity} from 'react-native';
 import {ListItem, YStack} from 'tamagui';
 import * as ScarecrowNetwork from '../../ScarecrowNetwork';
-import FlowsTableSubTitle from './Table/TableSubTitle';
-import FlowsTableIconLeft from './Table/TableIconLeft';
-import FlowsTableIconRight from './Table/TableIconRight';
+import TableSubTitle from './Table/TableSubTitle';
+import TableIconLeft from './Table/TableIconLeft';
+import TableIconRight from './Table/TableIconRight';
 
 type FlowsTableProps = PropsWithChildren<{
   data: ScarecrowNetwork.FlowModel[];
@@ -28,9 +28,9 @@ function FlowsTable({
           key={index}>
           <ListItem
             title={flow.remoteEndpoint}
-            subTitle={<FlowsTableSubTitle flow={flow} />}
-            iconAfter={<FlowsTableIconRight flow={flow} />}
-            icon={<FlowsTableIconLeft flow={flow} />}
+            subTitle={<TableSubTitle flow={flow} />}
+            iconAfter={<TableIconRight flow={flow} />}
+            icon={<TableIconLeft flow={flow} />}
           />
         </TouchableOpacity>
       ))}

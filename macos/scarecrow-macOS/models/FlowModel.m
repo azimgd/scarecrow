@@ -48,7 +48,7 @@
 {
   NSMutableArray *response = [NSMutableArray new];
   for (FlowModel *flow in [FlowModel resultDictionariesFromQuery:@"SELECT DISTINCT remoteEndpoint FROM FlowModel ORDER BY createdAt"]) {
-    [response addObject:[flow dictionaryWithValuesForKeys:flow.safeKeys]];
+    [response addObject:[flow dictionaryWithValuesForKeys:self.safeKeys]];
   }
 
   return response;

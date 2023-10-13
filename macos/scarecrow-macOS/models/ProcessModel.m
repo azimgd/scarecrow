@@ -42,7 +42,7 @@
 - (NSArray *)flows
 {
   NSMutableArray *response = [NSMutableArray new];
-  for (FlowModel *flow in [FlowModel instancesWhere:@"processId = ? LIMIT 10", @(self.id)]) {
+  for (FlowModel *flow in [FlowModel instancesWhere:@"processId = ? ORDER BY createdAt DESC LIMIT 5", @(self.id)]) {
     [response addObject:[flow dictionaryWithValuesForKeys:flow.safeKeys]];
   }
 

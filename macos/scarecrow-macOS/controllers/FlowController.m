@@ -13,7 +13,7 @@
 - (NSArray *)get
 {
   NSMutableArray *response = [NSMutableArray new];
-  for (FlowModel *flow in [FlowModel instancesOrderedBy:@"`createdAt` DESC LIMIT 10"]) {
+  for (FlowModel *flow in [FlowModel instancesOrderedBy:@"`createdAt` DESC LIMIT 5"]) {
     [response addObject:[flow dictionaryWithValuesForKeys:flow.keys]];
   }
 

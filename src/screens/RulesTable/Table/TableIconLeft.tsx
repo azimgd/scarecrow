@@ -2,12 +2,14 @@ import React, {PropsWithChildren} from 'react';
 import * as ScarecrowNetwork from '../../../ScarecrowNetwork';
 import {StopCircle} from '@tamagui/lucide-icons';
 
-type RulesTableIconLeftProps = PropsWithChildren<{
+type TableIconLeftProps = PropsWithChildren<{
   rule: ScarecrowNetwork.RuleModel;
 }>;
 
-function RulesTableIconLeft({rule}: RulesTableIconLeftProps): JSX.Element {
-  return <StopCircle color="#44bd32" />;
+function TableIconLeft({rule}: TableIconLeftProps): JSX.Element {
+  return (
+    <StopCircle color="#44bd32" width={20} height={20} strokeWidth={1.5} />
+  );
 }
 
-export default RulesTableIconLeft;
+export default TableIconLeft;

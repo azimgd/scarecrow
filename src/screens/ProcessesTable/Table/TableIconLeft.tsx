@@ -3,11 +3,11 @@ import {Image} from 'react-native';
 import * as ScarecrowNetwork from '../../../ScarecrowNetwork';
 import {AppWindow} from '@tamagui/lucide-icons';
 
-type FlowsTableIconLeftProps = PropsWithChildren<{
+type TableIconLeftProps = PropsWithChildren<{
   process: ScarecrowNetwork.ProcessModel;
 }>;
 
-function FlowsTableIconLeft({process}: FlowsTableIconLeftProps): JSX.Element {
+function TableIconLeft({process}: TableIconLeftProps): JSX.Element {
   return process.icon ? (
     <Image source={{uri: process.icon}} width={20} height={20} />
   ) : (
@@ -15,4 +15,4 @@ function FlowsTableIconLeft({process}: FlowsTableIconLeftProps): JSX.Element {
   );
 }
 
-export default FlowsTableIconLeft;
+export default TableIconLeft;

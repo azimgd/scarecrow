@@ -1,8 +1,8 @@
 import React, {PropsWithChildren} from 'react';
 import {ListItem, YStack, SizableText} from 'tamagui';
 import * as ScarecrowNetwork from '../../ScarecrowNetwork';
-import FlowsTableSubTitle from './Table/TableSubTitle';
-import FlowsTableIconLeft from './Table/TableIconLeft';
+import TableSubTitle from './Table/TableSubTitle';
+import TableIconLeft from './Table/TableIconLeft';
 
 type FlowsTableProps = PropsWithChildren<{
   data: ScarecrowNetwork.FlowModel[];
@@ -17,8 +17,8 @@ function FlowsTable({
         <ListItem
           key={index}
           title={flow.remoteEndpoint}
-          subTitle={<FlowsTableSubTitle flow={flow} />}
-          icon={<FlowsTableIconLeft flow={flow} />}>
+          subTitle={<TableSubTitle flow={flow} />}
+          icon={<TableIconLeft flow={flow} />}>
           <SizableText theme="alt2" size="$3">
             {flow.remoteUrl}
           </SizableText>

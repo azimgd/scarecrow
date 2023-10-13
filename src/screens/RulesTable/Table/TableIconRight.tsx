@@ -2,7 +2,7 @@ import React, {PropsWithChildren} from 'react';
 import * as ScarecrowNetwork from '../../../ScarecrowNetwork';
 import {Switch} from 'tamagui';
 
-type RulesTableIconRightProps = PropsWithChildren<{
+type TableIconRightProps = PropsWithChildren<{
   rule: ScarecrowNetwork.RuleModel;
   handleDataItemCheckedChange: (
     bundleIdentifier: string,
@@ -10,10 +10,10 @@ type RulesTableIconRightProps = PropsWithChildren<{
   ) => void;
 }>;
 
-function RulesTableIconRight({
+function TableIconRight({
   rule,
   handleDataItemCheckedChange,
-}: RulesTableIconRightProps): JSX.Element {
+}: TableIconRightProps): JSX.Element {
   return (
     <Switch
       size="$2"
@@ -26,4 +26,4 @@ function RulesTableIconRight({
   );
 }
 
-export default RulesTableIconRight;
+export default TableIconRight;

@@ -2,8 +2,8 @@ import React, {PropsWithChildren} from 'react';
 import {TouchableOpacity} from 'react-native';
 import {ListItem, YStack} from 'tamagui';
 import * as ScarecrowNetwork from '../../ScarecrowNetwork';
-import RulesTableIconLeft from './Table/TableIconLeft';
-import RulesTableIconRight from './Table/TableIconRight';
+import TableIconLeft from './Table/TableIconLeft';
+import TableIconRight from './Table/TableIconRight';
 
 type FlowsTableProps = PropsWithChildren<{
   data: ScarecrowNetwork.RuleModel[];
@@ -28,12 +28,12 @@ function FlowsTable({
           <ListItem
             title={rule.process.bundle}
             iconAfter={
-              <RulesTableIconRight
+              <TableIconRight
                 rule={rule}
                 handleDataItemCheckedChange={handleDataItemCheckedChange}
               />
             }
-            icon={<RulesTableIconLeft rule={rule} />}
+            icon={<TableIconLeft rule={rule} />}
           />
         </TouchableOpacity>
       ))}

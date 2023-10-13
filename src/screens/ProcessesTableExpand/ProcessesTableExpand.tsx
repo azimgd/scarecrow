@@ -1,8 +1,8 @@
 import React, {PropsWithChildren} from 'react';
 import {ListItem, YStack, SizableText} from 'tamagui';
 import * as ScarecrowNetwork from '../../ScarecrowNetwork';
-import FlowsTableSubTitle from './Table/TableSubTitle';
-import FlowsTableIconLeft from './Table/TableIconLeft';
+import TableSubTitle from './Table/TableSubTitle';
+import TableIconLeft from './Table/TableIconLeft';
 
 type ProcessesTableProps = PropsWithChildren<{
   data: ScarecrowNetwork.ProcessModel[];
@@ -17,8 +17,8 @@ function ProcessesTable({
         <ListItem
           key={index}
           title={process.name}
-          subTitle={<FlowsTableSubTitle process={process} />}
-          icon={<FlowsTableIconLeft process={process} />}>
+          subTitle={<TableSubTitle process={process} />}
+          icon={<TableIconLeft process={process} />}>
           <SizableText theme="alt2" size="$3">
             {process.path}
           </SizableText>
