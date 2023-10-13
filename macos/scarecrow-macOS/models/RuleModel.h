@@ -24,6 +24,8 @@
 
 @property (nonatomic) NSDictionary *process;
 
++ (NSArray *)getAll;
+
 @end
 
 #endif /* RuleModel_h */

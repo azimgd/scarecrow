@@ -32,6 +32,8 @@
 @property (nonatomic, assign) NSDictionary *process;
 @property (nonatomic, assign) NSArray *distinctRemoteEndpoints;
 
++ (NSArray *)getAll;
+
 @end
 
 #endif /* FlowModel_h */

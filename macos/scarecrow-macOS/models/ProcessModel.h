@@ -27,6 +27,8 @@
 @property (nonatomic) int countFlows;
 @property (nonatomic, assign) NSDictionary *flows;
 
++ (NSArray *)getAll;
+
 @end
 
 #endif /* ProcessModel_h */

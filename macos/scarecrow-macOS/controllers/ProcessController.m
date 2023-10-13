@@ -10,14 +10,9 @@
 
 @implementation ProcessController
 
-- (NSArray *)get
+- (NSArray *)getAll
 {
-  NSMutableArray *response = [NSMutableArray new];
-  for (ProcessModel *process in [ProcessModel instancesOrderedBy:@"id"]) {
-    [response addObject:[process dictionaryWithValuesForKeys:process.keys]];
-  }
-
-  return response;
+  return [ProcessModel getAll];
 }
 
 - (ProcessModel *)create:(NSDictionary *)payload

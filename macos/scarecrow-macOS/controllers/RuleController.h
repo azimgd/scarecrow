@@ -12,7 +12,7 @@
 
 @interface RuleController : NSObject
 
-- (NSArray *)get;
+- (NSArray *)getAll;
 - (RuleModel *)create:(NSDictionary *)payload;
 - (RuleModel *)update:(NSDictionary *)payload pk:(NSUInteger)pk;
 - (NSUInteger)count;

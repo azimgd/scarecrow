@@ -29,6 +29,16 @@
   _keys = [_safeKeys arrayByAddingObjectsFromArray:_unsafeKeys];
 }
 
++ (NSArray *)getAll
+{
+  NSMutableArray *response = [NSMutableArray new];
+  for (ProcessModel *process in [ProcessModel instancesOrderedBy:@"id"]) {
+    [response addObject:[process dictionaryWithValuesForKeys:process.keys]];
+  }
+
+  return response;
+}
+
 - (int)sumFlowSize
 {
   return [[FlowModel firstValueFromQuery:@"SELECT SUM(size) FROM FlowModel"] intValue];

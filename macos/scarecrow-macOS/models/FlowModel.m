@@ -33,6 +33,16 @@
   _keys = [_safeKeys arrayByAddingObjectsFromArray:_unsafeKeys];
 }
 
++ (NSArray *)getAll
+{
+  NSMutableArray *response = [NSMutableArray new];
+  for (FlowModel *flow in [FlowModel instancesOrderedBy:@"`createdAt` DESC LIMIT 5"]) {
+    [response addObject:[flow dictionaryWithValuesForKeys:flow.keys]];
+  }
+
+  return response;
+}
+
 - (BOOL)save:(void (^)(void))modificiationsBlock
 {
   return [super save:^{

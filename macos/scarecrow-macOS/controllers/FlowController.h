@@ -12,7 +12,7 @@
 
 @interface FlowController : NSObject
 
-- (NSArray *)get;
+- (NSArray *)getAll;
 - (FlowModel *)create:(NSDictionary *)payload;
 - (FlowModel *)update:(NSDictionary *)payload pk:(NSUInteger)pk;
 - (NSUInteger)count;

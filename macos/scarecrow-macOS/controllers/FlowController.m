@@ -10,14 +10,9 @@
 
 @implementation FlowController
 
-- (NSArray *)get
+- (NSArray *)getAll
 {
-  NSMutableArray *response = [NSMutableArray new];
-  for (FlowModel *flow in [FlowModel instancesOrderedBy:@"`createdAt` DESC LIMIT 5"]) {
-    [response addObject:[flow dictionaryWithValuesForKeys:flow.keys]];
-  }
-
-  return response;
+  return [FlowModel getAll];
 }
 
 - (FlowModel *)create:(NSDictionary *)payload

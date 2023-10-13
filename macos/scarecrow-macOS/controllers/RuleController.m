@@ -10,14 +10,9 @@
 
 @implementation RuleController
 
-- (NSArray *)get
+- (NSArray *)getAll
 {
-  NSMutableArray *response = [NSMutableArray new];
-  for (RuleModel *rule in [RuleModel instancesOrderedBy:@"`createdAt` DESC LIMIT 5"]) {
-    [response addObject:[rule dictionaryWithValuesForKeys:rule.keys]];
-  }
-
-  return response;
+  return [RuleModel getAll];
 }
 
 - (RuleModel *)create:(NSDictionary *)payload

@@ -74,7 +74,7 @@ RCT_EXPORT_METHOD(getProcesses:(NSString *)filter
   error:(__unused RCTResponseSenderBlock)reject)
 {
   ProcessController *processController = [ProcessController new];
-  NSArray *response = [processController get];
+  NSArray *response = [processController getAll];
   resolve(response);
 }
 
@@ -92,7 +92,7 @@ RCT_EXPORT_METHOD(getFlows:(NSString *)filter
   error:(__unused RCTResponseSenderBlock)reject)
 {
   FlowController *flowController = [FlowController new];
-  NSArray *response = [flowController get];
+  NSArray *response = [flowController getAll];
   resolve(response);
 }
 
@@ -120,7 +120,7 @@ RCT_EXPORT_METHOD(getRules:(NSString *)filter
   error:(__unused RCTResponseSenderBlock)reject)
 {
   RuleController *ruleController = [RuleController new];
-  NSArray *response = [ruleController get];
+  NSArray *response = [ruleController getAll];
   resolve(response);
 }
 
