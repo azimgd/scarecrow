@@ -28,7 +28,10 @@
   [flow save:^{
     flow.processId = [payload[@"processId"] unsignedIntValue];
     flow.identifier = payload[@"identifier"];
-    flow.direction = payload[@"direction"];
+    flow.direction = [payload[@"direction"] intValue];
+    flow.socketFamily = [payload[@"socketFamily"] intValue];
+    flow.socketType = [payload[@"socketType"] intValue];
+    flow.socketProtocol = [payload[@"socketProtocol"] intValue];
     flow.remoteEndpoint = payload[@"remoteEndpoint"];
     flow.remoteUrl = payload[@"remoteUrl"];
     flow.size = [payload[@"size"] intValue];
@@ -44,7 +47,10 @@
   [flow save:^{
     flow.processId = [payload[@"processId"] unsignedIntValue];
     flow.identifier = payload[@"identifier"];
-    flow.direction = payload[@"direction"];
+    flow.direction = [payload[@"direction"] intValue];
+    flow.socketFamily = [payload[@"socketFamily"] intValue];
+    flow.socketType = [payload[@"socketType"] intValue];
+    flow.socketProtocol = [payload[@"socketProtocol"] intValue];
     flow.remoteEndpoint = payload[@"remoteEndpoint"];
     flow.remoteUrl = payload[@"remoteUrl"];
     flow.size = [payload[@"size"] intValue];

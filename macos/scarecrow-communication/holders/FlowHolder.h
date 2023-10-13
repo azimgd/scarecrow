@@ -15,7 +15,10 @@
 @property (nonatomic, copy) NSString *identifier;
 @property (nonatomic, copy) NSString *remoteEndpoint;
 @property (nonatomic, copy) NSString *remoteUrl;
-@property (nonatomic, copy) NSString *direction;
+@property (nonatomic, assign) int direction;
+@property (nonatomic, assign) int socketFamily;
+@property (nonatomic, assign) int socketType;
+@property (nonatomic, assign) int socketProtocol;
 @property (nonatomic, assign) int size;
 
 - (instancetype)init:(NEFilterFlow *)flow size:(int)size;

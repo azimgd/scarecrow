@@ -19,7 +19,10 @@
     _identifier = (socketFlow.identifier) ? [socketFlow.identifier UUIDString] : @"";
     _remoteEndpoint = (socketFlow.remoteEndpoint) ? socketFlow.remoteEndpoint.description : @"";
     _remoteUrl = (socketFlow.URL) ? socketFlow.URL.description : @"";
-    _direction = socketFlow.direction == 1 ? @"inbound" : @"outbound";
+    _direction = (int)socketFlow.direction;
+    _socketFamily = socketFlow.socketFamily;
+    _socketType = socketFlow.socketType;
+    _socketProtocol = socketFlow.socketProtocol;
     _size = size ?: 0;
   }
 
@@ -30,7 +33,10 @@
 {
   return @{
     @"identifier": _identifier,
-    @"direction": _direction,
+    @"direction": @(_direction),
+    @"socketFamily": @(_socketFamily),
+    @"socketType": @(_socketType),
+    @"socketProtocol": @(_socketProtocol),
     @"remoteEndpoint": _remoteEndpoint,
     @"remoteUrl": _remoteUrl,
     @"size": @(_size),

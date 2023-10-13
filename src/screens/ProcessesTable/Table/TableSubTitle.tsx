@@ -12,14 +12,14 @@ function TableSubTitle({process}: TableSubTitleProps): JSX.Element {
   return (
     <YStack>
       {process.flows.map((flow, index) => (
-        <XStack space="$2" alignItems="center">
+        <XStack space="$2" alignItems="center" key={index}>
           {flow.direction === 'inbound' ? (
             <ArrowDown width={14} height={14} color="$green10" />
           ) : (
             <ArrowUp width={14} height={14} color="$blue10" />
           )}
 
-          <SizableText theme="alt1" size="$3" key={index}>
+          <SizableText theme="alt1" size="$3">
             {flow.remoteEndpoint} {dayjs.unix(flow.createdAt).fromNow()}
           </SizableText>
         </XStack>
