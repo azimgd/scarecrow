@@ -1,18 +1,13 @@
 import React, {PropsWithChildren} from 'react';
-import {Image} from 'react-native';
 import * as ScarecrowNetwork from '../../../ScarecrowNetwork';
-import {AppWindow} from '@tamagui/lucide-icons';
+import FlowDirection from '../../../components/FlowDirection';
 
 type TableIconLeftProps = PropsWithChildren<{
-  process: ScarecrowNetwork.ProcessModel;
+  flow: ScarecrowNetwork.FlowModel;
 }>;
 
-function TableIconLeft({process}: TableIconLeftProps): JSX.Element {
-  return process.icon ? (
-    <Image source={{uri: process.icon}} width={20} height={20} />
-  ) : (
-    <AppWindow width={20} height={20} strokeWidth={1.5} />
-  );
+function TableIconLeft({flow}: TableIconLeftProps): JSX.Element {
+  return <FlowDirection flow={flow} width={20} />;
 }
 
 export default TableIconLeft;

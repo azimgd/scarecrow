@@ -14,14 +14,11 @@ type ProcessesTableExpandScreenRouteProp = RouteProp<
 function ProcessesTableExpandScreen(): JSX.Element {
   const route = useRoute<ProcessesTableExpandScreenRouteProp>();
 
-  const [tableData, setTableData] = React.useState<
-    ScarecrowNetwork.ProcessModel[]
-  >([]);
+  const [tableData, setTableData] =
+    React.useState<ScarecrowNetwork.ProcessModel | null>(null);
 
   React.useEffect(() => {
-    ScarecrowNetwork.getProcesses(route.params.bundleIdentifier).then(
-      setTableData,
-    );
+    ScarecrowNetwork.getProcess(route.params.processId).then(setTableData);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

@@ -1,29 +1,13 @@
 import React, {PropsWithChildren} from 'react';
 import * as ScarecrowNetwork from '../../../ScarecrowNetwork';
-import {Switch} from 'tamagui';
+import {ArrowRight} from '@tamagui/lucide-icons';
 
 type TableIconRightProps = PropsWithChildren<{
-  process: ScarecrowNetwork.ProcessModel;
-  handleDataItemCheckedChange: (
-    bundleIdentifier: string,
-    checked: boolean,
-  ) => void;
+  flow: ScarecrowNetwork.FlowModel;
 }>;
 
-function TableIconRight({
-  process,
-  handleDataItemCheckedChange,
-}: TableIconRightProps): JSX.Element {
-  return (
-    <Switch
-      size="$2"
-      defaultChecked={process.allowed}
-      onCheckedChange={(checked: boolean) =>
-        handleDataItemCheckedChange(process.bundle, checked)
-      }>
-      <Switch.Thumb animation="quick" />
-    </Switch>
-  );
+function TableIconRight({flow}: TableIconRightProps): JSX.Element {
+  return <ArrowRight width={20} height={20} strokeWidth={1.5} />;
 }
 
 export default TableIconRight;

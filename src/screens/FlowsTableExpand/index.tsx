@@ -14,14 +14,11 @@ type FlowsTableExpandScreenRouteProp = RouteProp<
 function FlowsTableExpandScreen(): JSX.Element {
   const route = useRoute<FlowsTableExpandScreenRouteProp>();
 
-  const [tableData, setTableData] = React.useState<
-    ScarecrowNetwork.ProcessModel[]
-  >([]);
+  const [tableData, setTableData] =
+    React.useState<ScarecrowNetwork.FlowModel | null>(null);
 
   React.useEffect(() => {
-    ScarecrowNetwork.getProcesses(route.params.bundleIdentifier).then(
-      setTableData,
-    );
+    ScarecrowNetwork.getFlow(route.params.flowId).then(setTableData);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

@@ -7,7 +7,7 @@ import TableIconRight from './Table/TableIconRight';
 
 type FlowsTableProps = PropsWithChildren<{
   data: ScarecrowNetwork.RuleModel[];
-  handleDataItemPress: (bundleIdentifier: string) => void;
+  handleDataItemPress: (id: number) => void;
   handleDataItemCheckedChange: (
     bundleIdentifier: string,
     checked: boolean,
@@ -23,7 +23,7 @@ function FlowsTable({
     <YStack>
       {data.map((rule, index) => (
         <TouchableOpacity
-          onPress={() => handleDataItemPress(rule.process.bundle)}
+          onPress={() => handleDataItemPress(rule.id)}
           key={index}>
           <ListItem
             title={rule.process.bundle}

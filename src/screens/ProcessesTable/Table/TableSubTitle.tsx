@@ -1,8 +1,8 @@
 import React, {PropsWithChildren} from 'react';
 import {SizableText, XStack, YStack} from 'tamagui';
 import dayjs from 'dayjs';
-import {ArrowUp, ArrowDown} from '@tamagui/lucide-icons';
 import * as ScarecrowNetwork from '../../../ScarecrowNetwork';
+import FlowDirection from '../../../components/FlowDirection';
 
 type TableSubTitleProps = PropsWithChildren<{
   process: ScarecrowNetwork.ProcessModel;
@@ -13,11 +13,7 @@ function TableSubTitle({process}: TableSubTitleProps): JSX.Element {
     <YStack>
       {process.flows.map((flow, index) => (
         <XStack space="$2" alignItems="center" key={index}>
-          {flow.direction === 'inbound' ? (
-            <ArrowDown width={14} height={14} color="$green10" />
-          ) : (
-            <ArrowUp width={14} height={14} color="$blue10" />
-          )}
+          <FlowDirection flow={flow} width={14} />
 
           <SizableText theme="alt1" size="$3">
             {flow.remoteEndpoint} {dayjs.unix(flow.createdAt).fromNow()}

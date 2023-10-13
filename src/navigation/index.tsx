@@ -14,9 +14,9 @@ import {useTheme} from 'tamagui';
 
 export type RootStackParamList = {
   FlowsTable: undefined;
-  FlowsTableExpand: {bundleIdentifier: string};
+  FlowsTableExpand: {flowId: number};
   ProcessesTable: undefined;
-  ProcessesTableExpand: {bundleIdentifier: string};
+  ProcessesTableExpand: {processId: number};
   RulesTable: undefined;
   Splash: undefined;
 };
@@ -51,10 +51,7 @@ function RootStack() {
         <Stack.Screen name="Splash" component={Splash} />
         <Stack.Screen name="FlowsTable" component={FlowsTable} />
         <Stack.Screen name="ProcessesTable" component={ProcessesTable} />
-        <Stack.Screen
-          name="FlowsTableExpand"
-          component={FlowsTableExpand}
-        />
+        <Stack.Screen name="FlowsTableExpand" component={FlowsTableExpand} />
         <Stack.Screen
           name="ProcessesTableExpand"
           component={ProcessesTableExpand}

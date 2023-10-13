@@ -20,8 +20,8 @@ function ProcessesTableScreen(): JSX.Element {
     ScarecrowNetwork.ProcessModel[]
   >([]);
 
-  const handleDataItemPress = React.useCallback((bundleIdentifier: string) => {
-    navigation.navigate('ProcessesTableExpand', {bundleIdentifier});
+  const handleDataItemPress = React.useCallback((id: number) => {
+    navigation.navigate('ProcessesTableExpand', {processId: id});
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

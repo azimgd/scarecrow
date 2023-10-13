@@ -78,7 +78,7 @@ RCT_EXPORT_METHOD(getProcesses:(NSString *)filter
   resolve(response);
 }
 
-RCT_EXPORT_METHOD(getProcess:(NSNumber *)processPk
+RCT_EXPORT_METHOD(getProcess:(nonnull NSNumber *)processPk
   resolve:(RCTPromiseResolveBlock)resolve
   error:(__unused RCTResponseSenderBlock)reject)
 {
@@ -105,7 +105,7 @@ RCT_EXPORT_METHOD(getFlows:(NSString *)filter
   resolve(response);
 }
 
-RCT_EXPORT_METHOD(getFlow:(NSNumber *)flowPk
+RCT_EXPORT_METHOD(getFlow:(nonnull NSNumber *)flowPk
   resolve:(RCTPromiseResolveBlock)resolve
   error:(__unused RCTResponseSenderBlock)reject)
 {
@@ -142,7 +142,7 @@ RCT_EXPORT_METHOD(getRules:(NSString *)filter
   resolve(response);
 }
 
-RCT_EXPORT_METHOD(getRule:(NSNumber *)rulePk
+RCT_EXPORT_METHOD(getRule:(nonnull NSNumber *)rulePk
   resolve:(RCTPromiseResolveBlock)resolve
   error:(__unused RCTResponseSenderBlock)reject)
 {

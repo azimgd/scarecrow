@@ -3,14 +3,14 @@ import {SizableText, XStack} from 'tamagui';
 import * as ScarecrowNetwork from '../../../ScarecrowNetwork';
 
 type TableSubTitleProps = PropsWithChildren<{
-  process: ScarecrowNetwork.ProcessModel;
+  flow: ScarecrowNetwork.FlowModel;
 }>;
 
-function TableSubTitle({process}: TableSubTitleProps): JSX.Element {
+function TableSubTitle({flow}: TableSubTitleProps): JSX.Element {
   return (
     <XStack space="$2">
       <SizableText theme="alt1" size="$3">
-        {process.bundle}
+        {flow.remoteEndpoint}
       </SizableText>
     </XStack>
   );

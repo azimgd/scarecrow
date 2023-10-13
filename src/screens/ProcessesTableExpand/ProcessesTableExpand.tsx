@@ -3,9 +3,10 @@ import {ListItem, YStack, SizableText} from 'tamagui';
 import * as ScarecrowNetwork from '../../ScarecrowNetwork';
 import TableSubTitle from './Table/TableSubTitle';
 import TableIconLeft from './Table/TableIconLeft';
+import TableHeader from './Table/TableHeader';
 
 type ProcessesTableProps = PropsWithChildren<{
-  data: ScarecrowNetwork.ProcessModel[];
+  data: ScarecrowNetwork.ProcessModel | null;
 }>;
 
 function ProcessesTable({
@@ -13,14 +14,16 @@ function ProcessesTable({
 }: ProcessesTableProps): JSX.Element {
   return (
     <YStack>
-      {data.map((process, index) => (
+      <TableHeader data={data} />
+
+      {data?.flows.map((flow, index) => (
         <ListItem
           key={index}
-          title={process.name}
-          subTitle={<TableSubTitle process={process} />}
-          icon={<TableIconLeft process={process} />}>
+          title={flow.remoteEndpoint}
+          subTitle={<TableSubTitle flow={flow} />}
+          icon={<TableIconLeft flow={flow} />}>
           <SizableText theme="alt2" size="$3">
-            {process.path}
+            {flow.remoteUrl}
           </SizableText>
         </ListItem>
       ))}

@@ -9,7 +9,7 @@ import TableTitle from './Table/TableTitle';
 
 type ProcessesTableProps = PropsWithChildren<{
   data: ScarecrowNetwork.ProcessModel[];
-  handleDataItemPress: (bundleIdentifier: string) => void;
+  handleDataItemPress: (id: number) => void;
   handleDataItemCheckedChange: (
     bundleIdentifier: string,
     checked: boolean,
@@ -25,7 +25,7 @@ function ProcessesTable({
     <YStack>
       {data.map((process, index) => (
         <TouchableOpacity
-          onPress={() => handleDataItemPress(process.bundle)}
+          onPress={() => handleDataItemPress(process.id)}
           key={index}>
           <XStack padding="$4">
             <XStack width="$18" space="$4">

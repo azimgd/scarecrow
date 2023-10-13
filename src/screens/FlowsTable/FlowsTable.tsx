@@ -8,7 +8,7 @@ import TableIconRight from './Table/TableIconRight';
 
 type FlowsTableProps = PropsWithChildren<{
   data: ScarecrowNetwork.FlowModel[];
-  handleDataItemPress: (bundleIdentifier: string) => void;
+  handleDataItemPress: (id: number) => void;
   handleDataItemCheckedChange: (
     bundleIdentifier: string,
     checked: boolean,
@@ -24,7 +24,7 @@ function FlowsTable({
     <YStack>
       {data.map((flow, index) => (
         <TouchableOpacity
-          onPress={() => handleDataItemPress(flow.bundle)}
+          onPress={() => handleDataItemPress(flow.id)}
           key={index}>
           <ListItem
             title={flow.remoteEndpoint}

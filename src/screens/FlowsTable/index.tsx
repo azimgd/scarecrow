@@ -20,8 +20,8 @@ function FlowsTableScreen(): JSX.Element {
     ScarecrowNetwork.FlowModel[]
   >([]);
 
-  const handleDataItemPress = React.useCallback((bundleIdentifier: string) => {
-    navigation.navigate('FlowsTableExpand', {bundleIdentifier});
+  const handleDataItemPress = React.useCallback((id: number) => {
+    navigation.navigate('FlowsTableExpand', {flowId: id});
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
