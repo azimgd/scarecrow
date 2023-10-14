@@ -17,6 +17,7 @@
     @"processId",
     @"allowed",
     @"createdAt",
+    @"updatedAt",
   ];
   
   _unsafeKeys = @[
@@ -40,6 +41,7 @@
 {
   return [super save:^{
     if (!self.createdAt) self.createdAt = [NSDate date];
+    if (!self.updatedAt) self.updatedAt = [NSDate date];
     modificiationsBlock();
   }];
 }

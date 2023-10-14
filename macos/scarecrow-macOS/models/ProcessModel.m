@@ -18,6 +18,8 @@
     @"path",
     @"name",
     @"icon",
+    @"createdAt",
+    @"updatedAt",
   ];
   
   _unsafeKeys = @[
@@ -32,21 +34,36 @@
 + (NSArray *)getAll
 {
   NSMutableArray *response = [NSMutableArray new];
-  for (ProcessModel *process in [ProcessModel instancesOrderedBy:@"id"]) {
+  for (ProcessModel *process in [ProcessModel instancesOrderedBy:@"updatedAt DESC"]) {
     [response addObject:[process dictionaryWithValuesForKeys:process.keys]];
   }
 
   return response;
 }
 
+- (BOOL)save:(void (^)(void))modificiationsBlock
+{
+  return [super save:^{
+    if (!self.createdAt) self.createdAt = [NSDate date];
+    if (!self.updatedAt) self.updatedAt = [NSDate date];
+    modificiationsBlock();
+  }];
+}
+
++ (NSDictionary *)getByPk:(int)pk
+{
+  ProcessModel *process = [ProcessModel instanceWithPrimaryKey:@(pk)];
+  return [process dictionaryWithValuesForKeys:process.keys];
+}
+
 - (int)sumFlowSize
 {
-  return [[FlowModel firstValueFromQuery:@"SELECT SUM(size) FROM FlowModel"] intValue];
+  return [[FlowModel firstValueFromQuery:@"SELECT SUM(size) FROM FlowModel WHERE processId = ?", @(self.id)] intValue];
 }
 
 - (int)countFlows
 {
-  return [[FlowModel firstValueFromQuery:@"SELECT COUNT(*) FROM FlowModel where processId = ?", @(self.id)] intValue];
+  return [[FlowModel firstValueFromQuery:@"SELECT COUNT(*) FROM FlowModel WHERE processId = ?", @(self.id)] intValue];
 }
 
 - (NSArray *)flows

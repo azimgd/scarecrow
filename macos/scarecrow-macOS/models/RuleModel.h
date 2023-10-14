@@ -21,6 +21,7 @@
 @property (nonatomic) int64_t processId;
 @property (nonatomic) BOOL allowed;
 @property (nonatomic) NSDate *createdAt;
+@property (nonatomic) NSDate *updatedAt;
 
 @property (nonatomic) NSDictionary *process;
 

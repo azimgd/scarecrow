@@ -38,6 +38,12 @@
     flow.size = [payload[@"size"] intValue];
   }];
   
+  ProcessModel *process = [ProcessModel instanceWithPrimaryKey:@(flow.processId)];
+  
+  [process save:^{
+    process.updatedAt = [NSDate date];
+  }];
+  
   return flow;
 }
 
@@ -55,6 +61,12 @@
     flow.remoteEndpoint = payload[@"remoteEndpoint"];
     flow.remoteUrl = payload[@"remoteUrl"];
     flow.size = [payload[@"size"] intValue];
+  }];
+  
+  ProcessModel *process = [ProcessModel instanceWithPrimaryKey:@(flow.processId)];
+  
+  [process save:^{
+    process.updatedAt = [NSDate date];
   }];
   
   return flow;

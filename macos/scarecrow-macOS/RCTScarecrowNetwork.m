@@ -23,10 +23,13 @@ RCT_EXPORT_MODULE();
   
   [Migrations new];
   
+  [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(uiDispatcher) userInfo:nil repeats:YES];
+  
   NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
   [defaultCenter addObserver:self selector:@selector(handleFlowRequest:) name:@"handleFlowRequest" object:nil];
   [defaultCenter addObserver:self selector:@selector(handleConnectionStart:) name:@"handleConnectionStart" object:nil];
   [defaultCenter addObserver:self selector:@selector(handleConnectionStop:) name:@"handleConnectionStop" object:nil];
+
   return self;
 }
 
@@ -160,6 +163,11 @@ RCT_EXPORT_METHOD(countRules:(NSString *)filter
   resolve(@(response));
 }
 
+- (void)uiDispatcher
+{
+  [self sendEventWithName:@"handleFlowRequest" body:@{}];
+}
+
 - (void)handleFlowRequest:(NSNotification*)sender
 {
   ProcessController *processController = [ProcessController new];
@@ -188,8 +196,6 @@ RCT_EXPORT_METHOD(countRules:(NSString *)filter
     @"remoteUrl": sender.userInfo[@"flow"][@"remoteUrl"],
     @"size": sender.userInfo[@"flow"][@"size"],
   }];
-  
-  [self sendEventWithName:@"handleFlowRequest" body:@{}];
 }
 
 - (void)handleConnectionStart:(NSNotification*)sender

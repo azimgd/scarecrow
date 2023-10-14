@@ -43,7 +43,8 @@
         @"remoteUrl TEXT NOT NULL DEFAULT '',"
         @"remoteEndpoint TEXT NOT NULL DEFAULT '',"
         @"size INTEGER DEFAULT 0,"
-        @"createdAt REAL NOT NULL"
+        @"createdAt REAL,"
+        @"updatedAt REAL"
         @");"
       ]) failedAt(1);
 
@@ -54,6 +55,8 @@
         @"name TEXT NOT NULL DEFAULT '',"
         @"bundle TEXT NOT NULL DEFAULT '',"
         @"icon TEXT NOT NULL DEFAULT '',"
+        @"createdAt REAL,"
+        @"updatedAt REAL,"
         @"FOREIGN KEY (id) REFERENCES FlowModel(id)"
         @");"
         @"ALTER TABLE FlowModel ADD FOREIGN KEY (processId) REFERENCES ProcessModel(id);"
@@ -64,7 +67,8 @@
         @"id INTEGER PRIMARY KEY,"
         @"processId INTEGER,"
         @"allowed INTEGER,"
-        @"createdAt REAL NOT NULL,"
+        @"createdAt REAL,"
+        @"updatedAt REAL,"
         @"FOREIGN KEY (id) REFERENCES ProcessModel(id)"
         @");"
       ]) failedAt(3);

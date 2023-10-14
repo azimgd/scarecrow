@@ -28,6 +28,7 @@
 @property (nonatomic, copy) NSString *remoteUrl;
 @property (nonatomic, assign) int size;
 @property (nonatomic) NSDate *createdAt;
+@property (nonatomic) NSDate *updatedAt;
 
 @property (nonatomic, assign) NSDictionary *process;
 @property (nonatomic, assign) NSArray *distinctRemoteEndpoints;
